@@ -43,7 +43,7 @@ public class DriveSubsystem extends Subsystem {
 			leftTalon.set(speedLeft);	
 		}
 		for (Talon rightTalon: this.rightTalons){
-			rightTalon.set(speedRight);
+			rightTalon.set(-speedRight);
 		}
 		
 		

@@ -14,6 +14,7 @@ public class DriveCommand extends Command{
 	
 	public DriveCommand(){
 		this.oi = Robot.oi;
+		requires(Subsystems.drive);
 	}
 	    protected void initialize() {
 
@@ -26,7 +27,7 @@ public class DriveCommand extends Command{
 			double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));
 
 			
-	    	driveSubsystem.DriveCheesy(throttle, turnRate);
+	    	Subsystems.drive.DriveCheesy(throttle, turnRate);
 
 		}
 
