@@ -10,7 +10,8 @@ public class RobotMap {
 	public static final int DRIVE_JOYSTICK_PORT = 0,
 							// axes
 						    TURN_RATE = 4, 
-						    THROTTLE = 5;  
+						    THROTTLE = 5, 
+							ENABLE_SHIFTING_BUTTON = 2;
 
 			
 	
@@ -20,8 +21,20 @@ public class RobotMap {
 							RIGHT_TALON_ID_3 = 3,
 							LEFT_TALON_ID_1 = 4,
 							LEFT_TALON_ID_2 = 5,
-							LEFT_TALON_ID_3 = 6;
-
+							LEFT_TALON_ID_3 = 6,
+							SHOOTER_TALON_ID = 7;
+	
+	// intake victors
+	public static final int INTAKE_VICTOR_1_ID = 0,
+							INTAKE_VICTOR_2_ID = 1;
+	
+	// various sensors
+	public static final int BEAM_BREAK_PORT = 0,
+							FRONT_LIMIT_SWITCH = 1,
+							BACK_LIMIT_SWITCH = 2;
+	
+	// driving
+	public static final int RPM = 1800;
 	
 			
 }

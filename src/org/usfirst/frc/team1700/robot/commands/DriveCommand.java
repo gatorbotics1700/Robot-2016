@@ -4,17 +4,18 @@ import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
-import org.usfirst.frc.team1700.robot.subsystems.*;
+//import org.usfirst.frc.team1700.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveCommand extends Command{
-	private DriveSubsystem driveSubsystem;
 	private OI oi;
+
 	
 	public DriveCommand(){
 		this.oi = Robot.oi;
 		requires(Subsystems.drive);
+
 	}
 	    protected void initialize() {
 
