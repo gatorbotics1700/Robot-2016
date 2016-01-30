@@ -38,8 +38,8 @@ public class RobotMap {
 	public static final int RPM = 1800;
 
 	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 10,
-			SHOOTER_MOTOR_SPEED_FAR = 20,
-			SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
+							SHOOTER_MOTOR_SPEED_FAR = 20,
+							SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
 				
 			
 }
