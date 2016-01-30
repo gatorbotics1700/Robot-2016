@@ -20,7 +20,13 @@ public class RobotMap {
 							RIGHT_TALON_ID_3 = 3,
 							LEFT_TALON_ID_1 = 4,
 							LEFT_TALON_ID_2 = 5,
-							LEFT_TALON_ID_3 = 6;
+							LEFT_TALON_ID_3 = 6,
+							SHOOTER_TALON_ID = 7;
+	
+	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 10,
+			SHOOTER_MOTOR_SPEED_FAR = 20,
+			SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
+			
 
 	
 			
