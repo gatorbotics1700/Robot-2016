@@ -24,6 +24,7 @@ public class RobotMap {
 							LEFT_TALON_ID_3 = 6,
 							SHOOTER_TALON_ID = 7;
 	
+<<<<<<< HEAD
 	// intake victors
 	public static final int INTAKE_VICTOR_1_ID = 0,
 							INTAKE_VICTOR_2_ID = 1;
@@ -35,6 +36,13 @@ public class RobotMap {
 	
 	// driving
 	public static final int RPM = 1800;
+=======
+	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 10,
+			SHOOTER_MOTOR_SPEED_FAR = 20,
+			SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
+			
+
+>>>>>>> 3c56c9b6d87554d0b30bcf0a48ae84e6ebcb0be6
 	
 			
 }
