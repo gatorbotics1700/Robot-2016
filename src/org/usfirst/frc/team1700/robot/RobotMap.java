@@ -22,7 +22,8 @@ public class RobotMap {
 							LEFT_TALON_ID_1 = 4,
 							LEFT_TALON_ID_2 = 5,
 							LEFT_TALON_ID_3 = 6,
-							SHOOTER_TALON_ID = 7;
+							SHOOTER_TALON_ID = 7,
+							ARM_TALON_ID = 8;
 	
 	// intake victors
 	public static final int INTAKE_VICTOR_1_ID = 0,

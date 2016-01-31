@@ -4,17 +4,18 @@ import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
 
 public class ShooterSubsystem extends Subsystems {
-
 	DoubleSolenoid shooterSolenoid = new DoubleSolenoid (4,5);
 	CANTalon shooterTalon = new CANTalon (RobotMap.SHOOTER_TALON_ID);
 	
+	public ShooterSubsystem() {
+		super();
+	}
+	
 	public void setHoodPosition(boolean position) {
-		
+	
 	}
 	
 	private void setWheelSpeed(double speed) {
