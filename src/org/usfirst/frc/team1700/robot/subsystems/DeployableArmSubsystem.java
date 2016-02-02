@@ -44,11 +44,11 @@ public class DeployableArmSubsystem {
 	 * if it is in deadband range. */
 	public boolean isAtIntake() { 
 		if (armTalon.getEncPosition() < RobotMap.INTAKE_ARM_POSITION + shooterDeadband && 
-				armTalon.getEncPosition() > RobotMap.INTAKE_ARM_POSITION - shooterDeadband) {
-				return true;
-			} else {
-				return false;
-			}
+			armTalon.getEncPosition() > RobotMap.INTAKE_ARM_POSITION - shooterDeadband) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/* Returns boolean value if the arm is at defense level, depending on 
@@ -59,16 +59,15 @@ public class DeployableArmSubsystem {
 	
 	// Stops the arm.
 	public void stop() {
-		armTalon.set(armTalon.getEncPosition()); //need to check if this is actually the current position
+		armTalon.set(armTalon.getEncPosition());
 	}
 	
 	/* While the back limit switch isn't hit, move to the retracted
 	 * position. */
 	public void goToRetracted() {
-		while (!backLimitSwitch.get()) {
+		if (!backLimitSwitch.get())
 			armTalon.set(RobotMap.RETRACTED_ARM_POSITION);
-		}
-		stop();
+		else stop();
 	}
 	
 	// Move to intake.
@@ -79,9 +78,8 @@ public class DeployableArmSubsystem {
 	/* While the front limit switch isn't hit, move to the retracted
 	 * position. */
 	public void goToDefense() {
-		while (!frontLimitSwitch.get()) {
+		if (!frontLimitSwitch.get())
 			armTalon.set(RobotMap.DEFENSE_ARM_POSITION);
-		}
-		stop();		
+		else stop();		
 	}
 }
