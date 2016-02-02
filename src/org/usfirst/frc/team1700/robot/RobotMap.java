@@ -45,5 +45,9 @@ public class RobotMap {
 							SHOOTER_MOTOR_SPEED_FAR = 20,
 							SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
 				
+	// deployable arm
+	public static final int RETRACTED_ARM_POSITION = 0,
+							INTAKE_ARM_POSITION = 0,
+							DEFENSE_ARM_POSITION = 0;
 			
 }
