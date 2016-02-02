@@ -14,14 +14,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveSubsystem extends Subsystem {
 	
-	private List<CANTalon> rightTalons;
-	private List<CANTalon> leftTalons;
+	private HalfDriveSubsystem Left;
+	private HalfDriveSubsystem Right;
+//	private List<CANTalon> rightTalons;
+//	private List<CANTalon> leftTalons;
 	private static final double JOY_DEADBAND = 0.05;
 	private OI oi;
-	private static final boolean AUTOSHIFTING = false;
-	private static final boolean SHIFTED_HIGH = false;
-	DoubleSolenoid leftSolenoid = new DoubleSolenoid (0,1);
-	DoubleSolenoid rightSolenoid = new DoubleSolenoid (2,3);
+//	private static boolean AUTOSHIFTING = false;
+//	private static boolean SHIFTED_HIGH = false;
+//	DoubleSolenoid leftSolenoid = new DoubleSolenoid (0,1);
+//	DoubleSolenoid rightSolenoid = new DoubleSolenoid (2,3);
 	
 	
 	/** actual driving stuff happens now */
@@ -29,39 +31,39 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {
 		
 		
-		this.rightTalons = new ArrayList<CANTalon>();
-		this.leftTalons = new ArrayList<CANTalon>();
-		this.rightTalons.add(new CANTalon(RobotMap.RIGHT_TALON_ID_1));
-		this.rightTalons.get(0).setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		this.rightTalons.add(new CANTalon(RobotMap.RIGHT_TALON_ID_2));
-		this.rightTalons.add(new CANTalon(RobotMap.RIGHT_TALON_ID_3));
-		this.leftTalons.add(new CANTalon(RobotMap.LEFT_TALON_ID_1));
-		this.leftTalons.get(0).setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		this.leftTalons.add(new CANTalon(RobotMap.LEFT_TALON_ID_2));
-		this.leftTalons.add(new CANTalon(RobotMap.LEFT_TALON_ID_3));
+		Left = new HalfDriveSubsystem(RobotMap.LEFT_VICTOR_ID_1, RobotMap.LEFT_VICTOR_ID_2, RobotMap.LEFT_TALON_ID, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
+		Right = new HalfDriveSubsystem(RobotMap.RIGHT_VICTOR_ID_1, RobotMap.RIGHT_VICTOR_ID_2, RobotMap.RIGHT_TALON_ID, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
+
+//		this.rightTalons = new ArrayList<CANTalon>();
+//		this.leftTalons = new ArrayList<CANTalon>();
+//		this.rightTalons.add(new CANTalon(RobotMap.RIGHT_TALON_ID_1));
+//		this.rightTalons.get(0).setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+//		this.rightTalons.add(new CANTalon(RobotMap.RIGHT_TALON_ID_2));
+//		this.rightTalons.add(new CANTalon(RobotMap.RIGHT_TALON_ID_3));
+//		this.leftTalons.add(new CANTalon(RobotMap.LEFT_TALON_ID_1));
+//		this.leftTalons.get(0).setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+//		this.leftTalons.add(new CANTalon(RobotMap.LEFT_TALON_ID_2));
+//		this.leftTalons.add(new CANTalon(RobotMap.LEFT_TALON_ID_3));
 		
 
 
 	}
 	
 	public void DriveTank (double speedLeft, double speedRight) {
-		for (CANTalon leftTalon: this.leftTalons) {
 			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND){ 
-					leftTalon.set(speedLeft);	
+					Left.SetSpeed(speedLeft);	
 			} else {
-					leftTalon.set(0);
+					Left.SetSpeed(0);
 			}
-		}
-		for (CANTalon rightTalon: this.rightTalons){
 			if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND){ 
-				rightTalon.set(-speedRight);	
+				Right.SetSpeed(-speedRight);	
 			} else {
-				rightTalon.set(0);
+				Right.SetSpeed(0);
 			}
 		}
 		
 		
-	}
+	
 	public void DriveCheesy (double throttle, double turnRate){
 		double leftOutput, rightOutput, angularPower, linearPower;
 		linearPower = throttle;
@@ -74,27 +76,26 @@ public class DriveSubsystem extends Subsystem {
 		DriveTank (leftOutput, rightOutput);
 		
  	}
-	
-	public void EnableAutoShifting (boolean on) {
-			boolean AUTOSHIFTING = true;
-	}
-	
-	private void IsLowGear () {
-		// if we're in low gear
-			boolean SHIFTED_HIGH = false;
-		// if high gear
-			// boolean SHIFTED_HIGH = true;
-	}
+//	
+//	public void EnableAutoShifting (boolean on) {
+//			boolean AUTOSHIFTING = true;
+//	}
+//	
+//	private void IsLowGear () {
+//		// if we're in low gear
+//			boolean SHIFTED_HIGH = false;
+//		// if high gear
+//			// boolean SHIFTED_HIGH = true;
+//	}
 	
 	public void ShiftHigh () {
-		this.leftSolenoid.set(DoubleSolenoid.Value.kForward);
-		this.rightSolenoid.set(DoubleSolenoid.Value.kForward);
-
+		Left.ShiftHigh();
+		Right.ShiftHigh();
 	}
 	
-	public void ShiftLow () {
-		this.leftSolenoid.set(DoubleSolenoid.Value.kReverse);
-		this.rightSolenoid.set(DoubleSolenoid.Value.kReverse);
+	public void ShiftLow(){
+		Left.ShiftLow();
+		Right.ShiftLow();
 
 	}
 // 
@@ -109,13 +110,13 @@ public class DriveSubsystem extends Subsystem {
 //	
 	
 	public void ZeroEncoders (){
-		rightTalons.get(0).setPosition(0);
-		leftTalons.get(0).setPosition(0);
+		Left.ZeroEncoder();
+		Right.ZeroEncoder();
 
 	}
 	
 	public void driveToDistance(int distance, double speed){
-		if (rightTalons.get(0).getEncPosition() < distance) {
+		if (Right.GetEncReading() < distance) {
 			DriveTank (speed, speed);
 		} else {
 			DriveTank (0,0);

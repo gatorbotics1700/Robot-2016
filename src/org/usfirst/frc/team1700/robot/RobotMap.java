@@ -13,15 +13,19 @@ public class RobotMap {
 						    THROTTLE = 5, 
 							ENABLE_SHIFTING_BUTTON = 2;
 
-			
+	// pneumatics
+	public static final int LEFT_DRIVE_SOLENOID_ONE_PORT = 0,
+							LEFT_DRIVE_SOLENOID_TWO_PORT = 1,
+							RIGHT_DRIVE_SOLENOID_ONE_PORT = 2,
+							RIGHT_DRIVE_SOLENOID_TWO_PORT = 3;
 	
 	// talons
-	public static final int RIGHT_TALON_ID_1 = 1,
-							RIGHT_TALON_ID_2 = 2,
-							RIGHT_TALON_ID_3 = 3,
-							LEFT_TALON_ID_1 = 4,
-							LEFT_TALON_ID_2 = 5,
-							LEFT_TALON_ID_3 = 6,
+	public static final int RIGHT_VICTOR_ID_1 = 1,
+							RIGHT_VICTOR_ID_2 = 2,
+							RIGHT_TALON_ID = 3,
+							LEFT_VICTOR_ID_1 = 4,
+							LEFT_VICTOR_ID_2 = 5,
+							LEFT_TALON_ID= 6,
 							SHOOTER_TALON_ID = 7,
 							ARM_TALON_ID = 8;
 	
