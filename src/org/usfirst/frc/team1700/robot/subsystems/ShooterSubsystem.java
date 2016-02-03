@@ -5,8 +5,9 @@ import org.usfirst.frc.team1700.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class ShooterSubsystem extends Subsystems {
+public class ShooterSubsystem extends Subsystem {
 	DoubleSolenoid shooterSolenoid;
 	CANTalon shooterTalon;
 	public boolean hoodUp = true;
@@ -51,6 +52,11 @@ public class ShooterSubsystem extends Subsystems {
 	
 	public void setSpeedToZero() {
 		shooterTalon.disableControl();
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
 	}
 	
 }
