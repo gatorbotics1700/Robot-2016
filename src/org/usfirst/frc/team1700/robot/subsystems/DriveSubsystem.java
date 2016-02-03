@@ -1,4 +1,7 @@
 package org.usfirst.frc.team1700.robot.subsystems;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import org.usfirst.frc.team1700.robot.OI;
 
 
@@ -6,6 +9,7 @@ import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.SPI;
 
 public class DriveSubsystem extends Subsystem {
 	
@@ -13,10 +17,13 @@ public class DriveSubsystem extends Subsystem {
 	private HalfDriveSubsystem right;
 	private static final double JOY_DEADBAND = 0.05;
 	private OI oi;
+	private AHRS navX;
 
 	/** actual driving stuff happens now */
 	
-	public DriveSubsystem() {		
+	public DriveSubsystem() {	
+		
+		navX = new AHRS(SPI.Port.kMXP); 
 		left = new HalfDriveSubsystem(RobotMap.LEFT_VICTOR_ID_1, RobotMap.LEFT_VICTOR_ID_2, RobotMap.LEFT_TALON_ID, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
 		right = new HalfDriveSubsystem(RobotMap.RIGHT_VICTOR_ID_1, RobotMap.RIGHT_VICTOR_ID_2, RobotMap.RIGHT_TALON_ID, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
 	}
@@ -33,6 +40,25 @@ public class DriveSubsystem extends Subsystem {
 			right.SetSpeed(0);
 		}
 	}		
+
+	public void navX (){
+		System.out.println(navX.getAngle());
+	}
+
+	public void DriveTank (double speedLeft, double speedRight) { // tank drive
+			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) { // maybe take out the deadband later in life
+					left.SetSpeed(speedLeft);
+			} else {
+					left.SetSpeed(0);
+			}
+			if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND){ 
+				right.SetSpeed(-speedRight);	
+			} else {
+				right.SetSpeed(0);
+			}
+			
+			navX();
+		}
 	
 	public void driveCheesy (double throttle, double turnRate){ // cheesy drive!
 		double leftOutput, rightOutput, angularPower, linearPower;
