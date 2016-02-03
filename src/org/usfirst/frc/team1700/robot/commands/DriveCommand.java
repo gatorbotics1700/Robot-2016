@@ -26,12 +26,17 @@ public class DriveCommand extends Command{
 			// TODO Auto-generated method stub
 			double turnRate = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
 			double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));
-
+			
 			
 	    	Subsystems.drive.DriveCheesy(throttle, turnRate);
+	    	
+	    	Subsystems.drive.EnableAutoShifting(oi.driveJoystick.getRawButton(RobotMap.ENABLE_SHIFTING_BUTTON));
+	    	
 
 		}
 
+		
+		
 		@Override
 		protected boolean isFinished() {
 			// TODO Auto-generated method stub

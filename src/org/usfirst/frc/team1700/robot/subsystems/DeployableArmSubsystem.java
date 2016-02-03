@@ -29,7 +29,7 @@ public class DeployableArmSubsystem {
 	public void enable() {
 		//need to add get position and check if that really is what I assigned currentPosition to
 
-		armTalon.changeControlMode(CANTalon.ControlMode.Position);
+		armTalon.changeControlMode(CANTalon.TalonControlMode.Position);
 		armTalon.setPID(0,0,0);
 		armTalon.enableControl();
 	}
