@@ -33,6 +33,7 @@ public class DriveSubsystem extends Subsystem {
 	public void NavX (){
 		System.out.println(navX.getAngle());
 	}
+
 	
 	public void DriveTank (double speedLeft, double speedRight) { // tank drive
 			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) { // maybe take out the deadband later in life
@@ -49,7 +50,7 @@ public class DriveSubsystem extends Subsystem {
 			NavX();
 		}
 		
-		
+			
 	
 	public void DriveCheesy (double throttle, double turnRate){ // cheesy drive!
 		double leftOutput, rightOutput, angularPower, linearPower;

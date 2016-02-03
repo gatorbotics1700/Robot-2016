@@ -30,7 +30,6 @@ public class DriveCommand extends Command{
 			
 	    	Subsystems.drive.DriveCheesy(throttle, turnRate);
 	    	
-	    	Subsystems.drive.EnableAutoShifting(oi.driveJoystick.getRawButton(RobotMap.ENABLE_SHIFTING_BUTTON));
 	    	
 
 		}

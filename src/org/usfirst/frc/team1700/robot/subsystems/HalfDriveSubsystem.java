@@ -12,14 +12,16 @@ public class HalfDriveSubsystem {
 	Victor Victor2;
 	DoubleSolenoid Solenoid;
 	
+	// Constructor initializes electronics for HalfDrive. 
 	public HalfDriveSubsystem(int VictorOneID, int VictorTwoID,int CanTalonID, int SolenoidLeftID, int SolenoidRightID){
-	CanTalon = new CANTalon(CanTalonID);
-	CanTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-	Victor1 = new Victor(VictorOneID);
-	Victor2 = new Victor(VictorTwoID);
-	Solenoid = new DoubleSolenoid(SolenoidLeftID, SolenoidRightID);
+		CanTalon = new CANTalon(CanTalonID);
+		CanTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		Victor1 = new Victor(VictorOneID);
+		Victor2 = new Victor(VictorTwoID);
+		Solenoid = new DoubleSolenoid(SolenoidLeftID, SolenoidRightID);
 	}
 	
+	// Sets motor speed for three motors on gear box for given side of robot. 
 	public void SetSpeed(double speed){
 		CanTalon.set(speed);
 		Victor1.set(speed);
@@ -30,17 +32,16 @@ public class HalfDriveSubsystem {
 		return CanTalon.getEncPosition();	
 	}	
 	
+	// If the motors are fast enough, shift up a gear. 
 	public void ShiftHigh(){
-		if (CanTalon.getEncVelocity() > RobotMap.RPM) {
-		Solenoid.set(DoubleSolenoid.Value.kForward);
-		}
+		if (CanTalon.getEncVelocity() > RobotMap.RPM)
+			Solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
+	// If the motors are slow enough, shift down a gear. 
 	public void ShiftLow(){
-		if (CanTalon.getEncVelocity() < RobotMap.RPM) {
-
-		Solenoid.set(DoubleSolenoid.Value.kReverse);
-		}
+		if (CanTalon.getEncVelocity() < RobotMap.RPM)
+			Solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void ZeroEncoder(){
