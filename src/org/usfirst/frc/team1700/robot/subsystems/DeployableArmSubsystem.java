@@ -23,6 +23,12 @@ public class DeployableArmSubsystem {
 		
 		armTalon = new CANTalon(RobotMap.ARM_TALON_ID);
 		armTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+
+	}
+	
+	public void enable() {
+		//need to add get position and check if that really is what I assigned currentPosition to
+
 		armTalon.changeControlMode(CANTalon.TalonControlMode.Position);
 		armTalon.setPID(0,0,0);
 		armTalon.enableControl();
