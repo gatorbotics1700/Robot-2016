@@ -8,40 +8,40 @@ import edu.wpi.first.wpilibj.Victor;
 
 public class HalfDriveSubsystem {
 	CANTalon CanTalon;
-	Victor Victor1;
-	Victor Victor2;
-	DoubleSolenoid Solenoid;
+	Victor victor1;
+	Victor victor2;
+	DoubleSolenoid solenoid;
 	
 	// Constructor initializes electronics for HalfDrive. 
 	public HalfDriveSubsystem(int VictorOneID, int VictorTwoID,int CanTalonID, int SolenoidLeftID, int SolenoidRightID){
 		CanTalon = new CANTalon(CanTalonID);
 		CanTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		Victor1 = new Victor(VictorOneID);
-		Victor2 = new Victor(VictorTwoID);
-		Solenoid = new DoubleSolenoid(SolenoidLeftID, SolenoidRightID);
+		victor1 = new Victor(VictorOneID);
+		victor2 = new Victor(VictorTwoID);
+		solenoid = new DoubleSolenoid(SolenoidLeftID, SolenoidRightID);
 	}
 	
 	// Sets motor speed for three motors on gear box for given side of robot. 
-	public void SetSpeed(double speed){
+	public void setSpeed(double speed){
 		CanTalon.set(speed);
-		Victor1.set(speed);
-		Victor2.set(speed);
+		victor1.set(speed);
+		victor2.set(speed);
 	}
 	
-	public int GetEncReading(){
+	public int getEncReading(){
 		return CanTalon.getEncPosition();	
 	}	
 	
 	// If the motors are fast enough, shift up a gear. 
 	public void shiftHighHalfDrive() {
 		if (CanTalon.getEncVelocity() > RobotMap.RPM)
-			Solenoid.set(DoubleSolenoid.Value.kForward);
+			solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	// If the motors are slow enough, shift down a gear. 
 	public void shiftLowHalfDrive() {
 		if (CanTalon.getEncVelocity() < RobotMap.RPM)
-			Solenoid.set(DoubleSolenoid.Value.kReverse);
+			solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void zeroEncoderHalfDrive() {
