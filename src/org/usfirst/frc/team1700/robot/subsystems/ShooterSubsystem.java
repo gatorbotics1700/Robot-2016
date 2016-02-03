@@ -37,11 +37,11 @@ public class ShooterSubsystem extends Subsystems {
 		}
 	}
 	
-	public void setSpeedForCloseShot() {
+	public void shootClose() {
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
 	}
 	
-	public void setSpeedForFarShot() {
+	public void shootFar() {
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_FAR);
 	}
 	

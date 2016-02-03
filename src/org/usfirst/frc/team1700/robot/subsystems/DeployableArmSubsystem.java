@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 
 import org.usfirst.frc.team1700.robot.RobotMap;
+import org.usfirst.frc.team1700.robot.RobotUtils;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -49,12 +50,7 @@ public class DeployableArmSubsystem {
 	/* Returns boolean value is the arm is at intake level, depending on
 	 * if it is in deadband range. */
 	public boolean isAtIntake() { 
-		if (armTalon.getEncPosition() < RobotMap.INTAKE_ARM_POSITION + shooterDeadband && 
-			armTalon.getEncPosition() > RobotMap.INTAKE_ARM_POSITION - shooterDeadband) {
-			return true;
-		} else {
-			return false;
-		}
+		return RobotUtils.checkDeadband((double)RobotMap.INTAKE_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
 	}
 	
 	/* Returns boolean value if the arm is at defense level, depending on 
