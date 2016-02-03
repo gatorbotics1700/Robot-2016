@@ -7,21 +7,29 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class ShooterSubsystem extends Subsystems {
-	DoubleSolenoid shooterSolenoid = new DoubleSolenoid (4,5);
-	CANTalon shooterTalon = new CANTalon (RobotMap.SHOOTER_TALON_ID);
+	DoubleSolenoid shooterSolenoid;
+	CANTalon shooterTalon;
+	public boolean hoodUp = true;
+	public boolean hoodDown = false;
+	
 	
 	public ShooterSubsystem() {
 		super();
+		shooterTalon = new CANTalon (RobotMap.SHOOTER_TALON_ID);
+		shooterSolenoid = new DoubleSolenoid (4,5);
+		shooterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		shooterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterTalon.enableControl();
 	}
-	
+
 	public void setHoodPosition(boolean position) {
-	
+		if (position){
+			shooterSolenoid.set(DoubleSolenoid.Value.kForward);
+		}
+		else shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	private void setWheelSpeed(double speed) {
-//		if(!shooterTalon.isControlEnabled()) {
-//			shooterTalon.enableControl();
-//		}
 		if (shooterTalon.getEncVelocity() < speed) {
 			shooterTalon.set(1);
 		} else {
@@ -44,4 +52,5 @@ public class ShooterSubsystem extends Subsystems {
 	public void setSpeedToZero() {
 		shooterTalon.disableControl();
 	}
+	
 }
