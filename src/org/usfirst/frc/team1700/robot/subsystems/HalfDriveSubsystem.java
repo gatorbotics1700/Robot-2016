@@ -33,18 +33,18 @@ public class HalfDriveSubsystem {
 	}	
 	
 	// If the motors are fast enough, shift up a gear. 
-	public void ShiftHigh(){
+	public void shiftHighHalfDrive() {
 		if (CanTalon.getEncVelocity() > RobotMap.RPM)
 			Solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	// If the motors are slow enough, shift down a gear. 
-	public void ShiftLow(){
+	public void shiftLowHalfDrive() {
 		if (CanTalon.getEncVelocity() < RobotMap.RPM)
 			Solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
-	public void ZeroEncoder(){
+	public void zeroEncoderHalfDrive() {
 		CanTalon.setPosition(0);
 	}
 }
