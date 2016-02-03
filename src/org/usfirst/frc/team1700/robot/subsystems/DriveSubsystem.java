@@ -30,14 +30,14 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void driveTank (double speedLeft, double speedRight) { // tank drive
 		if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND){ 
-				left.SetSpeed(speedLeft);	
+				left.setSpeed(speedLeft);	
 		} else {
-				left.SetSpeed(0);
+				left.setSpeed(0);
 		}
-		if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND){ 
-			right.SetSpeed(-speedRight);	
+		if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND) { 
+			right.setSpeed(-speedRight);	
 		} else {
-			right.SetSpeed(0);
+			right.setSpeed(0);
 		}
 	}		
 
@@ -47,14 +47,14 @@ public class DriveSubsystem extends Subsystem {
 
 	public void DriveTank (double speedLeft, double speedRight) { // tank drive
 			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) { // maybe take out the deadband later in life
-					left.SetSpeed(speedLeft);
+					left.setSpeed(speedLeft);
 			} else {
-					left.SetSpeed(0);
+					left.setSpeed(0);
 			}
 			if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND){ 
-				right.SetSpeed(-speedRight);	
+				right.setSpeed(-speedRight);	
 			} else {
-				right.SetSpeed(0);
+				right.setSpeed(0);
 			}
 			
 			navX();
@@ -95,17 +95,17 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public void driveToDistance(double distance, double speed){
-		if (right.GetEncReading() < distance)
+		if (right.getEncReading() < distance)
 			driveTank (speed, speed); // this is for autonomous
 		else driveTank (0,0);
 	}
 	
 	public double getLeftDistance() {
-		return left.GetEncReading();
+		return left.getEncReading();
 	}
 	
 	public double getRightDistance() {
-		return right.GetEncReading();
+		return right.getEncReading();
 	}
 	
 	public void initDefaultCommand() {
@@ -113,7 +113,7 @@ public class DriveSubsystem extends Subsystem {
     }
 	
 	public void stop() {
-		left.SetSpeed(0);
-		right.SetSpeed(0);
+		left.setSpeed(0);
+		right.setSpeed(0);
 	}
 }
