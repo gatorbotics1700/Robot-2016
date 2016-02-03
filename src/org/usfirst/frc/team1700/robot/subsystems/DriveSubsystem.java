@@ -16,15 +16,9 @@ public class DriveSubsystem extends Subsystem {
 
 	/** actual driving stuff happens now */
 	
-	public DriveSubsystem() {
-		
-		
+	public DriveSubsystem() {		
 		Left = new HalfDriveSubsystem(RobotMap.LEFT_VICTOR_ID_1, RobotMap.LEFT_VICTOR_ID_2, RobotMap.LEFT_TALON_ID, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
 		Right = new HalfDriveSubsystem(RobotMap.RIGHT_VICTOR_ID_1, RobotMap.RIGHT_VICTOR_ID_2, RobotMap.RIGHT_TALON_ID, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
-
-
-
-
 	}
 	
 	public void DriveTank (double speedLeft, double speedRight) { // tank drive
@@ -38,9 +32,7 @@ public class DriveSubsystem extends Subsystem {
 			} else {
 				Right.SetSpeed(0);
 			}
-		}
-		
-		
+		}		
 	
 	public void DriveCheesy (double throttle, double turnRate){ // cheesy drive!
 		double leftOutput, rightOutput, angularPower, linearPower;
