@@ -12,7 +12,7 @@ public class AutonomousDriveCommand extends Command {
     private static final double AUTO_DISTANCE = 45.0; //change after testing
     private static final double AUTO_SPEED = 0.3; //change after testing
 	
-	public AutonomousDriveCommand() {
+	public AutonomousDriveCommand(double distance, boolean shooting) {
         requires(Subsystems.drive);
     }
 
