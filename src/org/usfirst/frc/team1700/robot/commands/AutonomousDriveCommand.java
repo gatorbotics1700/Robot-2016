@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1700.robot.commands;
 
+import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.RobotUtils;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
@@ -8,9 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 public class AutonomousDriveCommand extends Command {
-
-    private static final double AUTO_DISTANCE = 45.0; //change after testing
-    private static final double AUTO_SPEED = 0.3; //change after testing
     private DriveSubsystem drive;
 	
 	public AutonomousDriveCommand() {
@@ -25,12 +23,12 @@ public class AutonomousDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.driveToDistance(AUTO_DISTANCE, AUTO_SPEED);
+    	drive.driveToDistance(RobotMap.AUTO_DISTANCE, RobotMap.AUTO_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return RobotUtils.checkDeadband(AUTO_DISTANCE, drive.getLeftDistance(), 1.0); //change this deadband later
+    	return RobotUtils.checkDeadband(RobotMap.AUTO_DISTANCE, drive.getLeftDistance(), 1.0); //change this deadband later
     }
 
     // Called once after isFinished returns true
