@@ -3,11 +3,12 @@ package org.usfirst.frc.team1700.robot.subsystems;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /* Initializes electronics associates with the deployable arm and 
  * provides methods to control them.
  */
-public class DeployableArmSubsystem {
+public class DeployableArmSubsystem extends Subsystem {
 	DigitalInput frontLimitSwitch;
 	DigitalInput backLimitSwitch;
 	CANTalon armTalon;
@@ -82,5 +83,11 @@ public class DeployableArmSubsystem {
 		if (!frontLimitSwitch.get())
 			armTalon.set(RobotMap.DEFENSE_ARM_POSITION);
 		else stop();		
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }
