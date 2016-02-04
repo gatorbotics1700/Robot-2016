@@ -34,6 +34,10 @@ public class IntakeSubsystem extends Subsystem {
 	public void moveBallToShootingPosition() {
 		secondIntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
+	
+	public boolean beamBreakBroken() {
+		return beamBreak.get();
+	}
 
 	// Sets the motor speed to 0.
 	public void stopMotors() {

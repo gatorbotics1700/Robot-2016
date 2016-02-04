@@ -3,8 +3,9 @@ package org.usfirst.frc.team1700.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team1700.robot.OI;
+
+
 import org.usfirst.frc.team1700.robot.RobotMap;
-import org.usfirst.frc.team1700.robot.RobotUtils;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,13 +29,16 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public void driveTank (double speedLeft, double speedRight) { // tank drive
-		if(RobotUtils.checkDeadband(0, speedLeft, JOY_DEADBAND))
+		if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND){ 
 				left.setSpeed(speedLeft);	
-		else left.setSpeed(0);
-		
-		if(RobotUtils.checkDeadband(0, speedRight, JOY_DEADBAND))
-			right.setSpeed(speedRight);	// This used to be -speedRight, but we thought this was the intended value.
-		else right.setSpeed(0);
+		} else {
+				left.setSpeed(0);
+		}
+		if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND) { 
+			right.setSpeed(-speedRight);	
+		} else {
+			right.setSpeed(0);
+		}
 	}		
 
 	public void navX (){
@@ -42,13 +46,16 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void DriveTank (double speedLeft, double speedRight) { // tank drive
-			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) // maybe take out the deadband later in life
+			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) { // maybe take out the deadband later in life
 					left.setSpeed(speedLeft);
-			else left.setSpeed(0);
-			
-			if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND) 
+			} else {
+					left.setSpeed(0);
+			}
+			if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND){ 
 				right.setSpeed(-speedRight);	
-			else right.setSpeed(0);
+			} else {
+				right.setSpeed(0);
+			}
 			
 			navX();
 		}
