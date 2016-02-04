@@ -10,5 +10,6 @@ public class Autonomous extends CommandGroup {
     public  Autonomous() {
     	addSequential(new AutonomousDriveCommand());
     	addSequential(new AutonomousShootHighGoalCommand());
+    	addSequential(new AutonomousDriveBackwardsCommand());
     }
 }

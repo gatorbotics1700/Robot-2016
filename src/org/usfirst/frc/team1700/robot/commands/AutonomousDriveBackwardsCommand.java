@@ -7,11 +7,14 @@ import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ *
+ */
+public class AutonomousDriveBackwardsCommand extends Command {
 
-public class AutonomousDriveCommand extends Command {
     private DriveSubsystem drive;
 	
-	public AutonomousDriveCommand() {
+	public AutonomousDriveBackwardsCommand() {
         requires(Subsystems.drive);
         drive = Subsystems.drive;
     }
@@ -23,12 +26,12 @@ public class AutonomousDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.driveToDistance(RobotMap.AUTO_DISTANCE, RobotMap.AUTO_SPEED);
+    	drive.driveToDistance(RobotMap.AUTO_BACKDRIVE_DISTANCE, RobotMap.AUTO_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return RobotUtils.checkDeadband(RobotMap.AUTO_DISTANCE, drive.getLeftDistance(), 1.0); //change this deadband later
+        return RobotUtils.checkDeadband(RobotMap.AUTO_BACKDRIVE_DISTANCE, drive.getLeftDistance(), 1.0); //change deadband later
     }
 
     // Called once after isFinished returns true

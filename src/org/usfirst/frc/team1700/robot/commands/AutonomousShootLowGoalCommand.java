@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1700.robot.commands;
 
+import org.usfirst.frc.team1700.robot.Subsystems;
+import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -7,13 +11,20 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutonomousShootLowGoalCommand extends Command {
 
-    public AutonomousShootLowGoalCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    private IntakeSubsystem intake;
+    private DriveSubsystem drive;
+	
+	public AutonomousShootLowGoalCommand() {
+        requires(Subsystems.intake);
+        requires(Subsystems.drive);
+        intake = Subsystems.intake;
+        drive = Subsystems.drive;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	intake.startMotors();
+    	drive.zeroEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run

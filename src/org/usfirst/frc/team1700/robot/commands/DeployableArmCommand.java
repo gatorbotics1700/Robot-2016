@@ -27,30 +27,20 @@ public class DeployableArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	switch (desiredPosition) {
-			case "retracted":
-				arm.goToRetracted();
-				break;
-			case "intake":
-				arm.goToIntake();
-				break;
-			case "defense":
-				arm.goToDefense();
-				break;
-    	}
+    	if (desiredPosition.equals("retracted")) {
+    		arm.goToRetracted();
+    	} else if (desiredPosition.equals("intake")) {
+    		arm.goToIntake();
+    	} else arm.goToDefense();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	switch (desiredPosition) {
-			case "retracted":
-				return arm.isRetracted();
-			case "intake":
-				return arm.isAtIntake();
-			case "defense":
-				return arm.isAtDefense();
-    	}
-    	return true;
+    	if (desiredPosition.equals("retracted")) {
+    		return arm.isRetracted();
+    	} else if (desiredPosition.equals("intake")) {
+    		return arm.isAtIntake();
+    	} else return arm.isAtDefense();
     }
 
     // Called once after isFinished returns true
