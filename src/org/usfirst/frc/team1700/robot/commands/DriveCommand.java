@@ -29,8 +29,6 @@ public class DriveCommand extends Command{
 		Subsystems.drive.driveCheesy(throttle, turnRate);
 	}
 
-
-
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
