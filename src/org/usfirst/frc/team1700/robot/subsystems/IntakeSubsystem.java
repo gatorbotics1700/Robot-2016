@@ -4,9 +4,10 @@ import org.usfirst.frc.team1700.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 // Initializes electronics for in-take subsystem and their associated methods.
-public class IntakeSubsystem {
+public class IntakeSubsystem extends Subsystem {
 		private Victor firstIntakeVictor;
 		private Victor secondIntakeVictor;
 		private DigitalInput beamBreak;
@@ -43,6 +44,12 @@ public class IntakeSubsystem {
 	public void backDrive() {
 		secondIntakeVictor.set(-INTAKE_ROLLER_SPEED);
 		firstIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}	
 }
 
