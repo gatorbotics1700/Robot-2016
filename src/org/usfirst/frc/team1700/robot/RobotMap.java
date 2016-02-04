@@ -51,7 +51,8 @@ public class RobotMap {
 							DEFENSE_ARM_POSITION = 0;
 	
 	// autonomous
-    public static final double AUTO_DISTANCE = 45.0,
-    						   AUTO_SPEED = 0.3;
+    public static final double AUTO_DISTANCE = 45.0, // change after testing
+    						   AUTO_SPEED = 0.3, // change after testing
+    						   AUTO_BACKDRIVE_DISTANCE = 3546.468; // change after testing
 			
 }
