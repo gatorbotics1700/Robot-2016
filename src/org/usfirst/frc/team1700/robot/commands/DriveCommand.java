@@ -17,35 +17,35 @@ public class DriveCommand extends Command{
 		requires(Subsystems.drive);
 
 	}
-	    protected void initialize() {
+	protected void initialize() {
 
-	    }
+	}
 
-		@Override
-		protected void execute() {
-			// TODO Auto-generated method stub
-			double turnRate = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
-			double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));		
-	    	Subsystems.drive.driveCheesy(throttle, turnRate);
-		}
+	@Override
+	protected void execute() {
+		// TODO Auto-generated method stub
+		double turnRate = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
+		double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));		
+		Subsystems.drive.driveCheesy(throttle, turnRate);
+	}
 
-		
-		
-		@Override
-		protected boolean isFinished() {
-			// TODO Auto-generated method stub
-			return false;
-		}
 
-		@Override
-		protected void end() {
-			// TODO Auto-generated method stub
-			
-		}
 
-		@Override
-		protected void interrupted() {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	protected boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void end() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void interrupted() {
+		// TODO Auto-generated method stub
+
+	}
 }
