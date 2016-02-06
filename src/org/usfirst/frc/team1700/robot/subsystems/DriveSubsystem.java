@@ -19,6 +19,7 @@ public class DriveSubsystem extends Subsystem {
 	private AHRS navX;
 
 	/** actual driving stuff happens now */
+	public DriveSubsystem() {	
 		
 		navX = new AHRS(SPI.Port.kMXP); 
 		left = new HalfDriveSubsystem(RobotMap.LEFT_VICTOR_ID_1, RobotMap.LEFT_VICTOR_ID_2, RobotMap.LEFT_TALON_ID, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
