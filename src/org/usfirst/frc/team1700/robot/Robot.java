@@ -2,6 +2,7 @@
 package org.usfirst.frc.team1700.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -27,7 +28,13 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	oi = new OI();
+    	
+    	try {
+        	oi = new OI();
+    		subsystems = new Subsystems();
+    	} catch (Error e){
+    		System.out.println(e + " " + e.getStackTrace());
+    	}
 		
         // instantiate the command used for the autonomous period
     }
@@ -49,8 +56,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	subsystems = new Subsystems();
-    	oi = new OI();
+
     }
 
     /**

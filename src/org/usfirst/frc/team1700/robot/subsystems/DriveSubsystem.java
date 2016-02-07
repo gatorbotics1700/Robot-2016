@@ -20,10 +20,11 @@ public class DriveSubsystem extends Subsystem {
 
 	/** actual driving stuff happens now */
 	public DriveSubsystem() {	
-		
+		super();
 		navX = new AHRS(SPI.Port.kMXP); 
-		left = new HalfDriveSubsystem(RobotMap.LEFT_VICTOR_ID_1, RobotMap.LEFT_VICTOR_ID_2, RobotMap.LEFT_TALON_ID, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
-		right = new HalfDriveSubsystem(RobotMap.RIGHT_VICTOR_ID_1, RobotMap.RIGHT_VICTOR_ID_2, RobotMap.RIGHT_TALON_ID, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
+		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_TALON_ID_3, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
+		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_2, RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
+
 	}
 	
 	public void driveTank (double speedLeft, double speedRight) { // tank drive
@@ -71,6 +72,16 @@ public class DriveSubsystem extends Subsystem {
 		
 		driveTank (leftOutput, rightOutput);		
  	}
+	
+	public void driveArcade (double throttle, double turnRate) {
+		double leftOutput, rightOutput;
+		leftOutput = throttle + turnRate;
+		rightOutput = throttle - turnRate;
+		
+		driveTank (leftOutput, rightOutput);
+		
+		
+	}
 
 //	public void EnableAutoShifting (boolean on) {
 //			boolean AUTOSHIFTING = true;

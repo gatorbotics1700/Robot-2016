@@ -13,6 +13,7 @@ public class DriveCommand extends Command{
 
 	
 	public DriveCommand(){
+		super();
 		this.oi = Robot.oi;
 		requires(Subsystems.drive);
 
@@ -25,8 +26,12 @@ public class DriveCommand extends Command{
 	protected void execute() {
 		// TODO Auto-generated method stub
 		double turnRate = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
-		double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));		
-		Subsystems.drive.driveCheesy(throttle, turnRate);
+		double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));	
+//		double speedLeft = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
+//		double speedRight = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
+		Subsystems.drive.driveArcade(throttle, turnRate);
+//		Subsystems.drive.driveCheesy(throttle, turnRate);
+//		Subsystems.drive.navX();
 	}
 
 	@Override

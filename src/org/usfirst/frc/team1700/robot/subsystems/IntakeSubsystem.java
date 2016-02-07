@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 
 import org.usfirst.frc.team1700.robot.RobotMap;
+import org.usfirst.frc.team1700.robot.commands.IntakeBallCommand;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
@@ -11,7 +12,7 @@ public class IntakeSubsystem extends Subsystem {
 		private Victor firstIntakeVictor;
 		private Victor secondIntakeVictor;
 		private DigitalInput beamBreak;
-		private static final double INTAKE_ROLLER_SPEED = 0.34567; //change this number to actual roller speed after testing
+		private static final double INTAKE_ROLLER_SPEED = 1; //change this number to actual roller speed after testing
 		
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
@@ -26,8 +27,9 @@ public class IntakeSubsystem extends Subsystem {
 	 */
 	public void startMotors() {
 		firstIntakeVictor.set(INTAKE_ROLLER_SPEED);
-		if (beamBreak.get())
-			stopMotors();
+		secondIntakeVictor.set(INTAKE_ROLLER_SPEED);
+//		if (beamBreak.get())
+//			stopMotors();
 	}
 	
 	// Moves ball into shooter wheel. 
@@ -42,6 +44,7 @@ public class IntakeSubsystem extends Subsystem {
 	// Sets the motor speed to 0.
 	public void stopMotors() {
 		firstIntakeVictor.set(0);
+		secondIntakeVictor.set(0);
 	}
 	
 	// Sets speeds for back drive to shoot in low goal.
@@ -52,7 +55,7 @@ public class IntakeSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
+		setDefaultCommand(new IntakeBallCommand());
 		
 	}	
 }
