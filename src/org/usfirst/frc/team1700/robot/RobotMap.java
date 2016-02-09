@@ -13,12 +13,16 @@ public class RobotMap {
 						    THROTTLE = 5, 
 						    TANK_LEFT = 1,
 						    TANK_RIGHT = 5,
-							ENABLE_SHIFTING_BUTTON = 2;
+							ENABLE_SHIFTING_BUTTON = 6,
+							DISABLE_SHIFTING_BUTTON = 5;
 	
 	// operating
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
-							INTAKE_BUTTON = 1,
-							BACKDRIVE_BUTTON = 2;	
+							INTAKE_BUTTON = 2,
+							BACKDRIVE_BUTTON = 3,
+							START_SHOOT_CLOSE_BUTTON = 5,
+							START_SHOOT_FAR_BUTTON = 4,
+							SHOOT_BUTTON = 1;	
 
 	// pneumatics
 	public static final int LEFT_DRIVE_SOLENOID_ONE_PORT = 0,
@@ -45,9 +49,10 @@ public class RobotMap {
 							INTAKE_VICTOR_2_ID = 2;
 	
 	// various sensors
-	public static final int BEAM_BREAK_PORT = 0,
-							FRONT_LIMIT_SWITCH = 1,
-							BACK_LIMIT_SWITCH = 2;
+	public static final int BEAM_BREAK_FRONT_PORT = 0,
+							BEAM_BREAK_BACK_PORT = 1,
+							FRONT_LIMIT_SWITCH = 2,
+							BACK_LIMIT_SWITCH = 3;
 	
 	// driving
 	public static final int RPM = 1800;

@@ -9,48 +9,48 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 // Initializes electronics for in-take subsystem and their associated methods.
 public class IntakeSubsystem extends Subsystem {
-		private Victor firstIntakeVictor;
-		private Victor secondIntakeVictor;
-		private DigitalInput beamBreak;
+		private Victor IntakeVictor;
+		private DigitalInput beamBreakFront;
+		private DigitalInput beamBreakBack;
 		private static final double INTAKE_ROLLER_SPEED = 1; //change this number to actual roller speed after testing
 		
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
-		firstIntakeVictor =  new Victor(RobotMap.INTAKE_VICTOR_1_ID);
-		secondIntakeVictor = new Victor(RobotMap.INTAKE_VICTOR_2_ID);
-		beamBreak = new DigitalInput(RobotMap.BEAM_BREAK_PORT);
+		IntakeVictor =  new Victor(RobotMap.INTAKE_VICTOR_1_ID);
+		beamBreakFront = new DigitalInput(RobotMap.BEAM_BREAK_FRONT_PORT);
+		beamBreakBack = new DigitalInput(RobotMap.BEAM_BREAK_BACK_PORT);
 	}
 		
 	/* Starts the motors to intake the ball. Once the ball crosses the beam break sensors,
 	 * the motors stop. It then checks if the flywheel is fast enough, and if so, spins until 
 	 * it holds the ball in position. 
 	 */
-	public void startMotors() {
-		firstIntakeVictor.set(INTAKE_ROLLER_SPEED);
-		secondIntakeVictor.set(INTAKE_ROLLER_SPEED);
-//		if (beamBreak.get())
-//			stopMotors();
+	
+	public boolean beamBreakFrontBroken() {
+		return beamBreakFront.get();
+	}
+	public boolean beamBreakBackBroken() {
+		return beamBreakBack.get();
+	}
+	
+	public void intake() {
+		IntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
 	
 	// Moves ball into shooter wheel. 
 	public void moveBallToShootingPosition() {
-		secondIntakeVictor.set(INTAKE_ROLLER_SPEED);
+		IntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
-	
-	public boolean beamBreakBroken() {
-		return beamBreak.get();
-	}
+
 
 	// Sets the motor speed to 0.
 	public void stopMotors() {
-		firstIntakeVictor.set(0);
-		secondIntakeVictor.set(0);
+		IntakeVictor.set(0);
 	}
 	
 	// Sets speeds for back drive to shoot in low goal.
 	public void backDrive() {
-		secondIntakeVictor.set(-INTAKE_ROLLER_SPEED);
-		firstIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+		IntakeVictor.set(-INTAKE_ROLLER_SPEED);
 	}
 
 	@Override

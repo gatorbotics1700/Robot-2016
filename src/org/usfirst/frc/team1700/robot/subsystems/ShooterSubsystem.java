@@ -12,6 +12,7 @@ public class ShooterSubsystem extends Subsystem {
 	CANTalon shooterTalon;
 	public boolean hoodUp = true;
 	public boolean hoodDown = false;
+	public double deadband = 0.05;
 	
 	
 	public ShooterSubsystem() {
@@ -23,13 +24,6 @@ public class ShooterSubsystem extends Subsystem {
 		shooterTalon.enableControl();
 	}
 
-	public void setHoodPosition(boolean position) {
-		if (position){
-			shooterSolenoid.set(DoubleSolenoid.Value.kForward);
-		}
-		else shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
-	}
-	
 	private void setWheelSpeed(double speed) {
 		if (shooterTalon.getEncVelocity() < speed) {
 			shooterTalon.set(1);
@@ -39,10 +33,12 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public void shootClose() {
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
 	}
 	
 	public void shootFar() {
+		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_FAR);
 	}
 	
@@ -52,6 +48,42 @@ public class ShooterSubsystem extends Subsystem {
 	
 	public void setSpeedToZero() {
 		shooterTalon.disableControl();
+	}
+	
+	public boolean readyToShootClose() {
+		if (Math.abs(shooterTalon.getEncVelocity() - RobotMap.SHOOTER_MOTOR_SPEED_CLOSE) < deadband) {
+			if (shooterSolenoid.get()==DoubleSolenoid.Value.kReverse) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public boolean readyToShootFar() {
+		if (Math.abs(shooterTalon.getEncVelocity() - RobotMap.SHOOTER_MOTOR_SPEED_FAR) < deadband) {
+			if (shooterSolenoid.get()==DoubleSolenoid.Value.kForward) { 
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		
+	}
+	
+	
+	public boolean readyToShoot(){
+		if (readyToShootFar() || readyToShootClose()) {
+			return true;
+		} else {
+			return false;
+		}
+	
 	}
 
 	@Override

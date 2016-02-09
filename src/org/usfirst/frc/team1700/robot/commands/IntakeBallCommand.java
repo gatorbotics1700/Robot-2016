@@ -29,15 +29,16 @@ public class IntakeBallCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("im in the intake command yo");
-    	
-    	if (this.oi.operatorJoystick.getRawButton(RobotMap.INTAKE_BUTTON)) {
-    		intake.startMotors();
-    	} else if (oi.operatorJoystick.getRawButton(RobotMap.BACKDRIVE_BUTTON)) {
-    		intake.backDrive();
-    	} else {
+    	if (!intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
+    		intake.intake();
+    	} else if (intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
+    		intake.intake();
+    	} else if (intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()) {
     		intake.stopMotors();
+    	} else if (!intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()) {
+    		intake.backDrive();
     	}
+
     	//nothing to do here, just automatically generated method
     }
 
