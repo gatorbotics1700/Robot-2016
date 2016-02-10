@@ -33,6 +33,8 @@ public class ShootCommand extends Command {
     protected void execute() {
 		if (shooter.readyToShoot()) {
 			intake.moveBallToShootingPosition();
+		} else {
+			intake.stopMotors();
 		}
     }
 
