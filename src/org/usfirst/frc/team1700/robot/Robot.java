@@ -3,6 +3,8 @@ package org.usfirst.frc.team1700.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
+import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,14 +22,21 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 	private static Subsystems subsystems; // collection of all subsystems	 
 	public static OI oi;
+	private DriveSubsystem drive;
 
+	
     Command autonomousCommand;
 
+    public Robot () {
+		drive = Subsystems.drive;
+    }
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+    	
+    	drive.zeroEncoders();
     	
     	try {
         	oi = new OI();
@@ -35,7 +44,6 @@ public class Robot extends IterativeRobot {
     	} catch (Error e){
     		System.out.println(e + " " + e.getStackTrace());
     	}
-		
         // instantiate the command used for the autonomous period
     }
 	
