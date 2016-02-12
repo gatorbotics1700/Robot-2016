@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Autonomous extends CommandGroup {
     
     public  Autonomous() {
-    	addSequential(new AutonomousDriveCommand(RobotMap.AUTO_FORWARD_DISTANCE));
+    	addSequential(new AutonomousSensoryDriveCommand(RobotMap.AUTO_FORWARD_DISTANCE));
     	addSequential(new AutonomousShootHighGoalCommand());
-    	addSequential(new AutonomousDriveCommand(RobotMap.AUTO_BACKWARD_DISTANCE));
     }
 }
