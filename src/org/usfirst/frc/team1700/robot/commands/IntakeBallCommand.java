@@ -29,18 +29,33 @@ public class IntakeBallCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (!intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
-    		intake.intake();
-    	} else if (intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
-    		intake.intake();
-    	} else if (intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()) {
-    		intake.stopMotors();
-    	} else if (!intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()) {
-    		intake.backDrive();
-    	}
+        if (intake.beamBreakBackBroken()) {     
+        	if (intake.beamBreakFrontBroken()) {   // got it!!    
+        		intake.stopMotors();    
+   	
+        	} else {                // went too far    
+        		intake.backDrive();            
+        	}        
+   
+        } else {         
+        	intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
+        	}
+        
+        }
+        
+    
+//	if (!intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
+//		intake.intake();
+//	} else if (intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
+//		intake.intake();
+//	} else if (intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()) {
+//		intake.stopMotors();
+//	} else if (!intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()) {
+//		intake.backDrive();
+//	}
+//	
 
-    	//nothing to do here, just automatically generated method
-    }
+    
 
     // Make this return true when this Command no longer needs to run execute()
 //    protected void isFinished() {
