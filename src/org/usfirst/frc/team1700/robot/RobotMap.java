@@ -53,10 +53,14 @@ public class RobotMap {
 	public static final int BEAM_BREAK_FRONT_PORT = 0,
 							BEAM_BREAK_BACK_PORT = 1,
 							FRONT_LIMIT_SWITCH = 2,
-							BACK_LIMIT_SWITCH = 3;
+							BACK_LIMIT_SWITCH = 3,
+							ULTRASONIC_SENSOR = 1;
+	
 	
 	// driving
-	public static final int RPM = 1800;
+	public static final double RPM = 1800,
+							   TICKS_PER_REV = 2764,
+							   CIRCUM_TREAD_WHEEL = 19.05;
 
 	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 10,
 							SHOOTER_MOTOR_SPEED_FAR = 20,
@@ -68,9 +72,15 @@ public class RobotMap {
 							DEFENSE_ARM_POSITION = 0;
 	
 	// autonomous
-    public static final double AUTO_FORWARD_DISTANCE = 45.0, // change after testing
-    						   AUTO_SPEED = 0.3, // change after testing
-    						   AUTO_BACKWARD_DISTANCE = -20.0, //change after testing
-    						   AUTO_BACKDRIVE_DISTANCE = 3546.468; // change after testing
+    public static final double AUTO_FORWARD_DISTANCE = 100.0,
+    						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall
+    						   ULTRASONIC_CONVERSION_FACTOR = 10,
+    						   AUTO_SPEED = 0.3; // 10 mV/in for US
+    						// change after testing
+//    						  AUTO_SPEED = 0.3, // change after testing
+//    						   AUTO_BACKWARD_DISTANCE = -20.0, //change after testing
+//    						   AUTO_BACKDRIVE_DISTANCE = 3546.468; // change after testing
+    
+    							
 			
 }

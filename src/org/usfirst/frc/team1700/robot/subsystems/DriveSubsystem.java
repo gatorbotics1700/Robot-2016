@@ -2,12 +2,11 @@ package org.usfirst.frc.team1700.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team1700.robot.OI;
-
-
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.SPI;
 
 public class DriveSubsystem extends Subsystem {
@@ -17,6 +16,7 @@ public class DriveSubsystem extends Subsystem {
 	private static final double JOY_DEADBAND = 0.05;
 	private OI oi;
 	private AHRS navX;
+	AnalogInput ultrasonicSensor;
 
 	/** actual driving stuff happens now */
 	public DriveSubsystem() {	
@@ -24,7 +24,7 @@ public class DriveSubsystem extends Subsystem {
 		navX = new AHRS(SPI.Port.kMXP); 
 		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_TALON_ID_3, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
 		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_2, RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
-
+		ultrasonicSensor = new AnalogInput(RobotMap.ULTRASONIC_SENSOR);
 	}
 	
 	public void driveTank (double speedLeft, double speedRight) { // tank drive
@@ -39,6 +39,8 @@ public class DriveSubsystem extends Subsystem {
 			right.setSpeed(0);
 		}
 	}		
+
+	
 
 	public void navX (){
 		System.out.println(navX.getAngle());
@@ -103,24 +105,23 @@ public class DriveSubsystem extends Subsystem {
 		right.zeroEncoderHalfDrive();
 	}
 	
-	public void driveToDistance(double distance, double speed){
-		if (right.getEncReading() < distance)
-			driveTank (speed, speed); // this is for autonomous
-		else driveTank (0,0);
+	public double ticksPerInch () {
+		return (RobotMap.TICKS_PER_REV / RobotMap.CIRCUM_TREAD_WHEEL);
 	}
 	
 	public double getLeftDistance() {
-		return left.getEncReading();
+		return left.getEncReading() / ticksPerInch();
 	}
 	
 	public double getRightDistance() {
-		return right.getEncReading();
+		return right.getEncReading() / ticksPerInch();
 	}
 	
 	public void initDefaultCommand() {
     	setDefaultCommand(new DriveCommand()); // drive command is always active
     }
 	
+
 	public void stop() {
 		left.setSpeed(0);
 		right.setSpeed(0);
