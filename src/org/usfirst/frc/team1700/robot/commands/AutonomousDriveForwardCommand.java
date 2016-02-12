@@ -26,7 +26,7 @@ public class AutonomousDriveForwardCommand extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		drive.DriveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
+		drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
 
 	}
 
