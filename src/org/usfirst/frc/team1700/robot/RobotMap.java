@@ -41,9 +41,9 @@ public class RobotMap {
 							//LEFT_VICTOR_ID_1 = 4,
 							//LEFT_VICTOR_ID_2 = 5,
 							LEFT_TALON_ID_3= 6,
-							SHOOTER_TALON_ID = 7,
-							ARM_TALON_ID_ONE = 8,
-							ARM_TALON_ID_TWO =  9;
+							SHOOTER_TALON_ONE_ID = 7,
+							SHOOTER_TALON_TWO_ID = 8,
+							ARM_TALON_ID_ONE = 9;
 	
 	// intake victors
 	public static final int INTAKE_VICTOR_1_ID = 1,
@@ -73,14 +73,12 @@ public class RobotMap {
 							DEFENSE_ARM_POSITION = 0;
 	
 	// autonomous
-    public static final double AUTO_FORWARD_DISTANCE = 100.0,
-    						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall
-    						   ULTRASONIC_CONVERSION_FACTOR = 10,
-    						   AUTO_SPEED = 0.3; // 10 mV/in for US
-    						// change after testing
-//    						  AUTO_SPEED = 0.3, // change after testing
-//    						   AUTO_BACKWARD_DISTANCE = -20.0, //change after testing
-//    						   AUTO_BACKDRIVE_DISTANCE = 3546.468; // change after testing
+    public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing
+    						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
+    						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
+    						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
+    						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?
+   
     
     							
 			
