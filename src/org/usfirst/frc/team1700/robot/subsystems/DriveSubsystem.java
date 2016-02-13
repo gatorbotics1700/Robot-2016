@@ -106,7 +106,7 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public double ticksPerInch () {
-		return (RobotMap.TICKS_PER_REV / RobotMap.CIRCUM_TREAD_WHEEL);
+		return (RobotMap.TICKS_PER_REV / RobotMap.CIRCUM_PNEUMATIC_WHEEL);
 	}
 	
 	public double getLeftDistance() {
