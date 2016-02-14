@@ -91,10 +91,11 @@ public class DriveSubsystem extends Subsystem {
 		left.zeroEncoderHalfDrive();
 		right.zeroEncoderHalfDrive();
 	}
-	
-	public double ticksPerInch () { // doing the conversion to figure out how many ticks per inch traveled for the tread wheels
-		return (RobotMap.TICKS_PER_REV / RobotMap.CIRCUM_TREAD_WHEEL);
+
+	public double ticksPerInch () {
+		return (RobotMap.TICKS_PER_REV / RobotMap.CIRCUM_PNEUMATIC_WHEEL);
 	}
+
 	
 	public double getLeftDistance() { // changing encoder reading into inches traveled for usefulness 
 		return left.getEncReading() / ticksPerInch();

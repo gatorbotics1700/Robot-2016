@@ -60,7 +60,8 @@ public class RobotMap {
 	// driving
 	public static final double RPM = 1800,
 							   TICKS_PER_REV = 2764,
-							   CIRCUM_TREAD_WHEEL = 19.05;
+							   CIRCUM_TREAD_WHEEL = 19.05,
+							   CIRCUM_PNEUMATIC_WHEEL = 20.05;
 
 	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 10,
 							SHOOTER_MOTOR_SPEED_FAR = 20,
