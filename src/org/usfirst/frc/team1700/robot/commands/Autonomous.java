@@ -11,6 +11,7 @@ public class Autonomous extends CommandGroup {
     
     public  Autonomous() {
     	addSequential(new AutonomousSensoryDriveCommand(RobotMap.AUTO_FORWARD_DISTANCE));
+    	addSequential(new AutonomousTurnToAngle());
     	addSequential(new AutonomousShootHighGoalCommand());
     }
 }
