@@ -33,16 +33,14 @@ public class RobotMap {
 	// talons
 	public static final int //RIGHT_VICTOR_ID_1 = 1,
 							//RIGHT_VICTOR_ID_2 = 2,
-							RIGHT_TALON_ID_1 = 1,
-							RIGHT_TALON_ID_2 = 2,
-							RIGHT_TALON_ID_3 = 3,
-							LEFT_TALON__ID_1 = 4,
-							LEFT_TALON_ID_2 = 5,
-							//LEFT_VICTOR_ID_1 = 4,
-							//LEFT_VICTOR_ID_2 = 5,
-							LEFT_TALON_ID_3= 6,
-							SHOOTER_TALON_ONE_ID = 7,
-							SHOOTER_TALON_TWO_ID = 8,
+							RIGHT_TALON_ID_1 = 3,
+							RIGHT_TALON_ID_2 = 4,
+							RIGHT_TALON_ID_3 = 5, // has encoder
+							LEFT_TALON__ID_1 = 1,
+							LEFT_TALON_ID_2 = 2, // has encoder
+							LEFT_TALON_ID_3= 8,
+							SHOOTER_TALON_ONE_ID = 6,
+							SHOOTER_TALON_TWO_ID = 7,
 							ARM_TALON_ID_ONE = 9;
 	
 	// intake victors

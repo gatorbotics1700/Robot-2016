@@ -23,8 +23,8 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {	
 		super();
 		navX = new AHRS(SPI.Port.kMXP); 
-		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_TALON_ID_3, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
-		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_2, RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
+		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON_ID_3, RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
+		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_2, RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
 //		ultrasonicSensor = new AnalogInput(RobotMap.ULTRASONIC_SENSOR);
 	}
 	

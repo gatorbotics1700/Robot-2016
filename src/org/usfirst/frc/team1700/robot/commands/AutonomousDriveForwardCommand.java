@@ -50,7 +50,7 @@ public class AutonomousDriveForwardCommand extends Command {
 
 	@Override
 	protected void interrupted() {
-		drive.DriveTank(0, 0);
+		drive.driveTank(0, 0);
 		
 	}
 	
