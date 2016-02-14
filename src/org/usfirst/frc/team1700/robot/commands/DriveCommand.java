@@ -24,31 +24,24 @@ public class DriveCommand extends Command{
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
 		double turnRate = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
 		double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));	
-//		double speedLeft = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
-//		double speedRight = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
 		Subsystems.drive.driveArcade(throttle, turnRate);
-//		Subsystems.drive.driveCheesy(throttle, turnRate);
-//		Subsystems.drive.navX();
+
 	}
 
 	@Override
-	protected boolean isFinished() {
-		// TODO Auto-generated method stub
+	protected boolean isFinished() { // lol this should never be finished amirite lmao
 		return false;
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 
 	}
 }
