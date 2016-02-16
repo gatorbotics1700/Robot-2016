@@ -12,11 +12,11 @@ public class IntakeSubsystem extends Subsystem {
 		private Victor IntakeVictor;
 		private DigitalInput beamBreakFront;
 		private DigitalInput beamBreakBack;
-		private static final double INTAKE_ROLLER_SPEED = 1; //change this number to actual roller speed after testing
+		private static final double INTAKE_ROLLER_SPEED = .5; //change this number to actual roller speed after testing
 		
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
-		IntakeVictor =  new Victor(RobotMap.INTAKE_VICTOR_1_ID);
+		IntakeVictor =  new Victor(RobotMap.INTAKE_VICTOR_2_ID);
 		beamBreakFront = new DigitalInput(RobotMap.BEAM_BREAK_FRONT_PORT);
 		beamBreakBack = new DigitalInput(RobotMap.BEAM_BREAK_BACK_PORT);
 	}
@@ -55,7 +55,7 @@ public class IntakeSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntakeBallCommand());
+//		setDefaultCommand(new IntakeBallCommand());
 		
 	}	
 }

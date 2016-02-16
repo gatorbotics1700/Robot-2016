@@ -19,6 +19,9 @@ public class HalfDriveSubsystem {
 		CanTalon2 = new CANTalon(TalonTwoID);
 		CanTalon3 = new CANTalon(TalonThreeID);
 		solenoid = new DoubleSolenoid(SolenoidLeftID, SolenoidRightID);
+		CanTalon1.setVoltageRampRate(6);
+		CanTalon2.setVoltageRampRate(6);
+		CanTalon3.setVoltageRampRate(6);
 	}
 	
 	// Sets motor speed for three motors on gear box for given side of robot. 

@@ -23,7 +23,7 @@ public class OI {
 	
 	
 	public OI () {
-		intakeButton.whenPressed(new IntakeBallCommand());
+		intakeButton.whileHeld(new IntakeBallCommand());
 		backdriveButton.whenPressed(new BackdriveBallCommand());
 		startShootFarButton.whenPressed(new StartShootWheelFarCommand());
 		startShootCloseButton.whenPressed(new StartShootWheelCloseCommand());

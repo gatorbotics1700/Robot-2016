@@ -23,13 +23,13 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {	
 		super();
 		navX = new AHRS(SPI.Port.kMXP); 
-		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON_ID_3, RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
-		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_2, RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
+		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_3, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
+		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_2, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
 //		ultrasonicSensor = new AnalogInput(RobotMap.ULTRASONIC_SENSOR);
 	}
 	
 	public void navX () {
-	//	System.out.println(navX.getAngle());
+		System.out.println(navX.getAngle());
 	}
 
 //various ways we can drive -- auto is tank, teleop is cheesy or arcade
@@ -105,6 +105,16 @@ public class DriveSubsystem extends Subsystem {
 		return right.getEncReading() / ticksPerInch();
 	}
 	
+	
+	public void rightEncoder() {
+		System.out.println("right " + right.getEncReading());
+		
+	}
+	
+	public void leftEncoder() {
+		System.out.println("left " + left.getEncReading());
+	}
+
 	public void initDefaultCommand() {
     	setDefaultCommand(new DriveCommand()); // drive command is always active
     }

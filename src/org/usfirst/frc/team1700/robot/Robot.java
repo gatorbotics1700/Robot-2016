@@ -4,6 +4,7 @@ package org.usfirst.frc.team1700.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,13 +24,15 @@ public class Robot extends IterativeRobot {
 	private static Subsystems subsystems; // collection of all subsystems	 
 	public static OI oi;
 	private DriveSubsystem drive;
-
+	private IntakeSubsystem intake;
 	
     Command autonomousCommand;
 
     public Robot () {
 		drive = Subsystems.drive;
+		intake = Subsystems.intake;
     }
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -80,7 +83,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-
+        
     }
     
     /**
