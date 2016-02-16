@@ -39,13 +39,13 @@ public class RobotMap {
 							LEFT_TALON__ID_1 = 1,
 							LEFT_TALON_ID_2 = 2, // has encoder
 							LEFT_TALON_ID_3= 8,
-							SHOOTER_TALON_ONE_ID = 6,
+							SHOOTER_TALON_ONE_ID = 6, // has encoder 
 							SHOOTER_TALON_TWO_ID = 7,
 							ARM_TALON_ID_ONE = 9;
 	
 	// intake victors
-	public static final int INTAKE_VICTOR_1_ID = 1,
-							INTAKE_VICTOR_2_ID = 2;
+	public static final int INTAKE_VICTOR_1_ID = 8,
+							INTAKE_VICTOR_2_ID = 9;
 	
 	// various sensors
 	public static final int BEAM_BREAK_FRONT_PORT = 0,
