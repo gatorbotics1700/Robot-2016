@@ -45,7 +45,7 @@ public class IntakeBallCommand extends Command {
 //        
 //    
     	
-    	intake.intake();
+    	intake.intake(); // we don't have the beambreak sensors up and running, so alas we can't do this cool ass code
     }
     	//	if (!intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
 //		intake.intake();

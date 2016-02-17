@@ -13,8 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DeployableArmSubsystem extends Subsystem {
 	DigitalInput frontLimitSwitch;
 	DigitalInput backLimitSwitch;
-	CANTalon armTalonOne;
-//	CANTalon armTalonTwo;
+	CANTalon armTalon;
 	double shooterDeadband;
 	
 	/* Constructor that initializes class variables and sets up armTalon
@@ -24,27 +23,18 @@ public class DeployableArmSubsystem extends Subsystem {
 		frontLimitSwitch = new DigitalInput(RobotMap.FRONT_LIMIT_SWITCH);
 		shooterDeadband = 1.0;
 		
-		armTalonOne = new CANTalon(RobotMap.ARM_TALON_ID_ONE);
-//		armTalonTwo = new CANTalon(RobotMap.ARM_TALON_ID_TWO);
-		armTalonOne.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		armTalon = new CANTalon(RobotMap.ARM_TALON_ID_ONE);
+		armTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 
 	}
 	
 	public void enable() {
 		//need to add get position and check if that really is what I assigned currentPosition to
-
-		armTalonOne.changeControlMode(CANTalon.TalonControlMode.Position);
-		armTalonOne.setPID(0,0,0);
-		armTalonOne.enableControl();
-//		armTalonTwo.enableControl();
+		armTalon.changeControlMode(CANTalon.TalonControlMode.Position);
+		armTalon.setPID(1,0.05,0);
+		armTalon.enableControl();
 	}
 	
-	//Disables the armTalon 
-	public void disable() {
-		stop();
-		armTalonOne.disableControl();
-//		armTalonTwo.disableControl();
-	}
 	
 	/* Returns boolean value if the arm is retracted, depending on 
 	 * if the limit switch is hit. */
@@ -55,7 +45,7 @@ public class DeployableArmSubsystem extends Subsystem {
 	/* Returns boolean value is the arm is at intake level, depending on
 	 * if it is in deadband range. */
 	public boolean isAtIntake() { 
-		return RobotUtils.checkDeadband((double)RobotMap.INTAKE_ARM_POSITION, (double)armTalonOne.getEncPosition(), shooterDeadband);
+		return RobotUtils.checkDeadband((double)RobotMap.INTAKE_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
 	}
 	
 	/* Returns boolean value if the arm is at defense level, depending on 
@@ -66,28 +56,32 @@ public class DeployableArmSubsystem extends Subsystem {
 	
 	// Stops the arm.
 	public void stop() {
-		armTalonOne.set(armTalonOne.getEncPosition());
+		armTalon.disableControl();
+		
 	}
 	
 	/* While the back limit switch isn't hit, move to the retracted
 	 * position. */
 	public void goToRetracted() {
+		armTalon.enableControl();
 		if (!backLimitSwitch.get())
-			armTalonOne.set(RobotMap.RETRACTED_ARM_POSITION);
+			armTalon.set(RobotMap.RETRACTED_ARM_POSITION);
 		else stop();
 	}
 	
 	// Move to intake.
 	// Need to add PID?
 	public void goToIntake() {
-		armTalonOne.set(RobotMap.INTAKE_ARM_POSITION);
+		armTalon.enableControl();
+		armTalon.set(RobotMap.INTAKE_ARM_POSITION);
 	}
 	
 	/* While the front limit switch isn't hit, move to the retracted
 	 * position. */
 	public void goToDefense() {
+		armTalon.enableControl();
 		if (!frontLimitSwitch.get())
-			armTalonOne.set(RobotMap.DEFENSE_ARM_POSITION);
+			armTalon.set(RobotMap.DEFENSE_ARM_POSITION);
 		else stop();		
 	}
 

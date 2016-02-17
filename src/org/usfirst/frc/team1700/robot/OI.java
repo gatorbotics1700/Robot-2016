@@ -13,21 +13,29 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	public Joystick driveJoystick = new Joystick(RobotMap.DRIVE_JOYSTICK_PORT);
 	public Joystick operatorJoystick = new Joystick(RobotMap.OPERATOR_JOYSTICK_PORT);
-	Button enableShiftingButton = new JoystickButton(driveJoystick,RobotMap.ENABLE_SHIFTING_BUTTON),
-		   disableShiftingButton = new JoystickButton(driveJoystick,RobotMap.DISABLE_SHIFTING_BUTTON),
-		   intakeButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_BUTTON),
+	Button intakeButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_BUTTON),
 		   backdriveButton = new JoystickButton(operatorJoystick,RobotMap.BACKDRIVE_BUTTON),
 		   startShootFarButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_FAR_BUTTON),
 		   startShootCloseButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_CLOSE_BUTTON),
-		   shootButton = new JoystickButton(operatorJoystick,RobotMap.SHOOT_BUTTON);
+		   shootButton = new JoystickButton(operatorJoystick,RobotMap.SHOOT_BUTTON),
+		   retractedArmButton = new JoystickButton(operatorJoystick,RobotMap.RETRACTED_BUTTON),
+		   intakeArmButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_ARM_BUTTON),
+		   defenseButton = new JoystickButton(operatorJoystick,RobotMap.DEFENSE_BUTTON),
+		   shiftHighButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_HIGH_BUTTON),
+		   shiftLowButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_LOW_BUTTON);
 	
-	
+		
 	public OI () {
 		intakeButton.whileHeld(new IntakeBallCommand());
 		backdriveButton.whenPressed(new BackdriveBallCommand());
 		startShootFarButton.whenPressed(new StartShootWheelFarCommand());
 		startShootCloseButton.whenPressed(new StartShootWheelCloseCommand());
 		shootButton.whileHeld(new ShootCommand());
+		retractedArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
+		intakeArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_INTAKE));
+		defenseButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
+		shiftHighButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_HIGH));
+		shiftLowButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_LOW));
 	}
 	
 }

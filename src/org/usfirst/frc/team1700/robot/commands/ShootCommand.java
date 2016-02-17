@@ -36,7 +36,7 @@ public class ShootCommand extends Command {
 		} else {
 			intake.stopMotors();
 		}
-    }
+    }    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

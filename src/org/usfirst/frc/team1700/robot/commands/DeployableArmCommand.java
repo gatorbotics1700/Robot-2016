@@ -9,17 +9,23 @@ import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
  */
 public class DeployableArmCommand extends Command {
 	
-	private String desiredPosition;
+	public final static int DESIRED_POSITION_RETRACTED = 1,
+							 DESIRED_POSITION_INTAKE = 2,
+							 DESIRED_POSITION_DEFENSE = 3;
 	private DeployableArmSubsystem arm;
-
-    public DeployableArmCommand(String position) {
+	private int desiredPosition;
+	
+    public DeployableArmCommand(int position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Subsystems.deployableArm);
-    	desiredPosition = position;
+    	this.desiredPosition = position;
     	arm = Subsystems.deployableArm;
     }
 
+    public void getPosition() {
+    	
+    }
     // Called just before this Command runs the first time
     protected void initialize() {
     	arm.enable();
@@ -27,20 +33,22 @@ public class DeployableArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (desiredPosition.equals("retracted")) {
+    	if (desiredPosition == DESIRED_POSITION_RETRACTED) {
     		arm.goToRetracted();
-    	} else if (desiredPosition.equals("intake")) {
+    	} else if (desiredPosition == DESIRED_POSITION_INTAKE) {
     		arm.goToIntake();
     	} else arm.goToDefense();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (desiredPosition.equals("retracted")) {
+    	if (desiredPosition == DESIRED_POSITION_RETRACTED){
     		return arm.isRetracted();
-    	} else if (desiredPosition.equals("intake")) {
-    		return arm.isAtIntake();
-    	} else return arm.isAtDefense();
+    	} else if (desiredPosition == DESIRED_POSITION_DEFENSE) {
+    		return arm.isAtDefense();
+    	} else {
+    		return false;
+    	}
     }
 
     // Called once after isFinished returns true

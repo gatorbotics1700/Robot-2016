@@ -13,8 +13,9 @@ public class RobotMap {
 						    THROTTLE = 5, 
 						    TANK_LEFT = 1,
 						    TANK_RIGHT = 5,
-							ENABLE_SHIFTING_BUTTON = 6,
-							DISABLE_SHIFTING_BUTTON = 5;
+							SHIFT_HIGH_BUTTON = 6,
+							SHIFT_LOW_BUTTON = 5;
+							
 	
 	// operating
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
@@ -66,9 +67,12 @@ public class RobotMap {
 							SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
 				
 	// deployable arm
-	public static final int RETRACTED_ARM_POSITION = 0,
-							INTAKE_ARM_POSITION = 0,
-							DEFENSE_ARM_POSITION = 0;
+	public static final int RETRACTED_ARM_POSITION = 0, // lmao set this
+							INTAKE_ARM_POSITION = 50, // lmao set this
+							DEFENSE_ARM_POSITION = 100, // lmao set this
+							RETRACTED_BUTTON = 7,
+							INTAKE_ARM_BUTTON = 6,
+							DEFENSE_BUTTON = 10;
 	
 	// autonomous
     public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing

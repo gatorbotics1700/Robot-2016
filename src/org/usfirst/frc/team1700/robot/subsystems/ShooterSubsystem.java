@@ -90,6 +90,10 @@ public class ShooterSubsystem extends Subsystem {
 		}
 	
 	}
+	
+	public void encoder() {
+		System.out.println(shooterTalonOne.getPosition());
+	}
 
 	@Override
 	protected void initDefaultCommand() {
