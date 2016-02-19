@@ -6,6 +6,7 @@ import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 // import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -15,6 +16,7 @@ public class DriveSubsystem extends Subsystem {
 	private HalfDriveSubsystem right;
 	private static final double JOY_DEADBAND = 0.05;
 	private OI oi;
+	DoubleSolenoid solenoid;
 	private AHRS navX;
 //	AnalogInput ultrasonicSensor;
 
@@ -23,9 +25,11 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {	
 		super();
 		navX = new AHRS(SPI.Port.kMXP); 
-		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_3, RobotMap.LEFT_DRIVE_SOLENOID_ONE_PORT, RobotMap.LEFT_DRIVE_SOLENOID_TWO_PORT);
-		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_2, RobotMap.RIGHT_DRIVE_SOLENOID_ONE_PORT, RobotMap.RIGHT_DRIVE_SOLENOID_TWO_PORT);
+		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_3);
+		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_2);
 //		ultrasonicSensor = new AnalogInput(RobotMap.ULTRASONIC_SENSOR);
+		solenoid = new DoubleSolenoid(RobotMap.DRIVE_SOLENOID_ONE_PORT, RobotMap.DRIVE_SOLENOID_TWO_PORT);
+
 	}
 	
 	public void navX () {
@@ -76,14 +80,23 @@ public class DriveSubsystem extends Subsystem {
 //			boolean AUTOSHIFTING = true;
 //	}
 
-	public void shiftHigh() { // shift into high gear
-		left.shiftHighHalfDrive();
-		right.shiftHighHalfDrive();
+	public void autoShiftHigh() {
+		if (left.getEncVelocity() > RobotMap.RPM)
+			solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void shiftLow() { // shift into low gear, call the shiftlow fxn from the half drive subsystem for ease of use
-		left.shiftLowHalfDrive();
-		right.shiftLowHalfDrive();
+	// If the motors are slow enough, shift down a gear. 
+	public void autoShiftLow() {
+		if (left.getEncVelocity() < RobotMap.RPM)
+			solenoid.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void ShiftHigh() { // shift into high gear
+		solenoid.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void ShiftLow() { // shift into low gear, call the shiftlow fxn from the half drive subsystem for ease of use
+		solenoid.set(DoubleSolenoid.Value.kReverse);
 
 	}
 	

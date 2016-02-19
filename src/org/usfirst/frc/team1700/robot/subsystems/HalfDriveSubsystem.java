@@ -10,15 +10,13 @@ public class HalfDriveSubsystem {
 	CANTalon CanTalon1;
 	CANTalon CanTalon2;
 	CANTalon CanTalon3;
-	DoubleSolenoid solenoid;
 	
 	// Constructor initializes electronics for HalfDrive. 
-	public HalfDriveSubsystem(int TalonOneID, int TalonTwoID,int TalonThreeID, int SolenoidLeftID, int SolenoidRightID){
+	public HalfDriveSubsystem(int TalonOneID, int TalonTwoID,int TalonThreeID){
 		CanTalon1 = new CANTalon(TalonOneID);
 		CanTalon1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		CanTalon2 = new CANTalon(TalonTwoID);
 		CanTalon3 = new CANTalon(TalonThreeID);
-		solenoid = new DoubleSolenoid(SolenoidLeftID, SolenoidRightID);
 		CanTalon1.setVoltageRampRate(6);
 		CanTalon2.setVoltageRampRate(6);
 		CanTalon3.setVoltageRampRate(6);
@@ -35,18 +33,29 @@ public class HalfDriveSubsystem {
 		return CanTalon1.getEncPosition();	
 	}	
 	
+	public double getEncVelocity(){
+		return CanTalon1.getEncVelocity();
+	}
+	
 	// If the motors are fast enough, shift up a gear. 
+//	public void autoShiftHighHalfDrive() {
+//		if (CanTalon1.getEncVelocity() > RobotMap.RPM)
+//			solenoid.set(DoubleSolenoid.Value.kForward);
+//	}
+//	
+//	// If the motors are slow enough, shift daown a gear. 
+//	public void autoShiftLowHalfDrive() {
+//		if (CanTalon1.getEncVelocity() < RobotMap.RPM)
+//			solenoid.set(DoubleSolenoid.Value.kReverse);
+//	}
+	
 	public void shiftHighHalfDrive() {
-		if (CanTalon1.getEncVelocity() > RobotMap.RPM)
-			solenoid.set(DoubleSolenoid.Value.kForward);
+//		solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	// If the motors are slow enough, shift down a gear. 
 	public void shiftLowHalfDrive() {
-		if (CanTalon1.getEncVelocity() < RobotMap.RPM)
-			solenoid.set(DoubleSolenoid.Value.kReverse);
+//		solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
-	
 	public void zeroEncoderHalfDrive() {
 		CanTalon1.setPosition(0);
 	}

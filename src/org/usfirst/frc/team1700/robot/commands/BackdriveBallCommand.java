@@ -29,7 +29,6 @@ public class BackdriveBallCommand extends Command {
 
 	@Override
 	protected void execute() {
-		shooter.backdrive();
 		intake.backDrive();
 	}
 

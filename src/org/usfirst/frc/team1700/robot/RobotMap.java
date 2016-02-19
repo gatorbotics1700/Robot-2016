@@ -23,13 +23,14 @@ public class RobotMap {
 							BACKDRIVE_BUTTON = 3,
 							START_SHOOT_CLOSE_BUTTON = 5,
 							START_SHOOT_FAR_BUTTON = 4,
-							SHOOT_BUTTON = 1;	
+							SHOOT_BUTTON = 1,
+							BACKDRIVE_SHOOT_BUTTON = 8;	
 
 	// pneumatics
-	public static final int LEFT_DRIVE_SOLENOID_ONE_PORT = 0,
-							LEFT_DRIVE_SOLENOID_TWO_PORT = 1,
-							RIGHT_DRIVE_SOLENOID_ONE_PORT = 2,
-							RIGHT_DRIVE_SOLENOID_TWO_PORT = 3;
+	public static final int DRIVE_SOLENOID_ONE_PORT = 4,
+							DRIVE_SOLENOID_TWO_PORT = 5,
+							SHOOTER_SOLENOID_ONE_PORT = 6,
+							SHOOTER_SOLENOID_TWO_PORT = 7;
 	
 	// talons
 	public static final int //RIGHT_VICTOR_ID_1 = 1,

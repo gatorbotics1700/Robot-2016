@@ -30,7 +30,7 @@ public class DriveCommand extends Command{
 
 	@Override
 	protected void execute() {
-		drive.shiftLow();
+		drive.ShiftLow();
 		double turnRate = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
 		double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));	
 		drive.driveArcade(throttle, turnRate);

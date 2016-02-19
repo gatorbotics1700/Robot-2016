@@ -18,6 +18,7 @@ public class OI {
 		   startShootFarButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_FAR_BUTTON),
 		   startShootCloseButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_CLOSE_BUTTON),
 		   shootButton = new JoystickButton(operatorJoystick,RobotMap.SHOOT_BUTTON),
+		   shootBackdriveButton = new JoystickButton(operatorJoystick,RobotMap.BACKDRIVE_SHOOT_BUTTON),
 		   retractedArmButton = new JoystickButton(operatorJoystick,RobotMap.RETRACTED_BUTTON),
 		   intakeArmButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_ARM_BUTTON),
 		   defenseButton = new JoystickButton(operatorJoystick,RobotMap.DEFENSE_BUTTON),
@@ -30,7 +31,8 @@ public class OI {
 		backdriveButton.whenPressed(new BackdriveBallCommand());
 		startShootFarButton.whenPressed(new StartShootWheelFarCommand());
 		startShootCloseButton.whenPressed(new StartShootWheelCloseCommand());
-		shootButton.whileHeld(new ShootCommand());
+		shootButton.whileHeld(new ShootCommand(ShootCommand.SHOOT));
+		shootBackdriveButton.whileHeld(new ShootCommand(ShootCommand.BACKDRIVE));
 		retractedArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
 		intakeArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_INTAKE));
 		defenseButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));

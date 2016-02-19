@@ -19,7 +19,7 @@ public class ShooterSubsystem extends Subsystem {
 		super();
 		shooterTalonOne = new CANTalon (RobotMap.SHOOTER_TALON_ONE_ID);
 		shooterTalonTwo = new CANTalon (RobotMap.SHOOTER_TALON_TWO_ID);
-		shooterSolenoid = new DoubleSolenoid (4,5);
+		shooterSolenoid = new DoubleSolenoid (RobotMap.SHOOTER_SOLENOID_ONE_PORT, RobotMap.SHOOTER_SOLENOID_TWO_PORT);
 		shooterTalonOne.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		shooterTalonOne.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		shooterTalonOne.enableControl();
@@ -28,7 +28,7 @@ public class ShooterSubsystem extends Subsystem {
 
 	private void setWheelSpeed(double speed) {
 		if (shooterTalonOne.getEncVelocity() < speed) {
-			shooterTalonOne.set(1);
+			shooterTalonOne.set(-1);
 			shooterTalonTwo.set(1);
 		} else {
 			shooterTalonOne.set(0);

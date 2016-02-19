@@ -25,9 +25,9 @@ public class DriveShiftingCommand extends Command {
 	@Override
 	protected void execute() {
 	  	if (desiredShift == SHIFT_HIGH) {
-    		drive.shiftHigh();
+    		drive.ShiftHigh();
     	} else if (desiredShift == SHIFT_LOW) {
-    		drive.shiftLow();
+    		drive.ShiftLow();
     	}
     }
 		
@@ -44,7 +44,7 @@ public class DriveShiftingCommand extends Command {
 	}
 	@Override
 	protected void interrupted() {
-		drive.shiftLow();
+		drive.ShiftLow();
 		
 	}
 }

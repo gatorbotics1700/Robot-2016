@@ -12,11 +12,14 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ShootCommand extends Command {
+	public static final int SHOOT = 1,
+							BACKDRIVE = 2;
 	private IntakeSubsystem intake;
 	private ShooterSubsystem shooter;
-	 private OI oi;
+	private int desiredAction;
+	private OI oi;
 	 
-    public ShootCommand() {
+    public ShootCommand(int desiredAction) {
     	super();
  		this.oi = Robot.oi;
  		requires(Subsystems.intake);
@@ -31,11 +34,16 @@ public class ShootCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		if (shooter.readyToShoot()) {
-			intake.moveBallToShootingPosition();
-		} else {
-			intake.stopMotors();
-		}
+		if (desiredAction == SHOOT) {
+	    	if (shooter.readyToShoot()) {
+				intake.moveBallToShootingPosition();
+			} else {
+				intake.stopMotors();
+			}
+		} else if (desiredAction == BACKDRIVE) {
+			shooter.backdrive();
+			intake.backDrive();
+		} 
     }    
 
     // Make this return true when this Command no longer needs to run execute()
