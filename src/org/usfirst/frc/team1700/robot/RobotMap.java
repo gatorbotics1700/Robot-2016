@@ -19,14 +19,18 @@ public class RobotMap {
 	
 	// operating
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
-							INTAKE_BUTTON = 2,
-							BACKDRIVE_BUTTON = 3,
-							START_SHOOT_CLOSE_BUTTON = 5,
-							START_SHOOT_FAR_BUTTON = 4,
+							//SHOOT_CLOSE_BUTTON = 1,
+							//SHOOT_FAR_BUTTON = 6,
 							SHOOT_BUTTON = 1,
-							BACKDRIVE_SHOOT_BUTTON = 8,
-							MANUAL_ARM_BUTTON = 9;
-
+							BACKDRIVE_SHOOT_BUTTON = 3,
+							START_SHOOT_FAR_BUTTON = 4,
+							START_SHOOT_CLOSE_BUTTON = 5,
+							INTAKE_BUTTON = 6,
+							BACKDRIVE_BUTTON = 7,
+							ARM_POSITION_THREE = 9,
+							ARM_POSITION_TWO = 10,
+							ARM_POSITION_ONE = 11,
+ 							MANUAL_ARM_BUTTON = 121321321; //TOGGLE
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 4,
 							DRIVE_SOLENOID_TWO_PORT = 5,

@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
- * Three buttons for the arm, three buttons for shooter, three buttons for intake,
- * two buttons for the hood, I'm definitely missing something
+ * Four buttons for the arm, three buttons for shooter, two buttons for intake,
+ * one buttons for the hood, I'm definitely missing something
  */
 public class OI {
 	public Joystick driveJoystick = new Joystick(RobotMap.DRIVE_JOYSTICK_PORT);
