@@ -27,10 +27,12 @@ public class IntakeSubsystem extends Subsystem {
 	 */
 	
 	public boolean beamBreakFrontBroken() {
+		System.out.println("Front: " + beamBreakFront.get());
 		return beamBreakFront.get();
 	}
 	public boolean beamBreakBackBroken() {
-		return beamBreakBack.get();
+		System.out.println("Back:" + beamBreakBack.get());
+		return !beamBreakBack.get();
 	}
 	
 	public void intake() {
@@ -41,7 +43,6 @@ public class IntakeSubsystem extends Subsystem {
 	public void moveBallToShootingPosition() {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
-
 
 	// Sets the motor speed to 0.
 	public void stopMotors() {
@@ -55,7 +56,7 @@ public class IntakeSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-//		setDefaultCommand(new IntakeBallCommand());
+		setDefaultCommand(new IntakeBallCommand());
 		
 	}	
 }

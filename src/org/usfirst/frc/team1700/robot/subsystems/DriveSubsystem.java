@@ -14,7 +14,7 @@ public class DriveSubsystem extends Subsystem {
 	
 	private HalfDriveSubsystem left;
 	private HalfDriveSubsystem right;
-	private static final double JOY_DEADBAND = 0.05;
+	private static final double JOY_DEADBAND = 0.1;
 	private OI oi;
 	DoubleSolenoid solenoid;
 	private AHRS navX;
@@ -33,22 +33,23 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public void navX () {
-		System.out.println(navX.getAngle());
+		//System.out.println(navX.getAngle());
 	}
 
 //various ways we can drive -- auto is tank, teleop is cheesy or arcade
 	public void driveTank (double speedLeft, double speedRight) { // tank drive
 			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) { // maybe take out the deadband later in life
-					left.setSpeed(speedLeft);
+				left.setSpeed(speedLeft);
+				System.out.println(speedLeft);
 			} else {
-					left.setSpeed(0);
+				left.setSpeed(0);
 			}
 			if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND){ 
-				right.setSpeed(-speedRight);	
+				right.setSpeed(-speedRight);
+				System.out.println(speedRight);
 			} else {
 				right.setSpeed(0);
 			}
-			
 			navX();
 		}
 	
@@ -120,12 +121,12 @@ public class DriveSubsystem extends Subsystem {
 	
 	
 	public void rightEncoder() {
-		System.out.println("right " + right.getEncReading());
+		//System.out.println("right " + right.getEncReading());
 		
 	}
 	
 	public void leftEncoder() {
-		System.out.println("left " + left.getEncReading());
+		//System.out.println("left " + left.getEncReading());
 	}
 
 	public void initDefaultCommand() {

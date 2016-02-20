@@ -8,37 +8,40 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousDriveForwardCommand extends Command {
 	DriveSubsystem drive;
-	double distance;
+	double autoDistance;
 	
 
 	public AutonomousDriveForwardCommand (double autoDistance) {
-		 distance = autoDistance;
+		requires(Subsystems.drive);
+	    drive = Subsystems.drive;
+		this.autoDistance = autoDistance;
 	}
 	
 	
 	protected void initialize() {
-		requires(Subsystems.drive);
-	    drive = Subsystems.drive;
+		
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void execute() {
+		//TODO FOR CHRISTINE (I WILL DO THIS TOMORROW): Read encoder value to get to distance 	  
 		// TODO Auto-generated method stub
 		drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
 
-	}
+	} 
 
 	@Override
 	protected boolean isFinished() {
-		if (drive.getRightDistance() < (distance - 10) ) { // change 90 to the actual distance we want to go - 10
-			return false;
-		} else if (drive.getRightDistance() > (distance + 10) ) {
-			return false;
-		} else {
-			return true;
-		}
+//		if (drive.getRightDistance() < (autoDistance - 10) ) { // change 90 to the actual distance we want to go - 10
+//			return false;
+//		} else if (drive.getRightDistance() > (autoDistance + 10) ) {
+//			return false;
+//		} else {
+//			return true;
+//		}
+		return false;
 	}
 
 
@@ -50,7 +53,7 @@ public class AutonomousDriveForwardCommand extends Command {
 
 	@Override
 	protected void interrupted() {
-		drive.driveTank(0, 0);
+		drive.driveTank(0,0);
 		
 	}
 	

@@ -1,5 +1,4 @@
 package org.usfirst.frc.team1700.robot;
-
 import org.usfirst.frc.team1700.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -28,9 +27,9 @@ public class OI {
 		
 	public OI () {
 		intakeButton.whileHeld(new IntakeBallCommand());
-		backdriveButton.whenPressed(new BackdriveBallCommand());
-		startShootFarButton.whenPressed(new StartShootWheelFarCommand());
-		startShootCloseButton.whenPressed(new StartShootWheelCloseCommand());
+		backdriveButton.whileHeld(new BackdriveBallCommand());
+		startShootFarButton.whileHeld(new StartShootWheelFarCommand());
+		startShootCloseButton.whileHeld(new StartShootWheelCloseCommand());
 		shootButton.whileHeld(new ShootCommand(ShootCommand.SHOOT));
 		shootBackdriveButton.whileHeld(new ShootCommand(ShootCommand.BACKDRIVE));
 		retractedArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));

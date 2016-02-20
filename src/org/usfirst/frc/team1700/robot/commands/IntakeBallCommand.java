@@ -28,25 +28,29 @@ public class IntakeBallCommand extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-//        if (intake.beamBreakBackBroken()) {     
-//        	if (intake.beamBreakFrontBroken()) {   // got it!!    
-//        		intake.stopMotors();    
-//   	
-//        	} else {                // went too far    
-//        		intake.backDrive();            
-//        	}        
-//   
-//        } else {         
-//        	intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
-//        	}
-//        
-//        }
-//        
-//    
-    	
-    	intake.intake(); // we don't have the beambreak sensors up and running, so alas we can't do this cool ass code
-    }
+    protected void execute() { 
+    	System.out.println("In the intake command");
+        if (intake.beamBreakBackBroken()) {
+        	System.out.println("Back broken");
+        	if (intake.beamBreakFrontBroken()) {   // got it!!
+        		System.out.println("Front also broken");
+        		intake.stopMotors();    
+   	
+        	} else {                // went too far  
+        		System.out.println("Front not also broken");
+        		intake.backDrive();            
+        	}        
+   
+        } else {
+        	System.out.println("Back and front not broken");
+        	intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
+        	}
+        
+        }
+        
+    
+    	//intake.intake(); // we don't have the beambreak sensors up and running, so alas we can't do this cool ass code
+    //}
     	//	if (!intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
 //		intake.intake();
 //	} else if (intake.beamBreakFrontBroken() && !intake.beamBreakBackBroken()) {
@@ -56,7 +60,7 @@ public class IntakeBallCommand extends Command {
 //	} else if (!intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()) {
 //		intake.backDrive();
 //	}
-//	
+	
 
     
 
@@ -67,7 +71,7 @@ public class IntakeBallCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-//    	intake.stopMotors();
+    	intake.stopMotors();
     }
 
     // Called when another command which requires one or more of the same

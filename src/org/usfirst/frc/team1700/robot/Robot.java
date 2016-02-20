@@ -3,6 +3,7 @@ package org.usfirst.frc.team1700.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
+import org.usfirst.frc.team1700.robot.commands.Autonomous;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
 
@@ -25,8 +26,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	private DriveSubsystem drive;
 	private IntakeSubsystem intake;
-	
-    Command autonomousCommand;
+	private Autonomous autonomous;
 
     public Robot () {
 		drive = Subsystems.drive;
@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	drive.zeroEncoders();
+    	autonomous = new Autonomous();
     	
     	try {
         	oi = new OI();
@@ -56,7 +57,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-//        if (autonomousCommand != null) autonomousCommand.start();
+        if (autonomous != null) autonomous.start();
     }
 
     /**

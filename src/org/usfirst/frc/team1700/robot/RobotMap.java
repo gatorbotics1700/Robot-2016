@@ -47,14 +47,14 @@ public class RobotMap {
 	
 	// intake victors
 	public static final int INTAKE_VICTOR_1_ID = 8,
-							INTAKE_VICTOR_2_ID = 9;
+							INTAKE_VICTOR_2_ID = 7;
 	
 	// various sensors
 	public static final int BEAM_BREAK_FRONT_PORT = 0,
 							BEAM_BREAK_BACK_PORT = 1,
 							FRONT_LIMIT_SWITCH = 2,
 							BACK_LIMIT_SWITCH = 3,
-							ULTRASONIC_SENSOR = 1;
+							ULTRASONIC_SENSOR = 4;
 	
 	
 	// driving
@@ -63,8 +63,8 @@ public class RobotMap {
 							   CIRCUM_TREAD_WHEEL = 19.05,
 							   CIRCUM_PNEUMATIC_WHEEL = 20.05;
 
-	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 10,
-							SHOOTER_MOTOR_SPEED_FAR = 20,
+	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 1,
+							SHOOTER_MOTOR_SPEED_FAR = 1,
 							SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
 				
 	// deployable arm

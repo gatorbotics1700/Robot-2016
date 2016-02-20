@@ -26,10 +26,12 @@ public class ShooterSubsystem extends Subsystem {
 		shooterTalonTwo.enableControl();
 	}
 
+//talons are set opposite voltages because motors are wired opposite
 	private void setWheelSpeed(double speed) {
 		if (shooterTalonOne.getEncVelocity() < speed) {
-			shooterTalonOne.set(-1);
-			shooterTalonTwo.set(1);
+			//System.out.println("at wheel speed");
+			shooterTalonOne.set(.5);
+			shooterTalonTwo.set(-.5);
 		} else {
 			shooterTalonOne.set(0);
 			shooterTalonTwo.set(0);
@@ -92,7 +94,7 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public void encoder() {
-		System.out.println(shooterTalonOne.getPosition());
+		//System.out.println(shooterTalonOne.getPosition());
 	}
 
 	@Override

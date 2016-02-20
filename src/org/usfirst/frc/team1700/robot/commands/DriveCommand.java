@@ -20,7 +20,7 @@ public class DriveCommand extends Command{
 		super();
 		this.oi = Robot.oi;
 		requires(Subsystems.drive);
-		drive = new DriveSubsystem();
+		drive = Subsystems.drive;
 
 		
 	}

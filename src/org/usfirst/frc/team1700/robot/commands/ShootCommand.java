@@ -26,6 +26,7 @@ public class ShootCommand extends Command {
  		requires(Subsystems.shooter);
         intake = Subsystems.intake;
         shooter = Subsystems.shooter;
+        this.desiredAction = desiredAction;
     }
 
     // Called just before this Command runs the first time
@@ -34,6 +35,7 @@ public class ShootCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+		shooter.shootClose();
 		if (desiredAction == SHOOT) {
 	    	if (shooter.readyToShoot()) {
 				intake.moveBallToShootingPosition();
@@ -43,7 +45,9 @@ public class ShootCommand extends Command {
 		} else if (desiredAction == BACKDRIVE) {
 			shooter.backdrive();
 			intake.backDrive();
-		} 
+		} else {
+			intake.stopMotors();
+		}
     }    
 
     // Make this return true when this Command no longer needs to run execute()
@@ -53,12 +57,14 @@ public class ShootCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	intake.stopMotors();
+    	shooter.setSpeedToZero();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
 		intake.stopMotors();
-    	
+    	shooter.setSpeedToZero();
     }
 }

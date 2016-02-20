@@ -41,7 +41,7 @@ public class BackdriveBallCommand extends Command {
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+		intake.stopMotors();
 	}
 
 	@Override
