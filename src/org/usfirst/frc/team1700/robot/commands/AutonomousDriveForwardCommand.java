@@ -14,7 +14,6 @@ public class AutonomousDriveForwardCommand extends Command {
 	DriveSubsystem drive;
 	double autoDistance;
 	
-
 	public AutonomousDriveForwardCommand (double autoDistance) {
 		requires(Subsystems.drive);
 	    drive = Subsystems.drive;
@@ -50,7 +49,6 @@ public class AutonomousDriveForwardCommand extends Command {
 		return false;
 	}
 
-
 	@Override
 	protected void end() {
 		drive.driveTank(0,0);
@@ -61,8 +59,5 @@ public class AutonomousDriveForwardCommand extends Command {
 	protected void interrupted() {
 		drive.driveTank(0,0);
 		
-	}
-	
-
-	
+	}	
 }
