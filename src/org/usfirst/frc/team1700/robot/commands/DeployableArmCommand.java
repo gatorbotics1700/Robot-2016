@@ -37,7 +37,9 @@ public class DeployableArmCommand extends Command {
     		arm.goToRetracted();
     	} else if (desiredPosition == DESIRED_POSITION_INTAKE) {
     		arm.goToIntake();
-    	} else arm.goToDefense();
+    	} else {
+    		arm.goToDefense();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

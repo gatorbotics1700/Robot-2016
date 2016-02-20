@@ -24,7 +24,8 @@ public class RobotMap {
 							START_SHOOT_CLOSE_BUTTON = 5,
 							START_SHOOT_FAR_BUTTON = 4,
 							SHOOT_BUTTON = 1,
-							BACKDRIVE_SHOOT_BUTTON = 8;	
+							BACKDRIVE_SHOOT_BUTTON = 8,
+							MANUAL_ARM_BUTTON = 9;
 
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 4,
@@ -80,8 +81,7 @@ public class RobotMap {
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
-    						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?
-   
+    						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?   
     
     							
 			
