@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 
 /**
@@ -25,8 +27,12 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	private DriveSubsystem drive;
 	private IntakeSubsystem intake;
+
 	
     Command autonomousCommand;
+    SendableChooser chooser;
+    private AHRS navX;
+    private BuiltInAccelerometer RRA;
 
     public Robot () {
 		drive = Subsystems.drive;
