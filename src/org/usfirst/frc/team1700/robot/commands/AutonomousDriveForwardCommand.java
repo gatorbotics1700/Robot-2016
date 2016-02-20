@@ -5,7 +5,11 @@ import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+/*
+ * Our autonomous drive command
+ * A distance is passed in from the autonomous command (can be a positive or negative distance)
+ * The robot drives forward until the encoder reading is greater than the auto distance passed in
+ */
 public class AutonomousDriveForwardCommand extends Command {
 	DriveSubsystem drive;
 	double autoDistance;
