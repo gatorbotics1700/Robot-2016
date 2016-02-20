@@ -26,10 +26,12 @@ public class AutonomousDriveForwardCommand extends Command {
 
 	@Override
 	protected void execute() {
-		//TODO FOR CHRISTINE (I WILL DO THIS TOMORROW): Read encoder value to get to distance 	  
 		// TODO Auto-generated method stub
-		drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
-
+		if (drive.getRightDistance() < autoDistance || drive.getLeftDistance() < autoDistance) {
+			drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
+		} else {
+			end();
+		}
 	} 
 
 	@Override
