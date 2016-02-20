@@ -84,6 +84,10 @@ public class DeployableArmSubsystem extends Subsystem {
 			armTalon.set(RobotMap.DEFENSE_ARM_POSITION);
 		else stop();		
 	}
+	
+	public void manualMove(int position) {
+		armTalon.set(position);
+	}
 
 	@Override
 	protected void initDefaultCommand() {
