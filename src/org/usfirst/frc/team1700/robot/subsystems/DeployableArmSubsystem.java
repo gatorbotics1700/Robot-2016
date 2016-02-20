@@ -86,7 +86,11 @@ public class DeployableArmSubsystem extends Subsystem {
 	}
 	
 	public void manualMove(double position) {
-		armTalon.set(position);
+		if (!frontLimitSwitch.get() || !backLimitSwitch.get()) {
+			armTalon.set(position);
+		} else {
+			armTalon.disableControl();
+		}
 	}
 
 	@Override
