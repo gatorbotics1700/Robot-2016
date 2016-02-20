@@ -5,7 +5,11 @@ import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+/*
+ * Our autonomous drive command
+ * A distance is passed in from the autonomous command (can be a positive or negative distance)
+ * The robot drives forward until the encoder reading is greater than the auto distance passed in
+ */
 public class AutonomousDriveForwardCommand extends Command {
 	DriveSubsystem drive;
 	double autoDistance;
@@ -26,10 +30,12 @@ public class AutonomousDriveForwardCommand extends Command {
 
 	@Override
 	protected void execute() {
-		//TODO FOR CHRISTINE (I WILL DO THIS TOMORROW): Read encoder value to get to distance 	  
 		// TODO Auto-generated method stub
-		drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
-
+		if (drive.getRightDistance() < autoDistance || drive.getLeftDistance() < autoDistance) {
+			drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
+		} else {
+			end();
+		}
 	} 
 
 	@Override
