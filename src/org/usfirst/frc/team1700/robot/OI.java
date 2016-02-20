@@ -22,7 +22,8 @@ public class OI {
 		   intakeArmButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_ARM_BUTTON),
 		   defenseButton = new JoystickButton(operatorJoystick,RobotMap.DEFENSE_BUTTON),
 		   shiftHighButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_HIGH_BUTTON),
-		   shiftLowButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_LOW_BUTTON);
+		   shiftLowButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_LOW_BUTTON),
+		   manualArmButton = new JoystickButton(operatorJoystick,RobotMap.MANUAL_ARM_BUTTON);
 	
 		
 	public OI () {
@@ -37,6 +38,7 @@ public class OI {
 		defenseButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
 		shiftHighButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_HIGH));
 		shiftLowButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_LOW));
+		manualArmButton.whileHeld(new ManualDeployableArmCommand());
 	}
 	
 }
