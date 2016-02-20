@@ -27,10 +27,11 @@ public class RobotMap {
 							START_SHOOT_CLOSE_BUTTON = 5,
 							INTAKE_BUTTON = 6,
 							BACKDRIVE_BUTTON = 7,
-							ARM_POSITION_THREE = 9,
-							ARM_POSITION_TWO = 10,
-							ARM_POSITION_ONE = 11,
+							INTAKE_ARM_BUTTON = 9,
+							DEFENSE_BUTTON = 10,
+							RETRACTED_BUTTON = 11,
  							MANUAL_ARM_BUTTON = 121321321; //TOGGLE
+
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 4,
 							DRIVE_SOLENOID_TWO_PORT = 5,
@@ -38,8 +39,7 @@ public class RobotMap {
 							SHOOTER_SOLENOID_TWO_PORT = 7;
 	
 	// talons
-	public static final int //RIGHT_VICTOR_ID_1 = 1,
-							//RIGHT_VICTOR_ID_2 = 2,
+	public static final int 
 							RIGHT_TALON_ID_1 = 3,
 							RIGHT_TALON_ID_2 = 4,
 							RIGHT_TALON_ID_3 = 5, // has encoder
@@ -75,10 +75,7 @@ public class RobotMap {
 	// deployable arm
 	public static final int RETRACTED_ARM_POSITION = 0, // lmao set this
 							INTAKE_ARM_POSITION = 50, // lmao set this
-							DEFENSE_ARM_POSITION = 100, // lmao set this
-							RETRACTED_BUTTON = 7,
-							INTAKE_ARM_BUTTON = 6,
-							DEFENSE_BUTTON = 10;
+							DEFENSE_ARM_POSITION = 100; // lmao set this
 	
 	// autonomous
     public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing
