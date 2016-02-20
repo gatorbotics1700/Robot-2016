@@ -85,7 +85,7 @@ public class DeployableArmSubsystem extends Subsystem {
 		else stop();		
 	}
 	
-	public void manualMove(int position) {
+	public void manualMove(double position) {
 		armTalon.set(position);
 	}
 

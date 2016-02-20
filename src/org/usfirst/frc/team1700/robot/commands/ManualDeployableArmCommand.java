@@ -32,7 +32,7 @@ public class ManualDeployableArmCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-   arm.manualMove(Robot.oi.operatorJoystick.getY());
+    	arm.manualMove(Robot.oi.operatorJoystick.getY());
  
     
     }
