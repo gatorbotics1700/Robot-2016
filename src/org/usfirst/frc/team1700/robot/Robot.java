@@ -28,16 +28,13 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	private DriveSubsystem drive;
 	private IntakeSubsystem intake;
-<<<<<<< HEAD
 	private Autonomous autonomous;
-=======
 
 	
     Command autonomousCommand;
     SendableChooser chooser;
-    private AHRS navX;
+    //private AHRS navX;
     private BuiltInAccelerometer RRA;
->>>>>>> 67a7e0e45604fc2f475db48c5cd9e37e206ddb98
 
     public Robot () {
 		drive = Subsystems.drive;
