@@ -28,6 +28,7 @@ public class StartShootWheelFarCommand extends Command{
 
 	@Override
 	protected void execute() {
+		
 		shooter.shootFar();
 	}
 

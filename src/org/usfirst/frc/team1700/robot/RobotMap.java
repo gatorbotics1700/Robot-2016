@@ -14,9 +14,9 @@ public class RobotMap {
 						    TANK_LEFT = 1,
 						    TANK_RIGHT = 5,
 							SHIFT_HIGH_BUTTON = 6,
-							SHIFT_LOW_BUTTON = 5;
+							SHIFT_LOW_BUTTON = 5,
+							OVERRIDE_BEAMBREAK_BUTTON = 2;
 							
-	
 	// operating
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
 							//SHOOT_CLOSE_BUTTON = 1,
@@ -29,9 +29,7 @@ public class RobotMap {
 							BACKDRIVE_BUTTON = 7,
 							INTAKE_ARM_BUTTON = 9,
 							DEFENSE_BUTTON = 10,
-							RETRACTED_BUTTON = 11,
- 							MANUAL_ARM_BUTTON = 121321321; //TOGGLE
-
+							RETRACTED_BUTTON = 11;
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 4,
 							DRIVE_SOLENOID_TWO_PORT = 5,

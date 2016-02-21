@@ -100,6 +100,7 @@ public class ShooterSubsystem extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 }
