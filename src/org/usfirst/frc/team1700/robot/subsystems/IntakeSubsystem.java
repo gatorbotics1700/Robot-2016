@@ -13,6 +13,7 @@ public class IntakeSubsystem extends Subsystem {
 		private DigitalInput beamBreakFront;
 		private DigitalInput beamBreakBack;
 		private static final double INTAKE_ROLLER_SPEED = .5; //change this number to actual roller speed after testing
+		private static final double MANUAL_INTAKE_ROLLER_SPEED = .3;
 		
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
@@ -37,6 +38,10 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void intake() {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
+	}
+	
+	public void manualIntake() {
+		IntakeVictor.set(MANUAL_INTAKE_ROLLER_SPEED);
 	}
 	
 	// Moves ball into shooter wheel. 
