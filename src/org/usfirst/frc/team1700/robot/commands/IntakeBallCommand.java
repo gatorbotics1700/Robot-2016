@@ -47,6 +47,7 @@ public class IntakeBallCommand extends Command {
         	}
         
         }
+   
         
     
     	//intake.intake(); // we don't have the beambreak sensors up and running, so alas we can't do this cool ass code
@@ -68,6 +69,7 @@ public class IntakeBallCommand extends Command {
 //    protected void isFinished() {
 ////    	return intake.beamBreakBroken();
 //    }
+    
 
     // Called once after isFinished returns true
     protected void end() {

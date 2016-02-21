@@ -34,7 +34,7 @@ public class IntakeSubsystem extends Subsystem {
 	}
 	public boolean beamBreakBackBroken() {
 		System.out.println("Back:" + beamBreakBack.get());
-		return !beamBreakBack.get();
+		return beamBreakBack.get();
 	}
 	
 	public void intake() {
