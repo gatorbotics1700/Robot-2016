@@ -6,7 +6,6 @@ import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
-import org.usfirst.frc.team1700.robot.RobotMap;
 
 /**
  *
