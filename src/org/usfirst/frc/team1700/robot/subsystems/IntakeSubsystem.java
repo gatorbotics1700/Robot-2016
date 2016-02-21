@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 // Initializes electronics for in-take subsystem and their associated methods.
 public class IntakeSubsystem extends Subsystem {
 		private Victor IntakeVictor;
+		private Victor armIntakeVictor;
 		private DigitalInput beamBreakFront;
 		private DigitalInput beamBreakBack;
 		private static final double INTAKE_ROLLER_SPEED = .5; //change this number to actual roller speed after testing
@@ -18,6 +19,7 @@ public class IntakeSubsystem extends Subsystem {
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
 		IntakeVictor =  new Victor(RobotMap.INTAKE_VICTOR_2_ID);
+		armIntakeVictor = new Victor(RobotMap.INTAKE_VICTOR_1_ID);
 		beamBreakFront = new DigitalInput(RobotMap.BEAM_BREAK_FRONT_PORT);
 		beamBreakBack = new DigitalInput(RobotMap.BEAM_BREAK_BACK_PORT);
 	}
@@ -38,6 +40,7 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void intake() {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
 	
 	public void manualIntake() {
@@ -52,11 +55,13 @@ public class IntakeSubsystem extends Subsystem {
 	// Sets the motor speed to 0.
 	public void stopMotors() {
 		IntakeVictor.set(0);
+		armIntakeVictor.set(0);
 	}
 	
 	// Sets speeds for back drive to shoot in low goal.
 	public void backDrive() {
 		IntakeVictor.set(-INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
 	}
 
 	@Override
