@@ -2,7 +2,9 @@ package org.usfirst.frc.team1700.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
+import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
 
@@ -10,30 +12,39 @@ import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
  *
  */
 public class ManualDeployableArmCommand extends Command {
-
+	public static final int UP = 1,
+							DOWN = 2;
 	private DeployableArmSubsystem arm;
 	double armDeadband;
+	int desiredAction;
+	private OI oi;
 	
     public ManualDeployableArmCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Subsystems.deployableArm);
     	arm = Subsystems.deployableArm;
-    	armDeadband = 0.3;
+    	this.desiredAction = desiredAction;
+    	this.oi = Robot.oi;
     }
 
     public void getPosition() {
-    	
+    
     }
     // Called just before this Command runs the first time
     protected void initialize() {
     	arm.enable();
+    	arm.zeroEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.oi.operatorJoystick.getY() > armDeadband || Robot.oi.operatorJoystick.getY() < -armDeadband) {
-    		arm.manualMove(Robot.oi.operatorJoystick.getY());
+    	if (this.oi.operatorJoystick.getRawButton(RobotMap.MANUAL_ARM_UP_BUTTON)){
+    		arm.moveUp();
+    	} else if (this.oi.operatorJoystick.getRawButton(RobotMap.MANUAL_ARM_DOWN_BUTTON)) {
+    		arm.moveDown();
+    	} else {
+    		arm.gravity();
     	}
     }
     // Make this return true when this Command no longer needs to run execute()
@@ -42,6 +53,7 @@ public class ManualDeployableArmCommand extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
+    	//be wary when changing mode to percent vbus mode
     	arm.stop();
     }
 

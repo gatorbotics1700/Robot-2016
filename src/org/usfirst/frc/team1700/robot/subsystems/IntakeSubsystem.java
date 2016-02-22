@@ -18,8 +18,8 @@ public class IntakeSubsystem extends Subsystem {
 		
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
-		IntakeVictor =  new Victor(RobotMap.INTAKE_VICTOR_2_ID);
-		armIntakeVictor = new Victor(RobotMap.INTAKE_VICTOR_1_ID);
+		IntakeVictor =  new Victor(RobotMap.FRAME_INTAKE_VICTOR);
+		armIntakeVictor = new Victor(RobotMap.ARM_INTAKE_VICTOR);
 		beamBreakFront = new DigitalInput(RobotMap.BEAM_BREAK_FRONT_PORT);
 		beamBreakBack = new DigitalInput(RobotMap.BEAM_BREAK_BACK_PORT);
 	}
@@ -30,26 +30,35 @@ public class IntakeSubsystem extends Subsystem {
 	 */
 	
 	public boolean beamBreakFrontBroken() {
-		System.out.println("Front: " + beamBreakFront.get());
-		return beamBreakFront.get();
+		System.out.println("Front: " + !beamBreakFront.get());
+		return !beamBreakFront.get();
 	}
 	public boolean beamBreakBackBroken() {
-		System.out.println("Back:" + beamBreakBack.get());
-		return beamBreakBack.get();
+		System.out.println("Back:" + !beamBreakBack.get());
+		return !beamBreakBack.get();
 	}
 	
 	public void intake() {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
-		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
 	}
 	
 	public void manualIntake() {
 		IntakeVictor.set(MANUAL_INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(MANUAL_INTAKE_ROLLER_SPEED);
 	}
 	
 	// Moves ball into shooter wheel. 
 	public void moveBallToShootingPosition() {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
+	}
+	
+	public void moveBallToWaitingPosition() {
+		if (!beamBreakFrontBroken()) {
+			backDrive();
+		} else {
+			stopMotors();
+		}
 	}
 
 	// Sets the motor speed to 0.
@@ -61,12 +70,12 @@ public class IntakeSubsystem extends Subsystem {
 	// Sets speeds for back drive to shoot in low goal.
 	public void backDrive() {
 		IntakeVictor.set(-INTAKE_ROLLER_SPEED);
-		armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntakeBallCommand());
+//		setDefaultCommand(new IntakeBallCommand());
 		
 	}	
 }

@@ -11,6 +11,7 @@ public class DriveShiftingCommand extends Command {
 							SHIFT_LOW= 2;
 	private DriveSubsystem drive;
 	private int desiredShift;
+	private boolean shifted;
 	
 	public DriveShiftingCommand (int state) {
 		requires(Subsystems.drive);
@@ -18,16 +19,20 @@ public class DriveShiftingCommand extends Command {
     	drive = Subsystems.drive;
 	}
 	@Override
+	
 	protected void initialize() {
+		shifted=false;
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	protected void execute() {
-	  	if (desiredShift == SHIFT_HIGH) {
+	  	shifted=false;
+		if (desiredShift == SHIFT_HIGH) {
     		drive.ShiftHigh();
-    	} else if (desiredShift == SHIFT_LOW) {
+		} else if (desiredShift == SHIFT_LOW) {
     		drive.ShiftLow();
+    		shifted=true;
     	}
     }
 		
@@ -35,7 +40,7 @@ public class DriveShiftingCommand extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return shifted;
 	}
 	@Override
 	protected void end() {

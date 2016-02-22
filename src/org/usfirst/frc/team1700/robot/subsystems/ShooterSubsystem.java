@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 
+import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
 
@@ -13,6 +14,7 @@ public class ShooterSubsystem extends Subsystem {
 	public boolean hoodUp = true;
 	public boolean hoodDown = false;
 	public double deadband = 0.05;
+	public double counter = 0.0;
 	
 	
 	public ShooterSubsystem() {
@@ -24,27 +26,44 @@ public class ShooterSubsystem extends Subsystem {
 		shooterTalonOne.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		shooterTalonOne.enableControl();
 		shooterTalonTwo.enableControl();
+//		shooterTalonOne.setVoltageRampRate(6);
+//		shooterTalonTwo.setVoltageRampRate(6);
 	}
 
 //talons are set opposite voltages because motors are wired opposite
 	private void setWheelSpeed(double speed) {
-		if (shooterTalonOne.getEncVelocity() < speed) {
-			//System.out.println("at wheel speed");
-			shooterTalonOne.set(.5);
-			shooterTalonTwo.set(-.5);
-		} else {
-			shooterTalonOne.set(0);
-			shooterTalonTwo.set(0);
-		}
-	}
+			shooterTalonOne.set(speed);
+			shooterTalonTwo.set(-speed);
+			//shooterTalonOne.set(Robot.oi.operatorJoystick.getY());
+			//shooterTalonTwo.set(Robot.oi.operatorJoystick.getY());
+			//System.out.println(shooterTalonOne.get());
+	
+	}		
+//		if (shooterTalonOne.getEncVelocity() < speed) {
+//			shooterTalonOne.set(1);
+//			shooterTalonTwo.set(-1);
+//		}
+//			//System.out.println("at wheel speed");
+//			counter++;
+//			if(counter <= 50) {
+//				shooterTalonOne.set(.5);
+//				shooterTalonTwo.set(-.5);
+//			}
+//		} else {
+//			shooterTalonOne.set(0);
+//			shooterTalonTwo.set(0);
+//		}
+//	}
 	
 	public void shootClose() {
-		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		//System.out.println("The shooter enc value is: " + shooterTalonOne.getEncVelocity());
+		//System.out.println("hood down");
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
 	}
 	
 	public void shootFar() {
-		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
+		//shooterSolenoid.set(DoubleSolenoid.Value.kForward);
+		//System.out.println("hood up");
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_FAR);
 	}
 	
@@ -53,8 +72,8 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public void setSpeedToZero() {
-		shooterTalonOne.disableControl();
-		shooterTalonTwo.disableControl();
+		shooterTalonOne.set(0);
+		shooterTalonTwo.set(0);
 	}
 	
 	public boolean readyToShootClose() {

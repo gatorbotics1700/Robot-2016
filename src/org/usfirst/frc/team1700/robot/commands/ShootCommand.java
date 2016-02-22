@@ -22,9 +22,9 @@ public class ShootCommand extends Command {
     public ShootCommand(int desiredAction) {
     	super();
  		this.oi = Robot.oi;
- 		requires(Subsystems.intake);
+// 		requires(Subsystems.intake);
  		requires(Subsystems.shooter);
-        intake = Subsystems.intake;
+//        intake = Subsystems.intake;
         shooter = Subsystems.shooter;
         this.desiredAction = desiredAction;
     }
@@ -35,18 +35,18 @@ public class ShootCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		shooter.shootClose();
 		if (desiredAction == SHOOT) {
-	    	if (shooter.readyToShoot()) {
-				intake.moveBallToShootingPosition();
-			} else {
-				intake.stopMotors();
-			}
+//	    	if (shooter.readyToShoot()) {
+//				intake.moveBallToShootingPosition();
+//			} else {
+//				intake.stopMotors();
+//			}
+			shooter.shootClose();
 		} else if (desiredAction == BACKDRIVE) {
 			shooter.backdrive();
-			intake.backDrive();
+//			intake.backDrive();
 		} else {
-			intake.stopMotors();
+//			intake.stopMotors();
 		}
     }    
 
@@ -57,14 +57,14 @@ public class ShootCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	intake.stopMotors();
+//    	intake.stopMotors();
     	shooter.setSpeedToZero();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-		intake.stopMotors();
+//		intake.stopMotors();
     	shooter.setSpeedToZero();
     }
 }

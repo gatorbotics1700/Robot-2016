@@ -28,7 +28,6 @@ public class Robot extends IterativeRobot {
 	private static Subsystems subsystems; // collection of all subsystems	 
 	public static OI oi;
 	private DriveSubsystem drive;
-	private IntakeSubsystem intake;
 	private Autonomous autonomous;
 
 	
@@ -48,8 +47,7 @@ public class Robot extends IterativeRobot {
 
     public Robot () {
 		drive = Subsystems.drive;
-		intake = Subsystems.intake;
-		//what do I assign RRA and navX lol
+		//what do I assign RRA and navX to?
     }
     
     /**
@@ -61,12 +59,10 @@ public class Robot extends IterativeRobot {
     	drive.zeroEncoders();
     	autonomous = new Autonomous();
     	
-    	try {
-        	oi = new OI();
-    		subsystems = new Subsystems();
-    	} catch (Error e){
-    		System.out.println(e + " " + e.getStackTrace());
-    	}
+        oi = new OI();
+    	subsystems = new Subsystems();
+    	//System.out.println(e + " " + e.getStackTrace());
+    	
         // instantiate the command used for the autonomous period
     }
 	

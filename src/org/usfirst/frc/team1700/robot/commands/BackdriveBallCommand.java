@@ -19,8 +19,6 @@ public class BackdriveBallCommand extends Command {
 		this.oi = Robot.oi;
 		requires(Subsystems.intake);
         intake = Subsystems.intake;
-        requires(Subsystems.shooter);
-        shooter = Subsystems.shooter;
 	}
 	@Override
 	protected void initialize() {
@@ -46,8 +44,7 @@ public class BackdriveBallCommand extends Command {
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-		
+		intake.stopMotors();
 	}
 
 }

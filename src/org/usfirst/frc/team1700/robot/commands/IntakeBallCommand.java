@@ -2,6 +2,7 @@ package org.usfirst.frc.team1700.robot.commands;
 
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team1700.robot.subsystems.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1700.robot.OI;
@@ -13,13 +14,18 @@ import org.usfirst.frc.team1700.robot.Robot;
 public class IntakeBallCommand extends Command {
 
     private IntakeSubsystem intake;
+    private ShooterSubsystem shooter;
     private OI oi;
+    private int counter;
     
 	public IntakeBallCommand() {
 		super();
 		this.oi = Robot.oi;
 		requires(Subsystems.intake);
+		requires(Subsystems.shooter);
         intake = Subsystems.intake;
+        shooter = Subsystems.shooter;
+        counter = 0;
     }
 
     // Called just before this Command runs the first time
@@ -28,24 +34,28 @@ public class IntakeBallCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
-    	System.out.println("In the intake command");
-        if (intake.beamBreakBackBroken()) {
-        	System.out.println("Back broken");
-        	if (intake.beamBreakFrontBroken()) {   // got it!!
-        		System.out.println("Front also broken");
-        		intake.stopMotors();    
-   	
-        	} else {                // went too far  
-        		System.out.println("Front not also broken");
-        		intake.backDrive();            
-        	}        
-   
-        } else {
-        	System.out.println("Back and front not broken");
-        	intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
-        	}
-        
-        }
+//    	System.out.println("In the intake command");
+////    	System.out.println(intake.beamBreakFrontBroken());
+////    	System.out.println(intake.beamBreakBackBroken());
+//        if (intake.beamBreakBackBroken()) {
+////        	System.out.println("Back broken");
+//        	if (intake.beamBreakFrontBroken()) {   // got it!!
+////        		System.out.println("Front also broken");
+//        		intake.stopMotors();    
+//   	
+//        	} else {                // went too far  
+////        		System.out.println("Front not also broken");
+//        		intake.backDrive();            
+//        	}        
+//   
+//        } else {
+////        	System.out.println("Back and front not broken");
+//        	intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
+//        	}
+//        
+//        }
+    	intake.intake(); 
+    }
    
         
     
@@ -72,7 +82,16 @@ public class IntakeBallCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	intake.stopMotors();
+    	if (counter <= 5) {
+    		intake.stopMotors();
+    		counter ++;
+    	} else if (counter > 5 && counter < 20) {
+    		intake.backDrive();
+    		shooter.backdrive();
+    		counter ++;
+    	} else {
+    		intake.stopMotors();
+    	}
     }
 
     // Called when another command which requires one or more of the same

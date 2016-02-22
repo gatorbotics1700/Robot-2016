@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveCommand extends Command{
 	private OI oi;
     private DriveSubsystem drive;
-
-
 	
 	public DriveCommand(){
 		super();

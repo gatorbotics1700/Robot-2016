@@ -36,17 +36,18 @@ public class DriveSubsystem extends Subsystem {
 		//System.out.println(navX.getAngle());
 	}
 
+
 //various ways we can drive -- auto is tank, teleop is cheesy or arcade
 	public void driveTank (double speedLeft, double speedRight) { // tank drive
 			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) { // maybe take out the deadband later in life
 				left.setSpeed(speedLeft);
-				System.out.println(speedLeft);
+				//System.out.println(speedLeft);
 			} else {
 				left.setSpeed(0);
 			}
 			if(speedRight > JOY_DEADBAND || speedRight < -JOY_DEADBAND){ 
 				right.setSpeed(-speedRight);
-				System.out.println(speedRight);
+				//System.out.println(speedRight);
 			} else {
 				right.setSpeed(0);
 			}
@@ -69,10 +70,11 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void driveArcade (double throttle, double turnRate) {
 		double leftOutput, rightOutput;
-		leftOutput = throttle + turnRate;
-		rightOutput = throttle - turnRate;
+		leftOutput = throttle - turnRate;
+		rightOutput = throttle + turnRate;
 		
 		driveTank (leftOutput, rightOutput);
+		//System.out.println("The left drive enc is:" + left.getEncReading());
 		
 		
 	}
@@ -93,11 +95,11 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public void ShiftHigh() { // shift into high gear
-		solenoid.set(DoubleSolenoid.Value.kForward);
+		solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void ShiftLow() { // shift into low gear, call the shiftlow fxn from the half drive subsystem for ease of use
-		solenoid.set(DoubleSolenoid.Value.kReverse);
+		solenoid.set(DoubleSolenoid.Value.kForward);
 
 	}
 	
@@ -119,6 +121,9 @@ public class DriveSubsystem extends Subsystem {
 		return right.getEncReading() / ticksPerInch();
 	}
 	
+	public boolean shiftedHigh() {
+		return false;
+	}
 	
 	public void rightEncoder() {
 		//System.out.println("right " + right.getEncReading());

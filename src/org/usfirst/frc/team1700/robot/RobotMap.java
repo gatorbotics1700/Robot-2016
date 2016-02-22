@@ -23,18 +23,20 @@ public class RobotMap {
 							//SHOOT_FAR_BUTTON = 6,
 							SHOOT_BUTTON = 1,
 							BACKDRIVE_SHOOT_BUTTON = 3,
-							START_SHOOT_FAR_BUTTON = 4,
-							START_SHOOT_CLOSE_BUTTON = 5,
+							START_SHOOT_FAR_BUTTON = 4, //hood up
+							START_SHOOT_CLOSE_BUTTON = 5, //hood down
 							INTAKE_BUTTON = 6,
 							BACKDRIVE_BUTTON = 7,
 							INTAKE_ARM_BUTTON = 9,
 							DEFENSE_BUTTON = 10,
-							RETRACTED_BUTTON = 11;
+							RETRACTED_BUTTON = 11,
+							MANUAL_ARM_UP_BUTTON = 8,
+							MANUAL_ARM_DOWN_BUTTON = 2;
 	// pneumatics
-	public static final int DRIVE_SOLENOID_ONE_PORT = 4,
-							DRIVE_SOLENOID_TWO_PORT = 5,
-							SHOOTER_SOLENOID_ONE_PORT = 6,
-							SHOOTER_SOLENOID_TWO_PORT = 7;
+	public static final int DRIVE_SOLENOID_ONE_PORT = 6,
+							DRIVE_SOLENOID_TWO_PORT = 7,
+							SHOOTER_SOLENOID_ONE_PORT = 4,
+							SHOOTER_SOLENOID_TWO_PORT = 5;
 	
 	// talons
 	public static final int 
@@ -49,15 +51,16 @@ public class RobotMap {
 							ARM_TALON_ID_ONE = 9;
 	
 	// intake victors
-	public static final int INTAKE_VICTOR_1_ID = 8,
-							INTAKE_VICTOR_2_ID = 7;
+	public static final int ARM_INTAKE_VICTOR = 8,
+							FRAME_INTAKE_VICTOR = 7;
 	
 	// various sensors
 	public static final int BEAM_BREAK_FRONT_PORT = 0,
 							BEAM_BREAK_BACK_PORT = 1,
 							FRONT_LIMIT_SWITCH = 2,
 							BACK_LIMIT_SWITCH = 3,
-							ULTRASONIC_SENSOR = 4;
+							ULTRASONIC_SENSOR = 4,
+							BEAM_BREAK_PORT_NEW = 5;
 	
 	
 	// driving
@@ -71,9 +74,11 @@ public class RobotMap {
 							SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
 				
 	// deployable arm
-	public static final int RETRACTED_ARM_POSITION = 0, // lmao set this
-							INTAKE_ARM_POSITION = 50, // lmao set this
-							DEFENSE_ARM_POSITION = 100; // lmao set this
+	public static final int RETRACTED_ARM_POSITION = 200,
+							STRAIGHT_UP_POSITION = 2100,
+							INTAKE_ARM_POSITION = 6300, 
+							GROUD_ARM_POSITION = 7695,
+							DEFENSE_ARM_POSITION = 7000; 
 	
 	// autonomous
     public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing
@@ -81,7 +86,8 @@ public class RobotMap {
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
     						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?   
-    
+
+	public static final double MANUAL_ARM_SPEED = 0.4;
     							
 			
 }

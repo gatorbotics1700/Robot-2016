@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1700.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
 
@@ -34,13 +36,15 @@ public class DeployableArmCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (desiredPosition == DESIRED_POSITION_RETRACTED) {
-    		arm.goToRetracted();
+        	arm.PIDSituation(RobotMap.RETRACTED_ARM_POSITION);
     	} else if (desiredPosition == DESIRED_POSITION_INTAKE) {
-    		arm.goToIntake();
+        	arm.PIDSituation(RobotMap.INTAKE_ARM_POSITION);
     	} else {
-    		arm.goToDefense();
+        	arm.PIDSituation(RobotMap.DEFENSE_ARM_POSITION);
     	}
     }
+    
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
