@@ -31,18 +31,18 @@ public class OI {
 	
 		
 	public OI () {
-		intakeButton.whileHeld(new IntakeBallCommand());
+//		intakeButton.whileHeld(new IntakeBallCommand(IntakeBallCommand.BEAMBREAK));
 		backdriveButton.whileHeld(new BackdriveBallCommand());
 		startShootFarButton.whileHeld(new StartShootWheelFarCommand());
 		startShootCloseButton.whileHeld(new StartShootWheelCloseCommand());
 		shootButton.whileHeld(new ShootCommand(ShootCommand.SHOOT));
 		shootBackdriveButton.whileHeld(new ShootCommand(ShootCommand.BACKDRIVE));
 		//retractedArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
-		//intakeArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_INTAKE));
+//		intakeArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_INTAKE));
 		//defenseButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
 		shiftHighButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_HIGH));
 		shiftLowButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_LOW));
-		overrideBeamBreakButton.whileHeld(new OverrideBeamBreak());
+		overrideBeamBreakButton.whileHeld(new IntakeBallCommand(IntakeBallCommand.OVERRIDE));
 		///manualArmUpButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.UP));
 //		manualArmDownButton.whileHeld(new ManualDeployableArmCommand());
 	}

@@ -13,8 +13,9 @@ public class IntakeSubsystem extends Subsystem {
 		private Victor armIntakeVictor;
 		private DigitalInput beamBreakFront;
 		private DigitalInput beamBreakBack;
-		private static final double INTAKE_ROLLER_SPEED = .5; //change this number to actual roller speed after testing
-		private static final double MANUAL_INTAKE_ROLLER_SPEED = .3;
+		private static final double INTAKE_ROLLER_SPEED = .5;
+		private static final double INTAKE_BACKDRIVE_SPEED = -.3;//change this number to actual roller speed after testing
+		private static final double SLOW_INTAKE_ROLLER_SPEED = .3;
 		
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
@@ -44,8 +45,8 @@ public class IntakeSubsystem extends Subsystem {
 	}
 	
 	public void manualIntake() {
-		IntakeVictor.set(MANUAL_INTAKE_ROLLER_SPEED);
-		armIntakeVictor.set(MANUAL_INTAKE_ROLLER_SPEED);
+		IntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
 	}
 	
 	// Moves ball into shooter wheel. 
@@ -53,6 +54,9 @@ public class IntakeSubsystem extends Subsystem {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
 	
+	public void slowIntake() {
+		IntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
+	}
 	public void moveBallToWaitingPosition() {
 		if (!beamBreakFrontBroken()) {
 			backDrive();
@@ -69,13 +73,13 @@ public class IntakeSubsystem extends Subsystem {
 	
 	// Sets speeds for back drive to shoot in low goal.
 	public void backDrive() {
-		IntakeVictor.set(-INTAKE_ROLLER_SPEED);
+		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
 		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-//		setDefaultCommand(new IntakeBallCommand());
+		setDefaultCommand(new IntakeBallCommand(1));
 		
 	}	
 }
