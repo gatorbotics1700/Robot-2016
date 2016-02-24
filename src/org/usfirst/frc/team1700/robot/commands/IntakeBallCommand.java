@@ -34,6 +34,7 @@ public class IntakeBallCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	counter = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
