@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
+import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 
@@ -13,11 +14,10 @@ public class DriveSubsystem extends Subsystem {
 	
 	private HalfDriveSubsystem left;
 	private HalfDriveSubsystem right;
-	private static final double JOY_DEADBAND = 0.3;
+	private static final double JOY_DEADBAND = 0.15;
 	private OI oi;
 	DoubleSolenoid solenoid;
 	private AHRS navX;
-//	AnalogInput ultrasonicSensor;
 
 
 	
@@ -26,7 +26,6 @@ public class DriveSubsystem extends Subsystem {
 		navX = new AHRS(SPI.Port.kMXP); 
 		left = new HalfDriveSubsystem(RobotMap.LEFT_TALON_ID_2, RobotMap.LEFT_TALON__ID_1, RobotMap.LEFT_TALON_ID_3);
 		right = new HalfDriveSubsystem(RobotMap.RIGHT_TALON_ID_3, RobotMap.RIGHT_TALON_ID_1, RobotMap.RIGHT_TALON_ID_2);
-//		ultrasonicSensor = new AnalogInput(RobotMap.ULTRASONIC_SENSOR);
 		solenoid = new DoubleSolenoid(RobotMap.DRIVE_SOLENOID_ONE_PORT, RobotMap.DRIVE_SOLENOID_TWO_PORT);
 
 	}
@@ -82,16 +81,16 @@ public class DriveSubsystem extends Subsystem {
 //			boolean AUTOSHIFTING = true;
 //	}
 
-	public void autoShiftHigh() {
-		if (left.getEncVelocity() > RobotMap.RPM)
-			solenoid.set(DoubleSolenoid.Value.kForward);
-	}
-	
-	// If the motors are slow enough, shift down a gear. 
-	public void autoShiftLow() {
-		if (left.getEncVelocity() < RobotMap.RPM)
-			solenoid.set(DoubleSolenoid.Value.kReverse);
-	}
+//	public void autoShiftHigh() {
+//		if (left.getEncVelocity() > RobotMap.RPM)
+//			solenoid.set(DoubleSolenoid.Value.kForward);
+//	}
+//	
+//	// If the motors are slow enough, shift down a gear. 
+//	public void autoShiftLow() {
+//		if (left.getEncVelocity() < RobotMap.RPM)
+//			solenoid.set(DoubleSolenoid.Value.kReverse);
+//	}
 	
 	public void ShiftHigh() { // shift into high gear
 		solenoid.set(DoubleSolenoid.Value.kReverse);
@@ -110,7 +109,6 @@ public class DriveSubsystem extends Subsystem {
 	public double ticksPerInch () {
 		return (RobotMap.TICKS_PER_REV / RobotMap.CIRCUM_PNEUMATIC_WHEEL);
 	}
-
 	
 	public double getLeftDistance() { // changing encoder reading into inches traveled for usefulness 
 		return left.getEncReading() / ticksPerInch();
@@ -120,19 +118,6 @@ public class DriveSubsystem extends Subsystem {
 		return right.getEncReading() / ticksPerInch();
 	}
 	
-	public boolean shiftedHigh() {
-		return false;
-	}
-	
-	public void rightEncoder() {
-		//System.out.println("right " + right.getEncReading());
-		
-	}
-	
-	public void leftEncoder() {
-		//System.out.println("left " + left.getEncReading());
-	}
-
 	public void initDefaultCommand() {
     	setDefaultCommand(new DriveCommand()); // drive command is always active
     }

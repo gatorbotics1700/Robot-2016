@@ -2,11 +2,11 @@ package org.usfirst.frc.team1700.robot.commands;
 
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team1700.robot.subsystems.OI;
 import org.usfirst.frc.team1700.robot.subsystems.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 
 /**
@@ -17,7 +17,6 @@ public class IntakeBallCommand extends Command {
 	public static final int BEAMBREAK = 1,
 							 OVERRIDE = 2;
     private IntakeSubsystem intake;
-    private ShooterSubsystem shooter;
     private OI oi;
     private int counter;
     private int mode;
@@ -26,9 +25,7 @@ public class IntakeBallCommand extends Command {
 		super();
 		this.oi = Robot.oi;
 		requires(Subsystems.intake);
-		requires(Subsystems.shooter);
         intake = Subsystems.intake;
-        shooter = Subsystems.shooter;
         counter = 0;
         this.mode = mode;
     }
@@ -65,12 +62,6 @@ public class IntakeBallCommand extends Command {
 
     
 
-    // Make this return true when this Command no longer needs to run execute()
-//    protected void isFinished() {
-////    	return intake.beamBreakBroken();
-//    }
-    
-
     // Called once after isFinished returns true
     protected void end() {
     if (mode == BEAMBREAK) {
@@ -81,7 +72,6 @@ public class IntakeBallCommand extends Command {
     		counter ++;
     	} else if (counter > 5 && counter < 20) {
     		intake.backDrive();
-    		shooter.backdrive();
     		counter ++;
     	} else {
     		intake.stopMotors();

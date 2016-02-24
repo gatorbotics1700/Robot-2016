@@ -22,7 +22,6 @@ public class DeployableArmSubsystem extends Subsystem {
 	double i;
 	double d;
 	double f;
-	//ShooterSubsystem shooter;
 	
 	/* Constructor that initializes class variables and sets up armTalon
 	 * attributes. */
@@ -30,7 +29,6 @@ public class DeployableArmSubsystem extends Subsystem {
 		backLimitSwitch = new DigitalInput (RobotMap.BACK_LIMIT_SWITCH);
 		frontLimitSwitch = new DigitalInput(RobotMap.FRONT_LIMIT_SWITCH);
 		shooterDeadband = 1.0;
-		//shooter = Subsystems.shooter;
 		armTalon = new CANTalon(RobotMap.ARM_TALON_ID_ONE);
 		armTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	}

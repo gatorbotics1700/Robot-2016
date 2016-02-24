@@ -16,17 +16,17 @@ public class HalfDriveSubsystem {
 		CanTalon1 = new CANTalon(TalonOneID);
 		CanTalon1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		CanTalon2 = new CANTalon(TalonTwoID);
-//		CanTalon3 = new CANTalon(TalonThreeID);
-		CanTalon1.setVoltageRampRate(6);
-		CanTalon2.setVoltageRampRate(6);
-//		CanTalon3.setVoltageRampRate(6);
+		CanTalon3 = new CANTalon(TalonThreeID);
+		CanTalon1.setVoltageRampRate(8.5);
+		CanTalon2.setVoltageRampRate(8.5);
+		CanTalon3.setVoltageRampRate(8.5);
 	}
 	
 	// Sets motor speed for three motors on gear box for given side of robot. 
 	public void setSpeed(double speed){
 		CanTalon1.set(speed);
 		CanTalon2.set(speed);
-//		CanTalon3.set(speed);
+		CanTalon3.set(speed);
 	}
 	
 	public int getEncReading(){
@@ -37,25 +37,6 @@ public class HalfDriveSubsystem {
 		return CanTalon1.getEncVelocity();
 	}
 	
-	// If the motors are fast enough, shift up a gear. 
-//	public void autoShiftHighHalfDrive() {
-//		if (CanTalon1.getEncVelocity() > RobotMap.RPM)
-//			solenoid.set(DoubleSolenoid.Value.kForward);
-//	}
-//	
-//	// If the motors are slow enough, shift daown a gear. 
-//	public void autoShiftLowHalfDrive() {
-//		if (CanTalon1.getEncVelocity() < RobotMap.RPM)
-//			solenoid.set(DoubleSolenoid.Value.kReverse);
-//	}
-	
-	public void shiftHighHalfDrive() {
-//		solenoid.set(DoubleSolenoid.Value.kForward);
-	}
-	
-	public void shiftLowHalfDrive() {
-//		solenoid.set(DoubleSolenoid.Value.kReverse);
-	}
 	public void zeroEncoderHalfDrive() {
 		CanTalon1.setPosition(0);
 	}

@@ -1,12 +1,12 @@
 package org.usfirst.frc.team1700.robot.commands;
 
+import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 //import org.usfirst.frc.team1700.robot.subsystems.*;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team1700.robot.subsystems.OI;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -19,17 +19,17 @@ public class DriveCommand extends Command{
 		this.oi = Robot.oi;
 		requires(Subsystems.drive);
 		drive = Subsystems.drive;
+		drive.ShiftLow();
+
 
 		
 	}
 	protected void initialize() {
-
 	}
 
 	@Override
 	protected void execute() {
-		drive.ShiftLow();
-		double turnRate = (oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
+		double turnRate = .75*(oi.driveJoystick.getRawAxis(RobotMap.TURN_RATE));
 		double throttle = (oi.driveJoystick.getRawAxis(RobotMap.THROTTLE));	
 		drive.driveArcade(throttle, turnRate);
 		drive.navX();
@@ -49,6 +49,7 @@ public class DriveCommand extends Command{
 
 	@Override
 	protected void interrupted() {
+		drive.stop();
 
 	}
 }

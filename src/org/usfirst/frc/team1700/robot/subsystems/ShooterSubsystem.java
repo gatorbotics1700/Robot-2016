@@ -3,6 +3,8 @@ package org.usfirst.frc.team1700.robot.subsystems;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
+import org.usfirst.frc.team1700.robot.commands.IntakeBallCommand;
+import org.usfirst.frc.team1700.robot.commands.ShooterOff;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -30,40 +32,20 @@ public class ShooterSubsystem extends Subsystem {
 //		shooterTalonTwo.setVoltageRampRate(6);
 	}
 
-//talons are set opposite voltages because motors are wired opposite
-	private void setWheelSpeed(double speed) {
+	public void setWheelSpeed(double speed) {
 			shooterTalonOne.set(speed);
-			shooterTalonTwo.set(-speed);
-			//shooterTalonOne.set(Robot.oi.operatorJoystick.getY());
-			//shooterTalonTwo.set(Robot.oi.operatorJoystick.getY());
-			//System.out.println(shooterTalonOne.get());
-	
+			shooterTalonTwo.set(speed);
 	}		
-//		if (shooterTalonOne.getEncVelocity() < speed) {
-//			shooterTalonOne.set(1);
-//			shooterTalonTwo.set(-1);
-//		}
-//			//System.out.println("at wheel speed");
-//			counter++;
-//			if(counter <= 50) {
-//				shooterTalonOne.set(.5);
-//				shooterTalonTwo.set(-.5);
-//			}
-//		} else {
-//			shooterTalonOne.set(0);
-//			shooterTalonTwo.set(0);
-//		}
-//	}
+		
 	
 	public void shootClose() {
-//		System.out.println("The shooter enc value is: " + shooterTalonOne.getEncVelocity());
-		//System.out.println("hood down");
+
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
 	}
 	
 	public void shootFar() {
 		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
-		//System.out.println("hood up");
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_FAR);
 	}
 	
@@ -111,14 +93,12 @@ public class ShooterSubsystem extends Subsystem {
 		}
 	
 	}
-	
-	public void encoder() {
-		//System.out.println(shooterTalonOne.getPosition());
-	}
 
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
+		setDefaultCommand(new ShooterOff());
+
 		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	

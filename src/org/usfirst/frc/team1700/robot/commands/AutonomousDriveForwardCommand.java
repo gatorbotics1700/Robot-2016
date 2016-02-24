@@ -31,7 +31,7 @@ public class AutonomousDriveForwardCommand extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 		if (drive.getRightDistance() < autoDistance || drive.getLeftDistance() < autoDistance) {
-			drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
+			drive.driveTank(-RobotMap.AUTO_SPEED, -RobotMap.AUTO_SPEED);
 		} else {
 			end();
 		}

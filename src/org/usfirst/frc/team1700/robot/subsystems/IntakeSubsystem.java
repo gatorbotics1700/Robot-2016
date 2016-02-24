@@ -44,6 +44,10 @@ public class IntakeSubsystem extends Subsystem {
 		armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
 	}
 	
+	public void fastBackdrive() {
+		IntakeVictor.set(-1);
+	}
+	
 	public void manualIntake() {
 		IntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
 		armIntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
@@ -79,7 +83,7 @@ public class IntakeSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-//		setDefaultCommand(new IntakeBallCommand(1));
+		setDefaultCommand(new IntakeBallCommand(IntakeBallCommand.BEAMBREAK));
 		
 	}	
 }

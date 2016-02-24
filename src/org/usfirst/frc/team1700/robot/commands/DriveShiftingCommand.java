@@ -27,13 +27,15 @@ public class DriveShiftingCommand extends Command {
 	}
 	@Override
 	protected void execute() {
-	  	shifted=false;
 		if (desiredShift == SHIFT_HIGH) {
     		drive.ShiftHigh();
+//    		shifted=true;
 		} else if (desiredShift == SHIFT_LOW) {
     		drive.ShiftLow();
-    		shifted=true;
+//    		shifted=true;
     	}
+		shifted= true;
+		
     }
 		
 	
@@ -49,7 +51,6 @@ public class DriveShiftingCommand extends Command {
 	}
 	@Override
 	protected void interrupted() {
-		drive.ShiftLow();
 		
 	}
 }

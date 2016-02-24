@@ -10,17 +10,15 @@ public class RobotMap {
 	public static final int DRIVE_JOYSTICK_PORT = 0,
 							// axes
 						    TURN_RATE = 0, 
-						    THROTTLE = 5, 
+						    THROTTLE = 5,  // 5
 						    TANK_LEFT = 1,
 						    TANK_RIGHT = 5,
 							SHIFT_HIGH_BUTTON = 6,
 							SHIFT_LOW_BUTTON = 5,
 							OVERRIDE_BEAMBREAK_BUTTON = 2;
 							
-	// operating
+	// operating buttons
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
-							//SHOOT_CLOSE_BUTTON = 1,
-							//SHOOT_FAR_BUTTON = 6,
 							SHOOT_BUTTON = 1,
 							BACKDRIVE_SHOOT_BUTTON = 3,
 							START_SHOOT_FAR_BUTTON = 4, //hood up
@@ -68,7 +66,8 @@ public class RobotMap {
 							   TICKS_PER_REV = 2764,
 							   CIRCUM_TREAD_WHEEL = 19.05,
 							   CIRCUM_PNEUMATIC_WHEEL = 20.05;
-
+	
+	//shooter speeds
 	public static final double SHOOTER_MOTOR_SPEED_CLOSE = .85,
 								SHOOTER_MOTOR_SPEED_FAR = .85,
 								SHOOTER_MOTOR_SPEED_BACKDRIVE = -.5;
@@ -86,8 +85,9 @@ public class RobotMap {
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
     						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?   
-
-	public static final double MANUAL_ARM_SPEED = 0.4;
+	
+    //deployable arm speeds
+    public static final double MANUAL_ARM_SPEED = 0.4;
     							
 			
 }

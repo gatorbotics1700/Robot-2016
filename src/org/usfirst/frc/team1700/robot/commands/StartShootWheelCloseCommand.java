@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1700.robot.commands;
 
+import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team1700.robot.subsystems.OI;
 import org.usfirst.frc.team1700.robot.subsystems.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,20 +11,19 @@ import edu.wpi.first.wpilibj.command.Command;
 public class StartShootWheelCloseCommand extends Command{
 
 	  private ShooterSubsystem shooter;
-	  private IntakeSubsystem intake;
 	  private OI oi;
 	  
 	public StartShootWheelCloseCommand(){
 		super();
 		this.oi = Robot.oi;
 		requires(Subsystems.shooter);
-		requires(Subsystems.intake);
         shooter = Subsystems.shooter;
 	}
 	    
 	    
 	@Override
 	protected void initialize() {
+		shooter.setSpeedToZero();
 		// TODO Auto-generated method stub
 		
 	}
@@ -42,14 +41,12 @@ public class StartShootWheelCloseCommand extends Command{
 	}
 
 	@Override
-	protected void end() {
-		// TODO Auto-generated method stub
+	protected void end() {	
 		
 	}
 
 	@Override
 	protected void interrupted() {
-		shooter.setSpeedToZero();
 		
 	}
 
