@@ -2,11 +2,11 @@ package org.usfirst.frc.team1700.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
+import org.usfirst.frc.team1700.robot.subsystems.OI;
 
 /**
  *

@@ -13,9 +13,9 @@ public class IntakeSubsystem extends Subsystem {
 		private Victor armIntakeVictor;
 		private DigitalInput beamBreakFront;
 		private DigitalInput beamBreakBack;
-		private static final double INTAKE_ROLLER_SPEED = .5;
-		private static final double INTAKE_BACKDRIVE_SPEED = -.3;//change this number to actual roller speed after testing
-		private static final double SLOW_INTAKE_ROLLER_SPEED = .3;
+		private static final double INTAKE_ROLLER_SPEED = .35;
+		private static final double INTAKE_BACKDRIVE_SPEED = -.25;//change this number to actual roller speed after testing
+		private static final double SLOW_INTAKE_ROLLER_SPEED = .25;
 		
 	// Constructor that initializes electronics.
 	public IntakeSubsystem() {
@@ -79,7 +79,7 @@ public class IntakeSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntakeBallCommand(1));
+//		setDefaultCommand(new IntakeBallCommand(1));
 		
 	}	
 }

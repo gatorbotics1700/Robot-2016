@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
-import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 
@@ -14,7 +13,7 @@ public class DriveSubsystem extends Subsystem {
 	
 	private HalfDriveSubsystem left;
 	private HalfDriveSubsystem right;
-	private static final double JOY_DEADBAND = 0.1;
+	private static final double JOY_DEADBAND = 0.3;
 	private OI oi;
 	DoubleSolenoid solenoid;
 	private AHRS navX;

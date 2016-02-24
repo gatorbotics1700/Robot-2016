@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1700.robot.commands;
 
-import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team1700.robot.subsystems.OI;
 import org.usfirst.frc.team1700.robot.subsystems.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;

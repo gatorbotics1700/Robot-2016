@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1700.robot.commands;
 
-import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team1700.robot.subsystems.OI;
 import org.usfirst.frc.team1700.robot.subsystems.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,10 +22,10 @@ public class ShootCommand extends Command {
     public ShootCommand(int desiredAction) {
     	super();
  		this.oi = Robot.oi;
-// 		requires(Subsystems.intake);
- 		requires(Subsystems.shooter);
-//        intake = Subsystems.intake;
-        shooter = Subsystems.shooter;
+ 		requires(Subsystems.intake);
+// 		requires(Subsystems.shooter);
+        intake = Subsystems.intake;
+//        shooter = Subsystems.shooter;
         this.desiredAction = desiredAction;
     }
 
@@ -41,7 +41,8 @@ public class ShootCommand extends Command {
 //			} else {
 //				intake.stopMotors();
 //			}
-			shooter.shootClose();
+			intake.moveBallToShootingPosition();
+//			shooter.shootClose();
 		} else if (desiredAction == BACKDRIVE) {
 			shooter.backdrive();
 //			intake.backDrive();
@@ -57,14 +58,14 @@ public class ShootCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-//    	intake.stopMotors();
-    	shooter.setSpeedToZero();
+    	intake.stopMotors();
+//    	shooter.setSpeedToZero();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-//		intake.stopMotors();
-    	shooter.setSpeedToZero();
+		intake.stopMotors();
+//    	shooter.setSpeedToZero();
     }
 }

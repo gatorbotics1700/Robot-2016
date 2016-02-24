@@ -56,13 +56,13 @@ public class ShooterSubsystem extends Subsystem {
 //	}
 	
 	public void shootClose() {
-		//System.out.println("The shooter enc value is: " + shooterTalonOne.getEncVelocity());
+//		System.out.println("The shooter enc value is: " + shooterTalonOne.getEncVelocity());
 		//System.out.println("hood down");
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
 	}
 	
 	public void shootFar() {
-		//shooterSolenoid.set(DoubleSolenoid.Value.kForward);
+		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
 		//System.out.println("hood up");
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_FAR);
 	}
