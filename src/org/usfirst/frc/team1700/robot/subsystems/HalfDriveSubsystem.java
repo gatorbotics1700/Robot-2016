@@ -16,17 +16,17 @@ public class HalfDriveSubsystem {
 		CanTalon1 = new CANTalon(TalonOneID);
 		CanTalon1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		CanTalon2 = new CANTalon(TalonTwoID);
-		CanTalon3 = new CANTalon(TalonThreeID);
+//		CanTalon3 = new CANTalon(TalonThreeID);
 		CanTalon1.setVoltageRampRate(6);
 		CanTalon2.setVoltageRampRate(6);
-		CanTalon3.setVoltageRampRate(6);
+//		CanTalon3.setVoltageRampRate(6);
 	}
 	
 	// Sets motor speed for three motors on gear box for given side of robot. 
 	public void setSpeed(double speed){
 		CanTalon1.set(speed);
 		CanTalon2.set(speed);
-		CanTalon3.set(speed);
+//		CanTalon3.set(speed);
 	}
 	
 	public int getEncReading(){

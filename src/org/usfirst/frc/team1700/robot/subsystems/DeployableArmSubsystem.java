@@ -44,10 +44,10 @@ public class DeployableArmSubsystem extends Subsystem {
 	}
 	
 	public void PIDSituation(double position) {
-		p = .2*((position - armTalon.getEncPosition()/(RobotMap.GROUD_ARM_POSITION)));
+		p = .2*((position - armTalon.getEncPosition()/(RobotMap.GROUND_ARM_POSITION)));
 		i = 0;
-		d = .2*(-armTalon.getEncVelocity()/21000);
-		f = .3*(-Math.sin(((armTalon.getEncPosition()-RobotMap.STRAIGHT_UP_POSITION)/48)));
+		d = -.2*(armTalon.getEncVelocity()/21000);
+		f = -.3*(Math.sin(((armTalon.getEncPosition()-RobotMap.STRAIGHT_UP_POSITION)/45.5))); // 45.5 ticks per degree
 		armTalon.setPID(p, i, d, f, 0, 6 ,0);
 	}
 	

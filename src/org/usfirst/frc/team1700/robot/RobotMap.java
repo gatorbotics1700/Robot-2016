@@ -69,15 +69,15 @@ public class RobotMap {
 							   CIRCUM_TREAD_WHEEL = 19.05,
 							   CIRCUM_PNEUMATIC_WHEEL = 20.05;
 
-	public static final int SHOOTER_MOTOR_SPEED_CLOSE = 1,
-							SHOOTER_MOTOR_SPEED_FAR = 1,
-							SHOOTER_MOTOR_SPEED_BACKDRIVE = -10;
+	public static final double SHOOTER_MOTOR_SPEED_CLOSE = .85,
+								SHOOTER_MOTOR_SPEED_FAR = .85,
+								SHOOTER_MOTOR_SPEED_BACKDRIVE = -.5;
 				
 	// deployable arm
 	public static final int RETRACTED_ARM_POSITION = 200,
 							STRAIGHT_UP_POSITION = 2100,
 							INTAKE_ARM_POSITION = 6300, 
-							GROUD_ARM_POSITION = 7695,
+							GROUND_ARM_POSITION = 7695,
 							DEFENSE_ARM_POSITION = 7000; 
 	
 	// autonomous
