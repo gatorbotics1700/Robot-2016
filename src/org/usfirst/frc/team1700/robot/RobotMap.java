@@ -77,7 +77,7 @@ public class RobotMap {
 	public static final int RETRACTED_ARM_POSITION = 200,
 							STRAIGHT_UP_POSITION = 2100,
 							INTAKE_ARM_POSITION = 6300, 
-							GROUD_ARM_POSITION = 7695,
+							GROUND_ARM_POSITION = 7695,
 							DEFENSE_ARM_POSITION = 7000; 
 	
 	// autonomous
