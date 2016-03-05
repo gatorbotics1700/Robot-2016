@@ -21,14 +21,14 @@ public class RobotMap {
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
 							SHOOT_BUTTON = 1,
 							BACKDRIVE_SHOOT_BUTTON = 3,
-							START_SHOOT_FAR_BUTTON = 4, //hood up
-							START_SHOOT_CLOSE_BUTTON = 5, //hood down
+							START_SHOOT_FAR_BUTTON = 5, //hood up
+							START_SHOOT_CLOSE_BUTTON = 4, //hood down
 							INTAKE_BUTTON = 6,
 							BACKDRIVE_BUTTON = 7,
-							INTAKE_ARM_BUTTON = 9,
-							DEFENSE_BUTTON = 10,
+							INTAKE_ARM_BUTTON = 10,
+							DEFENSE_BUTTON = 9,
 							RETRACTED_BUTTON = 11,
-							MANUAL_ARM_UP_BUTTON = 8,
+							MANUAL_ARM_UP_BUTTON = 3,
 							MANUAL_ARM_DOWN_BUTTON = 2;
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 6,
