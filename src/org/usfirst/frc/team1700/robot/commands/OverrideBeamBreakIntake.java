@@ -8,10 +8,10 @@ import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
 /**
  *
  */
-public class OverrideBeamBreak extends Command {
+public class OverrideBeamBreakIntake extends Command {
 	private IntakeSubsystem intake;
 
-    public OverrideBeamBreak() {
+    public OverrideBeamBreakIntake() {
         requires(Subsystems.intake);
         intake = Subsystems.intake;
     }

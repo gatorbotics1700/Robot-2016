@@ -13,6 +13,7 @@ public class IntakeSubsystem extends Subsystem {
 		private Victor armIntakeVictor;
 		private DigitalInput beamBreakFront;
 		private DigitalInput beamBreakBack;
+//		private boolean isUsingBeamBreak;
 		private static final double INTAKE_ROLLER_SPEED = .35;
 		private static final double INTAKE_BACKDRIVE_SPEED = -.25;//change this number to actual roller speed after testing
 		private static final double SLOW_INTAKE_ROLLER_SPEED = .25;
@@ -23,6 +24,7 @@ public class IntakeSubsystem extends Subsystem {
 		armIntakeVictor = new Victor(RobotMap.ARM_INTAKE_VICTOR);
 		beamBreakFront = new DigitalInput(RobotMap.BEAM_BREAK_FRONT_PORT);
 		beamBreakBack = new DigitalInput(RobotMap.BEAM_BREAK_BACK_PORT);
+//		isUsingBeamBreak = true;
 	}
 		
 	/* Starts the motors to intake the ball. Once the ball crosses the beam break sensors,
@@ -80,11 +82,21 @@ public class IntakeSubsystem extends Subsystem {
 		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
 		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
+	
+	// Toggle between beambreak and manual mode
+//	public void toggle() {
+//		isUsingBeamBreak = !isUsingBeamBreak;
+//		if(isUsingBeamBreak) {
+//			setDefaultCommand(new IntakeBallCommand(IntakeBallCommand.BEAMBREAK));
+//		}
+//		else {
+//			setDefaultCommand(new IntakeBallCommand(IntakeBallCommand.OVERRIDE));
+//		}
+//	}
 
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new IntakeBallCommand(IntakeBallCommand.BEAMBREAK));
-		
 	}	
 }
 
