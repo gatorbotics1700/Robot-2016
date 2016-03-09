@@ -20,7 +20,8 @@ public class RobotMap {
 	// operating buttons
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
 							SHOOT_BUTTON = 1,
-							BACKDRIVE_SHOOT_BUTTON = 3,
+						//	BACKDRIVE_SHOOT_BUTTON = 3,
+							LOW_GOAL_BUTTON = 3,
 							START_SHOOT_FAR_BUTTON = 4, //hood up
 							START_SHOOT_CLOSE_BUTTON = 5, //hood down
 							INTAKE_BUTTON = 6,

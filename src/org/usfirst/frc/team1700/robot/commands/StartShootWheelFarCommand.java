@@ -42,6 +42,8 @@ public class StartShootWheelFarCommand extends Command{
 
 	@Override
 	protected void end() {
+		shooter.setSpeedToZero();
+		shooter.retractHood();
 	}
 
 	@Override
