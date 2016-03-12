@@ -16,9 +16,7 @@ public class RobotMap {
 						    TANK_RIGHT = 5,
 							SHIFT_HIGH_BUTTON = 6,
 							SHIFT_LOW_BUTTON = 5,
-							OVERRIDE_BEAMBREAK_BUTTON_INTAKE = 2, // wrong!!! i need an actual number 
-							OVERRIDE_BEAMBREAK_BUTTON_STOP = 3, // same ^
-							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 4; // me also wrong ^
+							OVERRIDE_BEAMBREAK_BUTTON_STOP = 3;
 							
 	// operating buttons
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
@@ -26,7 +24,8 @@ public class RobotMap {
 							LOW_GOAL_BUTTON = 8,
 							START_SHOOT_FAR_BUTTON = 5, //hood up
 							START_SHOOT_CLOSE_BUTTON = 4, //hood down
-							INTAKE_BUTTON = 6,
+							OVERRIDE_BEAMBREAK_BUTTON_INTAKE = 6,
+							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 7,
 							INTAKE_ARM_BUTTON = 10,
 							DEFENSE_BUTTON = 9,
 							RETRACTED_BUTTON = 11,
