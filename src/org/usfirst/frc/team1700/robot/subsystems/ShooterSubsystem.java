@@ -87,6 +87,9 @@ public class ShooterSubsystem extends Subsystem {
 		
 	}
 	
+	public void retractHood() {
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
+	}
 	
 	public boolean readyToShoot(){
 		if (readyToShootFar() || readyToShootClose()) {
