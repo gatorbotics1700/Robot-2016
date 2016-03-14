@@ -122,7 +122,6 @@ public class DriveSubsystem extends Subsystem {
     	setDefaultCommand(new DriveCommand()); // drive command is always active
     }
 	
-
 	public void stop() { // this is obvious
 		left.setSpeed(0);
 		right.setSpeed(0);
