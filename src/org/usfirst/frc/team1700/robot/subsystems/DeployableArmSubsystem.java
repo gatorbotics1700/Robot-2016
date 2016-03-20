@@ -60,7 +60,7 @@ public class DeployableArmSubsystem extends Subsystem {
 	
 	public void enable() {
 		//need to add get position and check if that really is what I assigned currentPosition to
-		armTalon.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		armTalon.enableControl();
 		System.out.println("arm is " + armTalon.getEncPosition());
 	}
@@ -76,7 +76,6 @@ public class DeployableArmSubsystem extends Subsystem {
 	
 	
 	public void PIDSituation(int desiredPositionEnum) {
-		armTalon.changeControlMode(CANTalon.TalonControlMode.Voltage);
 		//DESIRED_POSITION_RETRACTED = 1,
 		//DESIRED_STRAIGHT_UP= 2,
 		//DESIRED_POSITION_DEFENSE = 3;
@@ -103,12 +102,12 @@ public class DeployableArmSubsystem extends Subsystem {
 		d = .8*((double) armTalon.getEncVelocity()/6000.0);
 		f =.25*(Math.sin(((armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48*(2*Math.PI/360)))); // 48 ticks per degree
 		System.out.println(armTalon.getEncVelocity() + "\t" + armTalon.getEncPosition() + "\t" + position + "\t" + p + "\t" + d + "\t" + f);
-		armTalon.set(12*(p+i+d+f));
+		armTalon.set((p+i+d+f));
 	}
 	
 	public void gravity() {
 		f = .25*(Math.sin((((armTalon.getEncPosition()-STRAIGHT_UP_POSITION))/48*(2*Math.PI/360)))); // 48 ticks per degree
-		armTalon.set(12*f);
+		armTalon.set(f);
 		System.out.println(STRAIGHT_UP_POSITION + "\t" + "f =" + f + "\t" + " in gravity loop");
 	}
 	/* Returns boolean value if the arm is retracted, depending on 
