@@ -18,21 +18,19 @@ public class OI {
 		   startShootFarButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_FAR_BUTTON),
 		   startShootCloseButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_CLOSE_BUTTON),
 		   shootButton = new JoystickButton(operatorJoystick,RobotMap.SHOOT_BUTTON),
-		   //lowGoalButton = new JoystickButton(operatorJoystick,RobotMap.LOW_GOAL_BUTTON),
-//		   shootBackdriveButton = new JoystickButton(operatorJoystick,RobotMap.BACKDRIVE_SHOOT_BUTTON),
-		   retractedArmButton = new JoystickButton(operatorJoystick,RobotMap.RETRACTED_BUTTON),
+		   lowGoalButton = new JoystickButton(driveJoystick,RobotMap.LOW_GOAL_BUTTON),
+		   retractedArmButton = new JoystickButton(driveJoystick,RobotMap.RETRACTED_BUTTON),
 		   //intakeArmButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_ARM_BUTTON),
-		   straightUpArmButton = new JoystickButton(operatorJoystick,RobotMap.STRAIGHT_UP_ARM_BUTTON),
-		   defenseButton = new JoystickButton(operatorJoystick,RobotMap.DEFENSE_BUTTON),
+		   straightUpArmButton = new JoystickButton(driveJoystick,RobotMap.STRAIGHT_UP_ARM_BUTTON),
+		   defenseButton = new JoystickButton(driveJoystick,RobotMap.DEFENSE_BUTTON),
 		   shiftHighButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_HIGH_BUTTON),
 		   shiftLowButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_LOW_BUTTON),
 		   manualArmUpButton = new JoystickButton(operatorJoystick,RobotMap.MANUAL_ARM_UP_BUTTON),
 		   manualArmDownButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_DOWN_BUTTON),
-		   overrideBeamBreakIntakeButton = new JoystickButton(driveJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_INTAKE),
-		   overrideBeamBreakStopButton = new JoystickButton(driveJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_STOP),
-		   overrideBeamBreakBackdriveButton = new JoystickButton(driveJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE);
-		  // manualArmUpButton = new JoystickButton(operatorJoystick,RobotMap.MANUAL_ARM_UP_BUTTON),
-//		   manualArmDownButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_DOWN_BUTTON),
+		   overrideBeamBreakIntakeButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_INTAKE),
+		   overrideBeamBreakStopButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_STOP),
+		   overrideBeamBreakBackdriveButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE);
+
 	
 		
 	public OI () {
