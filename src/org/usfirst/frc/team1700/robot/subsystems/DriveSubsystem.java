@@ -34,7 +34,10 @@ public class DriveSubsystem extends Subsystem {
 		//System.out.println(navX.getAngle());
 	}
 
-
+	
+	public void printRightDistance() {
+		System.out.println(right.getEncReading());
+	}
 //various ways we can drive -- auto is tank, teleop is cheesy or arcade
 	public void driveTank (double speedLeft, double speedRight) { // tank drive
 			if(speedLeft > JOY_DEADBAND || speedLeft < -JOY_DEADBAND) { // maybe take out the deadband later in life

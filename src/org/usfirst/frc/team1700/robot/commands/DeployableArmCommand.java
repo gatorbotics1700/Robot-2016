@@ -12,7 +12,8 @@ import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
 public class DeployableArmCommand extends Command {
 	
 	public final static int DESIRED_POSITION_RETRACTED = 1,
-							 DESIRED_POSITION_INTAKE = 2,
+							 //DESIRED_POSITION_INTAKE = 2,
+							DESIRED_POSITION_STRAIGHT_UP = 2,
 							 DESIRED_POSITION_DEFENSE = 3;
 	private DeployableArmSubsystem arm;
 	private int desiredPosition;
@@ -35,13 +36,13 @@ public class DeployableArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (desiredPosition == DESIRED_POSITION_RETRACTED) {
-        	arm.PIDSituation(RobotMap.RETRACTED_ARM_POSITION);
-    	} else if (desiredPosition == DESIRED_POSITION_INTAKE) {
-        	arm.PIDSituation(RobotMap.INTAKE_ARM_POSITION);
-    	} else {
-        	arm.PIDSituation(RobotMap.DEFENSE_ARM_POSITION);
-    	}
+    	//if (desiredPosition == DESIRED_POSITION_RETRACTED) {
+        arm.PIDSituation(desiredPosition);
+//    	} else if (desiredPosition == DESIRED_POSITION_INTAKE) {
+//        	arm.PIDSituation(RobotMap.INTAKE_ARM_POSITION);
+//    	} else {
+//        	arm.PIDSituation(RobotMap.DEFENSE_ARM_POSITION);
+//    	}
     }
     
     

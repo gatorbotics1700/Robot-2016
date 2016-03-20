@@ -33,11 +33,11 @@ public class IntakeSubsystem extends Subsystem {
 	 */
 	
 	public boolean beamBreakFrontBroken() {
-		System.out.println("Front: " + !beamBreakFront.get());
+		//System.out.println("Front: " + !beamBreakFront.get());
 		return !beamBreakFront.get();
 	}
 	public boolean beamBreakBackBroken() {
-		System.out.println("Back:" + !beamBreakBack.get());
+		//System.out.println("Back:" + !beamBreakBack.get());
 		return !beamBreakBack.get();
 	}
 	

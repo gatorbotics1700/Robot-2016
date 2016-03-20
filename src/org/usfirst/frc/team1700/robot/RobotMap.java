@@ -26,7 +26,8 @@ public class RobotMap {
 							START_SHOOT_CLOSE_BUTTON = 4, //hood down
 							OVERRIDE_BEAMBREAK_BUTTON_INTAKE = 6,
 							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 7,
-							INTAKE_ARM_BUTTON = 10,
+							//INTAKE_ARM_BUTTON = 10,
+							STRAIGHT_UP_ARM_BUTTON = 10,
 							DEFENSE_BUTTON = 9,
 							RETRACTED_BUTTON = 11,
 							MANUAL_ARM_UP_BUTTON = 3,
@@ -40,15 +41,15 @@ public class RobotMap {
 	
 	// talons
 	public static final int 
-							RIGHT_TALON_ID_1 = 3,
-							RIGHT_TALON_ID_2 = 4,
-							RIGHT_TALON_ID_3 = 5, // has encoder
+							RIGHT_TALON_ID_1 = 5, // 3
+							RIGHT_TALON_ID_2 = 9, // 4
+							RIGHT_TALON_ID_3 = 6, // has encoder 5
 							LEFT_TALON__ID_1 = 1,
 							LEFT_TALON_ID_2 = 2, // has encoder
 							LEFT_TALON_ID_3= 8,
-							SHOOTER_TALON_ONE_ID = 6, // has encoder 
-							SHOOTER_TALON_TWO_ID = 7,
-							ARM_TALON_ID_ONE = 9;
+							SHOOTER_TALON_ONE_ID = 3, // has encoder  // 6
+							SHOOTER_TALON_TWO_ID = 4, // 7
+							ARM_TALON_ID_ONE = 9; // 9
 	
 	// intake victors
 	public static final int ARM_INTAKE_VICTOR = 8,
@@ -74,20 +75,20 @@ public class RobotMap {
 								SHOOTER_MOTOR_SPEED_FAR = .85,
 								SHOOTER_MOTOR_SPEED_BACKDRIVE = -.5;
 				
-	// deployable arm
-	public static final int RETRACTED_ARM_POSITION = 200,
-							STRAIGHT_UP_POSITION = 2100,
-							INTAKE_ARM_POSITION = 6300, 
-							GROUND_ARM_POSITION = 7695,
-							DEFENSE_ARM_POSITION = 7000; 
+
 	
 	// autonomous
-    public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing
+    public static final double AUTO_FORWARD_DISTANCE = 01.0, // change this with more testing
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
     						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?   
 	
+    //deployable arm
+    public static final double RETRACTED_TO_STRAIGHT_UP = 4200,
+    							STRAIGHT_UP_TO_INTAKE = 4200,
+    							STRAIGHT_UP_TO_GROUND = 4200,
+    							STRAIGHT_UP_TO_DEFENSE = 4200;
     //deployable arm speeds
     public static final double MANUAL_ARM_SPEED = 0.4;
     							

@@ -22,7 +22,7 @@ public class AutonomousDriveForwardCommand extends Command {
 	
 	
 	protected void initialize() {
-		
+		drive.zeroEncoders();
 		// TODO Auto-generated method stub
 		
 	}
@@ -30,10 +30,13 @@ public class AutonomousDriveForwardCommand extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
+		
+		drive.printRightDistance();
 		if (drive.getRightDistance() < autoDistance || drive.getLeftDistance() < autoDistance) {
+//		if (drive.getRightDistance() < autoDistance) {
 			drive.driveTank(-RobotMap.AUTO_SPEED, -RobotMap.AUTO_SPEED);
 		} else {
-			end();
+			drive.driveTank(0, 0);
 		}
 	} 
 
