@@ -5,6 +5,7 @@ import java.lang.Math;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import org.usfirst.frc.team1700.robot.commands.Autonomous;
+import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
 
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	private static Subsystems subsystems; // collection of all subsystems	 
 	public static OI oi;
 	private DriveSubsystem drive;
+	private DeployableArmSubsystem arm;
 	private Autonomous autonomous;
 
 	
@@ -47,6 +49,7 @@ public class Robot extends IterativeRobot {
 
     public Robot () {
 		drive = Subsystems.drive;
+		arm = Subsystems.deployableArm;
 		//what do I assign RRA and navX to?
     }
     
@@ -61,6 +64,10 @@ public class Robot extends IterativeRobot {
     	
         oi = new OI();
     	subsystems = new Subsystems();
+    	
+    	arm.enable();
+    	arm.calibrate();
+
     	//System.out.println(e + " " + e.getStackTrace());
     	
         // instantiate the command used for the autonomous period
@@ -83,7 +90,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-
     }
 
     /**

@@ -42,8 +42,7 @@ public class ManualDeployableArmCommand extends Command {
     	} else if (desiredAction == DOWN) {
     		arm.moveDown();
     	} else {
-    		//arm.gravity();
-    		arm.stop();
+    		arm.gravity();
     	}
     }
     // Make this return true when this Command no longer needs to run execute()
@@ -53,12 +52,12 @@ public class ManualDeployableArmCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//be wary when changing mode to percent vbus mode
-    	arm.stop();
+    	arm.gravity();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	arm.stop();
+    	arm.gravity();
     }
 }

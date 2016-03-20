@@ -60,12 +60,12 @@ public class DeployableArmCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	arm.stop();
+    	arm.gravity();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	arm.stop();
+    	arm.gravity();
     }
 }

@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.RobotUtils;
 import org.usfirst.frc.team1700.robot.Subsystems;
@@ -27,6 +31,9 @@ public class DeployableArmSubsystem extends Subsystem {
 	double STRAIGHT_UP_POSITION;
 	double GROUND_ARM_POSITION;
 	double INTAKE_ARM_POSITION, DEFENSE_ARM_POSITION;
+	Queue<Double> integralQueue;
+	static final int integralWindow = 5;
+	double currentIntegral;
 
 
 	/* Constructor that initializes class variables and sets up armTalon
@@ -43,6 +50,12 @@ public class DeployableArmSubsystem extends Subsystem {
 				INTAKE_ARM_POSITION = STRAIGHT_UP_POSITION + RobotMap.STRAIGHT_UP_TO_INTAKE;
 				GROUND_ARM_POSITION = STRAIGHT_UP_POSITION + RobotMap.STRAIGHT_UP_TO_GROUND;
 				DEFENSE_ARM_POSITION = STRAIGHT_UP_POSITION + RobotMap.STRAIGHT_UP_TO_DEFENSE;
+		integralQueue = new LinkedList<Double>();
+		for (int i=0; i < integralWindow; i++) {
+			integralQueue.add(0.0);
+		}
+		currentIntegral = 0;
+	
 	}
 	
 	public void enable() {
@@ -50,7 +63,9 @@ public class DeployableArmSubsystem extends Subsystem {
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		armTalon.enableControl();
 		System.out.println("arm is " + armTalon.getEncPosition());
-		
+	}
+	
+	public void calibrate() {
 		// deployable arm
 		RETRACTED_ARM_POSITION = armTalon.getEncPosition();
 		STRAIGHT_UP_POSITION = RETRACTED_ARM_POSITION + RobotMap.RETRACTED_TO_STRAIGHT_UP;
@@ -58,6 +73,7 @@ public class DeployableArmSubsystem extends Subsystem {
 		GROUND_ARM_POSITION = STRAIGHT_UP_POSITION + RobotMap.STRAIGHT_UP_TO_GROUND;
 		DEFENSE_ARM_POSITION = STRAIGHT_UP_POSITION + RobotMap.STRAIGHT_UP_TO_DEFENSE;
 	}
+	
 	
 	public void PIDSituation(int desiredPositionEnum) {
 		//DESIRED_POSITION_RETRACTED = 1,
@@ -76,34 +92,43 @@ public class DeployableArmSubsystem extends Subsystem {
 		else{
 			position = armTalon.getEncPosition();
 		}
-		p = .2*((position - armTalon.getEncPosition()/(GROUND_ARM_POSITION)));
-		i = 0;
-		d = -.2*(armTalon.getEncVelocity()/21000);
-		f = 0.25*(Math.sin(((armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48/(2*Math.PI/360)))); // 48 ticks per degree
+		integralQueue.add(position-armTalon.getEncPosition());
+		currentIntegral += (position-armTalon.getEncPosition() - integralQueue.remove()); 
+		p = -.55*(((position - armTalon.getEncPosition())/(GROUND_ARM_POSITION-RETRACTED_ARM_POSITION)));
+		i =  -.001* currentIntegral;
+		if (Math.abs(i) > .1 ) {
+			i = Integer.signum((int)( i*10)) * .1;
+		}
+		d = .8*((double) armTalon.getEncVelocity()/6000.0);
+		f =.25*(Math.sin(((armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48*(2*Math.PI/360)))); // 48 ticks per degree
+		System.out.println(armTalon.getEncVelocity() + "\t" + armTalon.getEncPosition() + "\t" + position + "\t" + p + "\t" + d + "\t" + f);
 		armTalon.set(p+i+d+f);
 	}
 	
 	public void gravity() {
-		f = .25*(Math.sin(((armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48*(2*Math.PI/360)))); // 48 ticks per degree
-		System.out.println(armTalon.getEncPosition() + "\t" + STRAIGHT_UP_POSITION + "\t" + (armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48*(2*Math.PI/360) + "\t" + (Math.sin(((armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48*(2*Math.PI/360)))) + "\t" + f);
+		f = .25*(Math.sin((((armTalon.getEncPosition()-STRAIGHT_UP_POSITION))/48*(2*Math.PI/360)))); // 48 ticks per degree
 		armTalon.set(f);
+		System.out.println(STRAIGHT_UP_POSITION + "\t" + "f =" + f + "\t" + " in gravity loop");
 	}
 	/* Returns boolean value if the arm is retracted, depending on 
 	 * if the limit switch is hit. */
 	public boolean isRetracted(){
-		return backLimitSwitch.get();
+		return RobotUtils.checkDeadband((double)RETRACTED_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
+//		return backLimitSwitch.get();
 	}
 	
 	/* Returns boolean value is the arm is at intake level, depending on
 	 * if it is in deadband range. */
-	public boolean isAtIntake() { 
-		return RobotUtils.checkDeadband((double)INTAKE_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
-	}
-	
+//	public boolean isAtIntake() { 
+//		return RobotUtils.checkDeadband((double)INTAKE_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
+//	}
+//	
 	/* Returns boolean value if the arm is at defense level, depending on 
 	 * if the limit switch is hit. */
 	public boolean isAtDefense() {
-		return frontLimitSwitch.get();
+		return RobotUtils.checkDeadband((double)INTAKE_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
+
+//		return frontLimitSwitch.get();
 	}	
 	
 	//manual control for moving arm up
@@ -120,10 +145,7 @@ public class DeployableArmSubsystem extends Subsystem {
 		//armTalon.set(-RobotMap.MANUAL_ARM_SPEED);
 	}
 	
-	// Stops the arm.
-	public void stop() {
-		armTalon.set(armTalon.getEncPosition());
-	}
+
 	
 	public int readEncoder() {
 		return(armTalon.getEncPosition());
