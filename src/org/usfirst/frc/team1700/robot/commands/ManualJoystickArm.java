@@ -3,6 +3,7 @@ package org.usfirst.frc.team1700.robot.commands;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.OI;
+import org.usfirst.frc.team1700.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
@@ -13,6 +14,7 @@ import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
  */
 public class ManualJoystickArm extends Command {
 	private DeployableArmSubsystem arm;
+	private OI oi;
 	double armDeadband;
 
     public ManualJoystickArm() {
@@ -20,7 +22,8 @@ public class ManualJoystickArm extends Command {
         // eg. requires(chassis);
     	requires(Subsystems.deployableArm);
     	arm = Subsystems.deployableArm;
-    	armDeadband = 0.2;
+    	armDeadband = 0.4;
+    	oi = Robot.oi;
     }
 
     // Called just before this Command runs the first time
@@ -37,9 +40,14 @@ public class ManualJoystickArm extends Command {
     	} else if (Robot.oi.operatorJoystick.getY() < -armDeadband) {
     		arm.moveUp();
     		System.out.println("Moving down");
-    	} else {
-    		arm.gravity();
-    		System.out.println("not moving");
+    	} else { 
+    		if(this.oi.operatorJoystick.getRawButton(RobotMap.NO_GRAVITY_BUTTON)) {
+    			arm.stopMotors();
+    			System.out.println("Not moving and not using gravity");
+    		} else {
+    			arm.gravity();
+    			System.out.println("not moving");
+    		}
     	}
     }
 

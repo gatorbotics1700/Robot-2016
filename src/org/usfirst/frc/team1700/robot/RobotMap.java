@@ -21,11 +21,12 @@ public class RobotMap {
 	// operating buttons
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
 							SHOOT_BUTTON = 1,
-							LOW_GOAL_BUTTON = 8,
+							//LOW_GOAL_BUTTON = 8, //I decided we don't need this and we need more buttons so this has to go
 							START_SHOOT_FAR_BUTTON = 5, //hood up
 							START_SHOOT_CLOSE_BUTTON = 4, //hood down
 							OVERRIDE_BEAMBREAK_BUTTON_INTAKE = 6,
 							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 7,
+							NO_GRAVITY_BUTTON = 8,
 							//INTAKE_ARM_BUTTON = 10,
 							STRAIGHT_UP_ARM_BUTTON = 10,
 							DEFENSE_BUTTON = 9,

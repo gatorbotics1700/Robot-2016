@@ -184,6 +184,10 @@ public class DeployableArmSubsystem extends Subsystem {
 		}
 	}
 	
+	public void stopMotors() {
+		armTalon.set(0);
+	}
+	
 	public void zeroEncoders() {
 		armTalon.setPosition(0);
 	}

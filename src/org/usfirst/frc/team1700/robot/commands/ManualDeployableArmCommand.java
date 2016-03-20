@@ -42,9 +42,16 @@ public class ManualDeployableArmCommand extends Command {
     	} else if (desiredAction == DOWN) {
     		arm.moveDown();
     	} else {
-    		arm.gravity();
+    		if(this.oi.operatorJoystick.getRawButton(RobotMap.NO_GRAVITY_BUTTON)) {
+    			arm.stopMotors();
+    			System.out.println("Not moving and not using gravity");
+    		} else {
+    			arm.gravity();
+    			System.out.println("not moving");
+    		}
     	}
     }
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return false;
