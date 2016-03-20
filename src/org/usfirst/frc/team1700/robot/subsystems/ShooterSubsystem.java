@@ -70,6 +70,9 @@ public class ShooterSubsystem extends Subsystem {
 		}
 		
 	}
+	public void retractHood() {
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
+	}
 	
 	public boolean readyToShootFar() {
 		if (Math.abs(shooterTalonOne.getEncVelocity() - RobotMap.SHOOTER_MOTOR_SPEED_FAR) < deadband) {

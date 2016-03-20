@@ -14,9 +14,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	public Joystick driveJoystick = new Joystick(RobotMap.DRIVE_JOYSTICK_PORT);
 	public Joystick operatorJoystick = new Joystick(RobotMap.OPERATOR_JOYSTICK_PORT);
+<<<<<<< HEAD
 	Button
 	//	   intakeButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_BUTTON),
 //		   backdriveButton = new JoystickButton(operatorJoystick,RobotMap.BACKDRIVE_BUTTON),
+=======
+	Button intakeButton = new JoystickButton(operatorJoystick,RobotMap.INTAKE_BUTTON),
+>>>>>>> a5cf19d4df5b409ee97dbfe80a62f04fb69c2049
 		   startShootFarButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_FAR_BUTTON),
 		   startShootCloseButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_CLOSE_BUTTON),
 		   shootButton = new JoystickButton(operatorJoystick,RobotMap.SHOOT_BUTTON),
@@ -28,19 +32,24 @@ public class OI {
 		   defenseButton = new JoystickButton(operatorJoystick,RobotMap.DEFENSE_BUTTON),
 		   shiftHighButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_HIGH_BUTTON),
 		   shiftLowButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_LOW_BUTTON),
+<<<<<<< HEAD
 		   manualArmUpButton = new JoystickButton(operatorJoystick,RobotMap.MANUAL_ARM_UP_BUTTON),
 		   manualArmDownButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_DOWN_BUTTON),
 		   overrideBeamBreakIntakeButton = new JoystickButton(driveJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_INTAKE),
 		   overrideBeamBreakStopButton = new JoystickButton(driveJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_STOP),
 		   overrideBeamBreakBackdriveButton = new JoystickButton(driveJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE);
+=======
+		  // manualArmUpButton = new JoystickButton(operatorJoystick,RobotMap.MANUAL_ARM_UP_BUTTON),
+//		   manualArmDownButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_DOWN_BUTTON),
+		   overrideBeamBreakButton = new JoystickButton(driveJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON);
+>>>>>>> a5cf19d4df5b409ee97dbfe80a62f04fb69c2049
 	
 		
 	public OI () {
 //		intakeButton.whileHeld(new IntakeBallCommand(IntakeBallCommand.BEAMBREAK));
-//		backdriveButton.whileHeld(new BackdriveBallCommand());
 		startShootFarButton.whileHeld(new StartShootWheelFarCommand());
 		startShootCloseButton.whileHeld(new StartShootWheelCloseCommand());
-		shootButton.whileHeld(new ShootCommand());
+		shootButton.whileHeld(new ShootCommand);
 		lowGoalButton.whenPressed(new LowGoal());
 //		shootBackdriveButton.whileHeld(new ShootCommand(ShootCommand.BACKDRIVE));
 		retractedArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
@@ -49,11 +58,17 @@ public class OI {
 		defenseButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
 		shiftHighButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_HIGH));
 		shiftLowButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_LOW));
+<<<<<<< HEAD
 		overrideBeamBreakIntakeButton.whileHeld(new OverrideBeamBreakIntake());
 		overrideBeamBreakStopButton.whileHeld(new OverrideBeamBreakStop());
 		overrideBeamBreakBackdriveButton.whileHeld(new OverrideBeamBreakBackdrive());
 		manualArmUpButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.UP));
 		manualArmDownButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.DOWN));
+=======
+		overrideBeamBreakButton.whileHeld(new IntakeBallCommand(IntakeBallCommand.OVERRIDE));
+		///manualArmUpButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.UP));
+//		manualArmDownButton.whileHeld(new ManualDeployableArmCommand());
+>>>>>>> a5cf19d4df5b409ee97dbfe80a62f04fb69c2049
 	}
 	
 }
