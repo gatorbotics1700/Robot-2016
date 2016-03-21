@@ -43,7 +43,9 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void intake() {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
+		if(RobotMap.atIntakePosition) {
 		armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+		}
 	}
 	
 	public void fastBackdrive() {
@@ -80,7 +82,9 @@ public class IntakeSubsystem extends Subsystem {
 	// Sets speeds for back drive to shoot in low goal.
 	public void backDrive() {
 		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
-		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
+		if(RobotMap.atIntakePosition) {
+			armIntakeVictor.set(INTAKE_ROLLER_SPEED);
+		}
 	}
 	
 	// Toggle between beambreak and manual mode

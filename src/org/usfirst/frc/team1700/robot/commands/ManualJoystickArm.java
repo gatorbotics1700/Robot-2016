@@ -44,7 +44,8 @@ public class ManualJoystickArm extends Command {
     		if(this.oi.operatorJoystick.getRawButton(RobotMap.NO_GRAVITY_BUTTON)) {
     			arm.stopMotors();
     			System.out.println("Not moving and not using gravity");
-    		} else {
+    		} 
+    		else {
     			arm.gravity();
     			System.out.println("not moving");
     		}
