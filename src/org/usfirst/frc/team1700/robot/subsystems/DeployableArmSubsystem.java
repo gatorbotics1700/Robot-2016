@@ -102,7 +102,11 @@ public class DeployableArmSubsystem extends Subsystem {
 		d = .8*((double) armTalon.getEncVelocity()/6000.0);
 		f =.25*(Math.sin(((armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48*(2*Math.PI/360)))); // 48 ticks per degree
 		System.out.println(armTalon.getEncVelocity() + "\t" + armTalon.getEncPosition() + "\t" + position + "\t" + p + "\t" + d + "\t" + f);
-		armTalon.set((p+i+d+f));
+		if(!backLimitSwitch.get() || !frontLimitSwitch.get()) {
+			armTalon.set((p+i+d+f));
+		} else {
+			stopMotors();
+		}
 	}
 	
 	public void gravity() {
@@ -155,9 +159,9 @@ public class DeployableArmSubsystem extends Subsystem {
 	 * position. */
 	public void goToRetracted() {
 		armTalon.enableControl();
-//		if (!backLimitSwitch.get())
-//			//armTalon.set(RobotMap.RETRACTED_ARM_POSITION);
-//		else stop();
+		if (!backLimitSwitch.get())
+			armTalon.set(RobotMap.RETRACTED_ARM_POSITION);
+		else stopMotors();
 	}
 	
 	// Move to intake.
