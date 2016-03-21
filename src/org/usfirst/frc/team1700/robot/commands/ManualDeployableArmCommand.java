@@ -13,7 +13,8 @@ import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
  */
 public class ManualDeployableArmCommand extends Command {
 	public static final int UP = 1,
-							DOWN = 2;
+							DOWN = 2,
+							STOP = 3;
 	private DeployableArmSubsystem arm;
 	double armDeadband;
 	int desiredAction;
@@ -32,7 +33,6 @@ public class ManualDeployableArmCommand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	arm.enable();
-    	arm.zeroEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,15 +42,10 @@ public class ManualDeployableArmCommand extends Command {
     	} else if (desiredAction == DOWN) {
     		arm.moveDown();
     	} else {
-    		if(this.oi.operatorJoystick.getRawButton(RobotMap.NO_GRAVITY_BUTTON)) {
-    			arm.stopMotors();
-    			System.out.println("Not moving and not using gravity");
-    		} else {
-    			arm.gravity();
-    			System.out.println("not moving");
-    		}
+    		arm.stopMotors();
     	}
-    }
+    	}
+   
     
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -58,13 +53,12 @@ public class ManualDeployableArmCommand extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
-    	//be wary when changing mode to percent vbus mode
-    	arm.gravity();
+    	arm.stopMotors();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	arm.gravity();
+    	arm.stopMotors();
     }
 }

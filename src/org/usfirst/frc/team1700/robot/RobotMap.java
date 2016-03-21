@@ -19,7 +19,9 @@ public class RobotMap {
 						    LOW_GOAL_BUTTON = 2,
 						    STRAIGHT_UP_ARM_BUTTON = 3,
 						    DEFENSE_BUTTON = 1,
-						    RETRACTED_BUTTON = 4;
+						    RETRACTED_BUTTON = 4,
+						    AUTO_ARM_BUTTON = 7,
+						    AUTO_INTAKE_BUTTON = 8;
 
 							
 	// operating buttons
@@ -30,7 +32,7 @@ public class RobotMap {
 							OVERRIDE_BEAMBREAK_BUTTON_INTAKE = 6,
 							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 7,
 							OVERRIDE_BEAMBREAK_BUTTON_STOP = 8, 
-							NO_GRAVITY_BUTTON = 8,						
+							MANUAL_ARM_BUTTON = 8,						
 							MANUAL_ARM_UP_BUTTON = 3,
 							MANUAL_ARM_DOWN_BUTTON = 2;
 

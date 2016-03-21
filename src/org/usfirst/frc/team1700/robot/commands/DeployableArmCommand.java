@@ -38,11 +38,7 @@ public class DeployableArmCommand extends Command {
     protected void execute() {
     	//if (desiredPosition == DESIRED_POSITION_RETRACTED) {
         arm.PIDSituation(desiredPosition);
-//    	} else if (desiredPosition == DESIRED_POSITION_INTAKE) {
-//        	arm.PIDSituation(RobotMap.INTAKE_ARM_POSITION);
-//    	} else {
-//        	arm.PIDSituation(RobotMap.DEFENSE_ARM_POSITION);
-//    	}
+
     }
     
     
@@ -51,24 +47,22 @@ public class DeployableArmCommand extends Command {
     protected boolean isFinished() {
     	if (desiredPosition == DESIRED_POSITION_RETRACTED){
     		RobotMap.atIntakePosition = false;
-    		return arm.isRetracted();
     	} else if (desiredPosition == DESIRED_POSITION_DEFENSE) {
     		RobotMap.atIntakePosition = true;
-    		return arm.isAtDefense();
     	} else {
     		RobotMap.atIntakePosition = false;
-    		return false;
     	}
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	arm.gravity();
+    	arm.stopMotors();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	arm.gravity();
+    	arm.stopMotors();
     }
 }
