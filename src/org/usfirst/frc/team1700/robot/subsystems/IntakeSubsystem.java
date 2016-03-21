@@ -48,6 +48,8 @@ public class IntakeSubsystem extends Subsystem {
 		IntakeVictor.set(INTAKE_ROLLER_SPEED);
 		if(RobotMap.atIntakePosition) {
 		armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+		} else {
+			armIntakeVictor.set(0);
 		}
 	}
 	
@@ -57,7 +59,7 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void manualIntake() {
 		IntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
-		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
 	}
 	
 	// Moves ball into shooter wheel. 
@@ -87,12 +89,14 @@ public class IntakeSubsystem extends Subsystem {
 		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
 		if(RobotMap.atIntakePosition) {
 			armIntakeVictor.set(INTAKE_ROLLER_SPEED);
+		} else {
+			armIntakeVictor.set(0);
 		}
 	}
 	
 	public void manualBackDrive() {
 		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
-		armIntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
+		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
 
 
