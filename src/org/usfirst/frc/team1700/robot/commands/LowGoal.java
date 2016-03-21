@@ -15,20 +15,17 @@ public class LowGoal extends Command {
 
     private IntakeSubsystem intake;
     private OI oi;
-    private int counter;
     
 	public LowGoal() {
 		super();
 		this.oi = Robot.oi;
 		requires(Subsystems.intake);
         intake = Subsystems.intake;
-    	counter = 0;
 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	counter = 0;
 
     }
 
@@ -39,23 +36,12 @@ public class LowGoal extends Command {
     
 
 	protected boolean isFinished() {
-		if (intake.beamBreakFrontBroken() && intake.beamBreakBackBroken()){
-			return true;
-		} else {
-			return false;
-		}
+		return false;
 	}
 	
     // Called once after isFinished returns true
     protected void end() {
-    if (true){
-    	if (counter <= 50) {
-    		intake.fastBackdrive();
-    		counter ++;
-    	} else {
-    		intake.stopMotors();
-    	}
-    }
+    	intake.stopMotors();
     
     }
 

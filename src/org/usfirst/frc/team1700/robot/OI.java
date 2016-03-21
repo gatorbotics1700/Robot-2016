@@ -39,7 +39,7 @@ public class OI {
 		
 	public OI () {
 
-		lowGoalButton.whenPressed(new LowGoal());
+		lowGoalButton.whileHeld(new LowGoal());
 		retractedArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
 		straightUpArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_STRAIGHT_UP));
 		defenseButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
