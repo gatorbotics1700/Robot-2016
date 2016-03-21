@@ -81,7 +81,7 @@ public class RobotMap {
 
 	
 	// autonomous
-    public static final double AUTO_FORWARD_DISTANCE = 01.0, // change this with more testing
+    public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
