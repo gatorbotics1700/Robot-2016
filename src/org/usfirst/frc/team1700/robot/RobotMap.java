@@ -33,7 +33,8 @@ public class RobotMap {
 							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 7,
 							OVERRIDE_BEAMBREAK_BUTTON = 8, 
 							MANUAL_ARM_BUTTON = 9,						
-							MANUAL_ARM_MOVE_BUTTON = 3;
+							MANUAL_ARM_MOVE_BUTTON = 3,
+							GRAVITY_BUTTON = 11;
 
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 6,
@@ -43,25 +44,25 @@ public class RobotMap {
 	
 	// talons
 	public static final int 
-							RIGHT_TALON_ID_1 = 5, // 3
-							RIGHT_TALON_ID_2 = 9, // 4
-							RIGHT_TALON_ID_3 = 6, // has encoder 5
+							RIGHT_TALON_ID_1 = 3, 
+							RIGHT_TALON_ID_2 = 4, 
+							RIGHT_TALON_ID_3 = 5, // has encoder 
 							LEFT_TALON__ID_1 = 1,
 							LEFT_TALON_ID_2 = 2, // has encoder
 							LEFT_TALON_ID_3= 8,
-							SHOOTER_TALON_ONE_ID = 3, // has encoder  // 6
-							SHOOTER_TALON_TWO_ID = 4, // 7
-							ARM_TALON_ID_ONE = 9; // 9
+							SHOOTER_TALON_ONE_ID = 6, // has encoder  
+							SHOOTER_TALON_TWO_ID = 7, 
+							ARM_TALON_ID_ONE = 9; 
 	
 	// intake victors
 	public static final int ARM_INTAKE_VICTOR = 8,
 							FRAME_INTAKE_VICTOR = 7;
 	
 	// various sensors
-	public static final int BEAM_BREAK_FRONT_PORT = 0,
+	public static final int BEAM_BREAK_FRONT_PORT = 0, 
 							BEAM_BREAK_BACK_PORT = 1,
 							FRONT_LIMIT_SWITCH = 2,
-							BACK_LIMIT_SWITCH = 3,
+							BACK_LIMIT_SWITCH = 3, 
 							ULTRASONIC_SENSOR = 4,
 							BEAM_BREAK_PORT_NEW = 5;
 	
@@ -90,7 +91,8 @@ public class RobotMap {
     public static final double RETRACTED_TO_STRAIGHT_UP = 3500,
     							STRAIGHT_UP_TO_INTAKE = 5050,
     							STRAIGHT_UP_TO_GROUND = 5050,
-    							STRAIGHT_UP_TO_DEFENSE = 5050;
+    							STRAIGHT_UP_TO_DEFENSE = 5050,
+    							VERTICAL_OFFSET = 4200;
     //deployable arm speeds
     public static final double MANUAL_ARM_SPEED = 0.34;
     

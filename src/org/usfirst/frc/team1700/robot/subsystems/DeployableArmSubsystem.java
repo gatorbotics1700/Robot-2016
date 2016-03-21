@@ -31,6 +31,7 @@ public class DeployableArmSubsystem extends Subsystem {
 	double RETRACTED_ARM_POSITION;
 	double STRAIGHT_UP_POSITION;
 	double GROUND_ARM_POSITION;
+	double VERTICAL_OFFSET;
 	double INTAKE_ARM_POSITION, DEFENSE_ARM_POSITION;
 	Queue<Double> integralQueue;
 	static final int integralWindow = 5;
@@ -47,6 +48,7 @@ public class DeployableArmSubsystem extends Subsystem {
 		armTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		// deployable arm
 				RETRACTED_ARM_POSITION = armTalon.getEncPosition();
+				VERTICAL_OFFSET = RETRACTED_ARM_POSITION + RobotMap.VERTICAL_OFFSET;
 				STRAIGHT_UP_POSITION = RETRACTED_ARM_POSITION + RobotMap.RETRACTED_TO_STRAIGHT_UP;
 				INTAKE_ARM_POSITION = STRAIGHT_UP_POSITION + RobotMap.STRAIGHT_UP_TO_INTAKE;
 				GROUND_ARM_POSITION = STRAIGHT_UP_POSITION + RobotMap.STRAIGHT_UP_TO_GROUND;
@@ -92,75 +94,46 @@ public class DeployableArmSubsystem extends Subsystem {
 		}
 		integralQueue.add(position-armTalon.getEncPosition());
 		currentIntegral += (position-armTalon.getEncPosition() - integralQueue.remove()); 
-		p = -.46*(((position - armTalon.getEncPosition())/(GROUND_ARM_POSITION-RETRACTED_ARM_POSITION)));
-		i =  -.0002* currentIntegral;
+		p = -.46*(((position - armTalon.getEncPosition())/(GROUND_ARM_POSITION-RETRACTED_ARM_POSITION))); // used to be .55
+		i =  -.0002* currentIntegral; // used to be .001
 		if (Math.abs(i) > .1 ) {
 			i = Integer.signum((int)( i*10)) * .1;
 		}
 		d = .8*((double) armTalon.getEncVelocity()/6000.0);
-		f =.25*(Math.sin(((armTalon.getEncPosition()-STRAIGHT_UP_POSITION)/48*(2*Math.PI/360)))); // 48 ticks per degree
+		f =.25*(Math.sin(((armTalon.getEncPosition()-VERTICAL_OFFSET)/48*(2*Math.PI/360)))); // 48 ticks per degree
 		System.out.println(armTalon.getEncVelocity() + "\t" + armTalon.getEncPosition() + "\t" + position + "\t" + p + "\t" + d + "\t" + f);
-		armTalon.set((p+i+d+f));
+		this.setSpeed(p+i+d+f);
 	}
 	
-	private void gravity() {
-		f = .25*(Math.sin((((armTalon.getEncPosition()-STRAIGHT_UP_POSITION))/48*(2*Math.PI/360)))); // 48 ticks per degree
-		armTalon.set(f);
+	public void gravity() {
+		f = .25*(Math.sin((((armTalon.getEncPosition()-VERTICAL_OFFSET))/48*(2*Math.PI/360)))); // 48 ticks per degree
+		this.setSpeed(f);
 		System.out.println(STRAIGHT_UP_POSITION + "\t" + "f =" + f + "\t" + " in gravity loop");
 	}
 
-	public boolean isRetracted(){
-		return RobotUtils.checkDeadband((double)RETRACTED_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
-	}
-	
-	/* Returns boolean value is the arm is at intake level, depending on
-	 * if it is in deadband range. */
-//	public boolean isAtIntake() { 
-//		return RobotUtils.checkDeadband((double)INTAKE_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
-//	}
-//	
-	/* Returns boolean value if the arm is at defense level, depending on 
-	 * if the limit switch is hit. */
-	public boolean isAtDefense() {
-		return RobotUtils.checkDeadband((double)INTAKE_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
 
-//		return frontLimitSwitch.get();
-	}	
-	
-	//manual control for moving arm up
-	public void moveUp() {
-		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		System.out.println("The arm enc value is:" + armTalon.getEncPosition());
-		armTalon.set(RobotMap.MANUAL_ARM_SPEED);
-	}
-	
-	//manual control for moving arm down
-	public void moveDown() {
-		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		System.out.println("The arm enc value is:" + armTalon.getEncPosition());
-		armTalon.set(-RobotMap.MANUAL_ARM_SPEED);
-	}
-	
+
 
 	public void moveAnalog(double speed) {
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		System.out.println("The arm enc value is:" + armTalon.getEncPosition());
-		armTalon.set(-RobotMap.MANUAL_ARM_SPEED);
+		this.setSpeed(speed);
 	}
 	public int readEncoder() {
 		return(armTalon.getEncPosition());
 	}
 	
-	public void manualMove(double position) {
-		if (!frontLimitSwitch.get() || !backLimitSwitch.get()) {
-			//armTalon.set(position);
+	private void setSpeed (double speed) {
+		if (backLimitSwitch.get()) { // add front switch soon
+			armTalon.set(speed);
 		} else {
-			//armTalon.set(0);
+			armTalon.set(0);
+			this.zeroEncoders();
 		}
+
 	}
 	
 	public void stopMotors() {
-		armTalon.set(0);
+		this.setSpeed(0);
 	}
 	
 	public void zeroEncoders() {

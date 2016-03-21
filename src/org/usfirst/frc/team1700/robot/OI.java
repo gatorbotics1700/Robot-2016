@@ -30,6 +30,7 @@ public class OI {
 		   shootButton = new JoystickButton(operatorJoystick,RobotMap.SHOOT_BUTTON),
 		   manualArmButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_BUTTON),
 		   manualArmMoveButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_MOVE_BUTTON),
+		   gravityButton = new JoystickButton(operatorJoystick,RobotMap.GRAVITY_BUTTON),
 		   overrideBeamBreakButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON),
 		   overrideBeamBreakIntakeButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_INTAKE),
 		   overrideBeamBreakBackdriveButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE);
@@ -51,6 +52,7 @@ public class OI {
 		shootButton.whileHeld(new ShootCommand());
 		manualArmButton.whenPressed(new ManualOverrideArm());
 		manualArmMoveButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.MOVE));
+		gravityButton.whileHeld(new GravityCommand());
 		overrideBeamBreakButton.whenPressed(new ManualOverrideIntake());
 		overrideBeamBreakIntakeButton.whileHeld(new ManualIntake(ManualIntake.INTAKE));
 		overrideBeamBreakBackdriveButton.whileHeld(new ManualIntake(ManualIntake.BACKDRIVE));
