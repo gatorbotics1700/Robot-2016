@@ -29,8 +29,7 @@ public class OI {
 		   startShootCloseButton = new JoystickButton(operatorJoystick,RobotMap.START_SHOOT_CLOSE_BUTTON),
 		   shootButton = new JoystickButton(operatorJoystick,RobotMap.SHOOT_BUTTON),
 		   manualArmButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_BUTTON),
-		   manualArmUpButton = new JoystickButton(operatorJoystick,RobotMap.MANUAL_ARM_UP_BUTTON),
-		   manualArmDownButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_DOWN_BUTTON),
+		   manualArmMoveButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_MOVE_BUTTON),
 		   overrideBeamBreakButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON),
 		   overrideBeamBreakIntakeButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_INTAKE),
 		   overrideBeamBreakBackdriveButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE);
@@ -40,9 +39,9 @@ public class OI {
 	public OI () {
 
 		lowGoalButton.whileHeld(new LowGoal());
-		retractedArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
-		straightUpArmButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_STRAIGHT_UP));
-		defenseButton.whileHeld(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
+		retractedArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
+		straightUpArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_STRAIGHT_UP));
+		defenseButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
 		shiftHighButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_HIGH));
 		shiftLowButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_LOW));
 		autoArmButton.whenPressed(new AutoOverrideArm());
@@ -51,8 +50,7 @@ public class OI {
 		startShootCloseButton.whileHeld(new StartShootWheelCloseCommand());
 		shootButton.whileHeld(new ShootCommand());
 		manualArmButton.whenPressed(new ManualOverrideArm());
-		manualArmUpButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.UP));
-		manualArmDownButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.DOWN));
+		manualArmMoveButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.MOVE));
 		overrideBeamBreakButton.whenPressed(new ManualOverrideIntake());
 		overrideBeamBreakIntakeButton.whileHeld(new ManualIntake(ManualIntake.INTAKE));
 		overrideBeamBreakBackdriveButton.whileHeld(new ManualIntake(ManualIntake.BACKDRIVE));

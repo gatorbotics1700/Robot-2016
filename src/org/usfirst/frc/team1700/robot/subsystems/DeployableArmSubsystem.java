@@ -92,8 +92,8 @@ public class DeployableArmSubsystem extends Subsystem {
 		}
 		integralQueue.add(position-armTalon.getEncPosition());
 		currentIntegral += (position-armTalon.getEncPosition() - integralQueue.remove()); 
-		p = -.55*(((position - armTalon.getEncPosition())/(GROUND_ARM_POSITION-RETRACTED_ARM_POSITION)));
-		i =  -.001* currentIntegral;
+		p = -.46*(((position - armTalon.getEncPosition())/(GROUND_ARM_POSITION-RETRACTED_ARM_POSITION)));
+		i =  -.0002* currentIntegral;
 		if (Math.abs(i) > .1 ) {
 			i = Integer.signum((int)( i*10)) * .1;
 		}
@@ -131,18 +131,22 @@ public class DeployableArmSubsystem extends Subsystem {
 	public void moveUp() {
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		System.out.println("The arm enc value is:" + armTalon.getEncPosition());
-		//armTalon.set(RobotMap.MANUAL_ARM_SPEED);
+		armTalon.set(RobotMap.MANUAL_ARM_SPEED);
 	}
 	
 	//manual control for moving arm down
 	public void moveDown() {
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		System.out.println("The arm enc value is:" + armTalon.getEncPosition());
-		//armTalon.set(-RobotMap.MANUAL_ARM_SPEED);
+		armTalon.set(-RobotMap.MANUAL_ARM_SPEED);
 	}
 	
 
-	
+	public void moveAnalog(double speed) {
+		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		System.out.println("The arm enc value is:" + armTalon.getEncPosition());
+		armTalon.set(-RobotMap.MANUAL_ARM_SPEED);
+	}
 	public int readEncoder() {
 		return(armTalon.getEncPosition());
 	}

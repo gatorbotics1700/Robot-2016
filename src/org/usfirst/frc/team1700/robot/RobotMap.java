@@ -18,10 +18,10 @@ public class RobotMap {
 						    SHIFT_LOW_BUTTON = 5,
 						    LOW_GOAL_BUTTON = 2,
 						    STRAIGHT_UP_ARM_BUTTON = 3,
-						    DEFENSE_BUTTON = 1,
-						    RETRACTED_BUTTON = 4,
-						    AUTO_ARM_BUTTON = 7,
-						    AUTO_INTAKE_BUTTON = 8;
+						    DEFENSE_BUTTON = 4,
+						    RETRACTED_BUTTON = 1,
+						    AUTO_ARM_BUTTON = 8,
+						    AUTO_INTAKE_BUTTON = 7;
 
 							
 	// operating buttons
@@ -33,8 +33,7 @@ public class RobotMap {
 							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 7,
 							OVERRIDE_BEAMBREAK_BUTTON = 8, 
 							MANUAL_ARM_BUTTON = 9,						
-							MANUAL_ARM_UP_BUTTON = 3,
-							MANUAL_ARM_DOWN_BUTTON = 2;
+							MANUAL_ARM_MOVE_BUTTON = 3;
 
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 6,
@@ -88,12 +87,12 @@ public class RobotMap {
     						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?   
 	
     //deployable arm
-    public static final double RETRACTED_TO_STRAIGHT_UP = 4200,
-    							STRAIGHT_UP_TO_INTAKE = 4200,
-    							STRAIGHT_UP_TO_GROUND = 4200,
-    							STRAIGHT_UP_TO_DEFENSE = 4200;
+    public static final double RETRACTED_TO_STRAIGHT_UP = 3500,
+    							STRAIGHT_UP_TO_INTAKE = 5050,
+    							STRAIGHT_UP_TO_GROUND = 5050,
+    							STRAIGHT_UP_TO_DEFENSE = 5050;
     //deployable arm speeds
-    public static final double MANUAL_ARM_SPEED = 0.4;
+    public static final double MANUAL_ARM_SPEED = 0.34;
     
     // is arm at intake position?
     public static boolean atIntakePosition = false;

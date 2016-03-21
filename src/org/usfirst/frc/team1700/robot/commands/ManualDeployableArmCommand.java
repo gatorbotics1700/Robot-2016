@@ -12,9 +12,8 @@ import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
  *
  */
 public class ManualDeployableArmCommand extends Command {
-	public static final int UP = 1,
-							DOWN = 2,
-							STOP = 3;
+	public static final int MOVE = 1,
+							STOP = 2;
 	private DeployableArmSubsystem arm;
 	double armDeadband;
 	int desiredAction;
@@ -37,10 +36,8 @@ public class ManualDeployableArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (desiredAction == UP){
-    		arm.moveUp();
-    	} else if (desiredAction == DOWN) {
-    		arm.moveDown();
+    	if (desiredAction == MOVE){
+    		arm.moveAnalog(Robot.oi.operatorJoystick.getRawAxis(1));
     	} else {
     		arm.stopMotors();
     	}
