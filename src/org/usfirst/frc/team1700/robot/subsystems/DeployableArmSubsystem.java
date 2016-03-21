@@ -125,7 +125,7 @@ public class DeployableArmSubsystem extends Subsystem {
 	private void setSpeed (double speed) {
 		if (!backLimitSwitch.get() && (speed > 0)) { // add front switch soon
 			armTalon.set(0);
-			this.zeroEncoders();
+			this.calibrate();
 		} else  if (!frontLimitSwitch.get() && speed < 0 ){
 			armTalon.set(0);
 		} else {
@@ -137,10 +137,7 @@ public class DeployableArmSubsystem extends Subsystem {
 	public void stopMotors() {
 		this.setSpeed(0);
 	}
-	
-	public void zeroEncoders() {
-		armTalon.setPosition(0);
-	}
+
 	
 
 

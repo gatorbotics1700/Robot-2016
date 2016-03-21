@@ -89,9 +89,9 @@ public class RobotMap {
 	
     //deployable arm
     public static final double RETRACTED_TO_STRAIGHT_UP = 3500,
-    							STRAIGHT_UP_TO_INTAKE = 5050,
-    							STRAIGHT_UP_TO_GROUND = 5050,
-    							STRAIGHT_UP_TO_DEFENSE = 5050,
+    							STRAIGHT_UP_TO_INTAKE = 5000,
+    							STRAIGHT_UP_TO_GROUND = 5000,
+    							STRAIGHT_UP_TO_DEFENSE = 5000,
     							VERTICAL_OFFSET = 4200;
     //deployable arm speeds
     public static final double MANUAL_ARM_SPEED = 0.34;

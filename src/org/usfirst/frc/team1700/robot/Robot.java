@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
          // schedule the autonomous command (example)
         if (autonomous != null) autonomous.start();
-       
+        arm.calibrate();
     }
 
     /**
@@ -91,6 +91,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	arm.calibrate();
     }
 
     /**
