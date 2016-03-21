@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -10,7 +11,6 @@ import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.commands.DeployableArmCommand;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 import org.usfirst.frc.team1700.robot.commands.ManualDeployableArmCommand;
-import org.usfirst.frc.team1700.robot.commands.ManualJoystickArm;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;

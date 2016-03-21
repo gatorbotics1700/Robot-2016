@@ -31,8 +31,8 @@ public class OI {
 		   manualArmButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_BUTTON),
 		   manualArmUpButton = new JoystickButton(operatorJoystick,RobotMap.MANUAL_ARM_UP_BUTTON),
 		   manualArmDownButton = new JoystickButton(operatorJoystick, RobotMap.MANUAL_ARM_DOWN_BUTTON),
+		   overrideBeamBreakButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON),
 		   overrideBeamBreakIntakeButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_INTAKE),
-		   overrideBeamBreakStopButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_STOP),
 		   overrideBeamBreakBackdriveButton = new JoystickButton(operatorJoystick, RobotMap.OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE);
 
 	
@@ -53,9 +53,9 @@ public class OI {
 		manualArmButton.whenPressed(new ManualOverrideArm());
 		manualArmUpButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.UP));
 		manualArmDownButton.whileHeld(new ManualDeployableArmCommand(ManualDeployableArmCommand.DOWN));
-//		overrideBeamBreakIntakeButton.whileHeld(new OverrideBeamBreakIntake());
-//		overrideBeamBreakStopButton.whileHeld(new OverrideBeamBreakStop());
-//		overrideBeamBreakBackdriveButton.whileHeld(new OverrideBeamBreakBackdrive());
+		overrideBeamBreakButton.whenPressed(new ManualOverrideIntake());
+		overrideBeamBreakIntakeButton.whileHeld(new ManualIntake(ManualIntake.INTAKE));
+		overrideBeamBreakBackdriveButton.whileHeld(new ManualIntake(ManualIntake.BACKDRIVE));
 		
 	}
 	

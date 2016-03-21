@@ -1,7 +1,10 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 
 import org.usfirst.frc.team1700.robot.RobotMap;
+import org.usfirst.frc.team1700.robot.commands.DeployableArmCommand;
 import org.usfirst.frc.team1700.robot.commands.IntakeBallCommand;
+import org.usfirst.frc.team1700.robot.commands.ManualDeployableArmCommand;
+import org.usfirst.frc.team1700.robot.commands.ManualIntake;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
@@ -54,7 +57,7 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void manualIntake() {
 		IntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
-		armIntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
+		armIntakeVictor.set(INTAKE_ROLLER_SPEED);
 	}
 	
 	// Moves ball into shooter wheel. 
@@ -87,20 +90,26 @@ public class IntakeSubsystem extends Subsystem {
 		}
 	}
 	
-	// Toggle between beambreak and manual mode
-//	public void toggle() {
-//		isUsingBeamBreak = !isUsingBeamBreak;
-//		if(isUsingBeamBreak) {
-//			setDefaultCommand(new IntakeBallCommand(IntakeBallCommand.BEAMBREAK));
-//		}
-//		else {
-//			setDefaultCommand(new IntakeBallCommand(IntakeBallCommand.OVERRIDE));
-//		}
-//	}
+	public void manualBackDrive() {
+		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
+		armIntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
+	}
+
 
 	@Override
+
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntakeBallCommand(IntakeBallCommand.BEAMBREAK));
-	}	
+ 		//add something here when we figure out what we want
+		auto();
+	}
+
+	public void manual() {
+		setDefaultCommand(new ManualIntake(ManualIntake.STOP));
+	}
+
+	public void auto() {
+		setDefaultCommand(new IntakeBallCommand());
+
+	}
 }
 
