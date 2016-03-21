@@ -50,10 +50,13 @@ public class DeployableArmCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if (desiredPosition == DESIRED_POSITION_RETRACTED){
-    		return arm.isRetracted();
+    		RobotMap.atIntakePosition = false;
+    		return arm.isRetracted(); //written by ria + arushi
     	} else if (desiredPosition == DESIRED_POSITION_DEFENSE) {
+    		RobotMap.atIntakePosition = true; //written by ria + arushi
     		return arm.isAtDefense();
     	} else {
+    		RobotMap.atIntakePosition = false; //written by ria + arushi
     		return false;
     	}
     }

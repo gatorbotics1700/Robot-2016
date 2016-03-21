@@ -92,6 +92,9 @@ public class RobotMap {
     							STRAIGHT_UP_TO_DEFENSE = 4200;
     //deployable arm speeds
     public static final double MANUAL_ARM_SPEED = 0.4;
+    
+    // is arm at intake position?
+    public static boolean atIntakePosition = false;
     							
 			
 }
