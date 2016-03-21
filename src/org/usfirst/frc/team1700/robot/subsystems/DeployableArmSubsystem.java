@@ -126,10 +126,8 @@ public class DeployableArmSubsystem extends Subsystem {
 		if (!backLimitSwitch.get() && (speed > 0)) { // add front switch soon
 			armTalon.set(0);
 			this.zeroEncoders();
-
-//		} else  if (!frontLimitSwitch.get() && speed < 0 ){
-//			armTalon.set(0);
-//		}
+		} else  if (!frontLimitSwitch.get() && speed < 0 ){
+			armTalon.set(0);
 		} else {
 			armTalon.set(speed);
 		}
