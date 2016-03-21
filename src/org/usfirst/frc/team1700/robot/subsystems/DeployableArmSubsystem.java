@@ -1,15 +1,16 @@
 package org.usfirst.frc.team1700.robot.subsystems;
 
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
 import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.RobotUtils;
 import org.usfirst.frc.team1700.robot.Subsystems;
+import org.usfirst.frc.team1700.robot.commands.DeployableArmCommand;
 import org.usfirst.frc.team1700.robot.commands.DriveCommand;
 import org.usfirst.frc.team1700.robot.commands.ManualDeployableArmCommand;
-import org.usfirst.frc.team1700.robot.commands.ManualJoystickArm;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -76,9 +77,6 @@ public class DeployableArmSubsystem extends Subsystem {
 	
 	
 	public void PIDSituation(int desiredPositionEnum) {
-		//DESIRED_POSITION_RETRACTED = 1,
-		//DESIRED_STRAIGHT_UP= 2,
-		//DESIRED_POSITION_DEFENSE = 3;
 		double position;
 		if (desiredPositionEnum == 1){
 			double DEFENSE_ARM_POSITION;
@@ -105,16 +103,14 @@ public class DeployableArmSubsystem extends Subsystem {
 		armTalon.set((p+i+d+f));
 	}
 	
-	public void gravity() {
+	private void gravity() {
 		f = .25*(Math.sin((((armTalon.getEncPosition()-STRAIGHT_UP_POSITION))/48*(2*Math.PI/360)))); // 48 ticks per degree
 		armTalon.set(f);
 		System.out.println(STRAIGHT_UP_POSITION + "\t" + "f =" + f + "\t" + " in gravity loop");
 	}
-	/* Returns boolean value if the arm is retracted, depending on 
-	 * if the limit switch is hit. */
+
 	public boolean isRetracted(){
 		return RobotUtils.checkDeadband((double)RETRACTED_ARM_POSITION, (double)armTalon.getEncPosition(), shooterDeadband);
-//		return backLimitSwitch.get();
 	}
 	
 	/* Returns boolean value is the arm is at intake level, depending on
@@ -151,31 +147,6 @@ public class DeployableArmSubsystem extends Subsystem {
 		return(armTalon.getEncPosition());
 	}
 	
-	/* While the back limit switch isn't hit, move to the retracted
-	 * position. */
-	public void goToRetracted() {
-		armTalon.enableControl();
-//		if (!backLimitSwitch.get())
-//			//armTalon.set(RobotMap.RETRACTED_ARM_POSITION);
-//		else stop();
-	}
-	
-	// Move to intake.
-	// Need to add PID?
-	public void goToIntake() {
-		//armTalon.enableControl();
-		//armTalon.set(RobotMap.INTAKE_ARM_POSITION);
-	}
-	
-	/* While the front limit switch isn't hit, move to the retracted
-	 * position. */
-	public void goToDefense() {
-		armTalon.enableControl();
-//		if (!frontLimitSwitch.get())
-//			//armTalon.set(RobotMap.DEFENSE_ARM_POSITION);
-//		else stop();		
-	}
-	
 	public void manualMove(double position) {
 		if (!frontLimitSwitch.get() || !backLimitSwitch.get()) {
 			//armTalon.set(position);
@@ -197,6 +168,15 @@ public class DeployableArmSubsystem extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 	 		//add something here when we figure out what we want
-		setDefaultCommand(new ManualJoystickArm());
+		auto();
+	}
+	
+	public void manual() {
+		setDefaultCommand(new ManualDeployableArmCommand(ManualDeployableArmCommand.STOP));
+	}
+	
+	public void auto() {
+		setDefaultCommand(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
+
 	}
 }

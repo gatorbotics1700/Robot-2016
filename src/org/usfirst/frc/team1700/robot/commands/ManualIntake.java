@@ -1,19 +1,30 @@
 package org.usfirst.frc.team1700.robot.commands;
+
+import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team1700.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
-
 
 /**
  *
  */
-public class OverrideBeamBreakIntake extends Command {
-	private IntakeSubsystem intake;
 
-    public OverrideBeamBreakIntake() {
-        requires(Subsystems.intake);
-        intake = Subsystems.intake;
+//why do we need this command when the other command was working fine
+public class ManualIntake extends Command {
+	public static final int INTAKE = 1,
+							BACKDRIVE = 2,
+							STOP = 3;
+	private IntakeSubsystem intake;
+	int desiredAction;
+
+
+    public ManualIntake(int desiredAction) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Subsystems.intake);
+    	this.desiredAction = desiredAction;
+    	intake = Subsystems.intake;
+    	
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +33,13 @@ public class OverrideBeamBreakIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	intake.manualIntake();
+    	if (desiredAction == INTAKE){
+    		intake.manualIntake();
+    	} else if (desiredAction == BACKDRIVE) {
+    		intake.manualBackDrive();
+    	} else {
+    		intake.stopMotors();
+    	}   
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -36,39 +36,33 @@ public class DeployableArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//if (desiredPosition == DESIRED_POSITION_RETRACTED) {
         arm.PIDSituation(desiredPosition);
-//    	} else if (desiredPosition == DESIRED_POSITION_INTAKE) {
-//        	arm.PIDSituation(RobotMap.INTAKE_ARM_POSITION);
-//    	} else {
-//        	arm.PIDSituation(RobotMap.DEFENSE_ARM_POSITION);
-//    	}
+        
+    	if (desiredPosition == DESIRED_POSITION_RETRACTED){
+    		RobotMap.atIntakePosition = false;
+    	} else if (desiredPosition == DESIRED_POSITION_DEFENSE) {
+    		RobotMap.atIntakePosition = true; 
+    	} else {
+    		RobotMap.atIntakePosition = false;
+    	}
+
     }
     
     
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (desiredPosition == DESIRED_POSITION_RETRACTED){
-    		RobotMap.atIntakePosition = false;
-    		return arm.isRetracted(); //written by ria + arushi
-    	} else if (desiredPosition == DESIRED_POSITION_DEFENSE) {
-    		RobotMap.atIntakePosition = true; //written by ria + arushi
-    		return arm.isAtDefense();
-    	} else {
-    		RobotMap.atIntakePosition = false; //written by ria + arushi
-    		return false;
-    	}
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	arm.gravity();
+    	arm.stopMotors();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	arm.gravity();
+    	arm.stopMotors();
     }
 }

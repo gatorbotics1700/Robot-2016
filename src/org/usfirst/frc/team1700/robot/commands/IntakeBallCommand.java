@@ -14,30 +14,23 @@ import org.usfirst.frc.team1700.robot.Robot;
  */
 public class IntakeBallCommand extends Command {
 
-	public static final int BEAMBREAK = 1,
-							 OVERRIDE = 2;
     private IntakeSubsystem intake;
     private OI oi;
-    private int counter;
-    private int mode;
+
     
-	public IntakeBallCommand(int mode) {
+	public IntakeBallCommand() {
 		super();
 		this.oi = Robot.oi;
 		requires(Subsystems.intake);
         intake = Subsystems.intake;
-        counter = 0;
-        this.mode = mode;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	counter = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
-    if (mode == BEAMBREAK){
         if (intake.beamBreakBackBroken()) {
         	System.out.println("back broken");
         	if (intake.beamBreakFrontBroken()) {
@@ -54,9 +47,7 @@ public class IntakeBallCommand extends Command {
         	intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
         	}
         }
-    } else {
-    	intake.intake();
-    }
+
     }
 	
 
@@ -64,19 +55,7 @@ public class IntakeBallCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    if (mode == BEAMBREAK) {
     	intake.stopMotors();
-    } else {
-    	if (counter <= 5) {
-    		intake.stopMotors();
-    		counter ++;
-    	} else if (counter > 5 && counter < 20) {
-    		intake.backDrive();
-    		counter ++;
-    	} else {
-    		intake.stopMotors();
-    	}
-    }
     }
 
     // Called when another command which requires one or more of the same

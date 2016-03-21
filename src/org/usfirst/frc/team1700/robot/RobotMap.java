@@ -19,7 +19,9 @@ public class RobotMap {
 						    LOW_GOAL_BUTTON = 2,
 						    STRAIGHT_UP_ARM_BUTTON = 3,
 						    DEFENSE_BUTTON = 1,
-						    RETRACTED_BUTTON = 4;
+						    RETRACTED_BUTTON = 4,
+						    AUTO_ARM_BUTTON = 7,
+						    AUTO_INTAKE_BUTTON = 8;
 
 							
 	// operating buttons
@@ -29,8 +31,8 @@ public class RobotMap {
 							START_SHOOT_CLOSE_BUTTON = 4, //hood down
 							OVERRIDE_BEAMBREAK_BUTTON_INTAKE = 6,
 							OVERRIDE_BEAMBREAK_BUTTON_BACKDRIVE = 7,
-							OVERRIDE_BEAMBREAK_BUTTON_STOP = 8, 
-							NO_GRAVITY_BUTTON = 8,						
+							OVERRIDE_BEAMBREAK_BUTTON = 8, 
+							MANUAL_ARM_BUTTON = 9,						
 							MANUAL_ARM_UP_BUTTON = 3,
 							MANUAL_ARM_DOWN_BUTTON = 2;
 
@@ -79,7 +81,7 @@ public class RobotMap {
 
 	
 	// autonomous
-    public static final double AUTO_FORWARD_DISTANCE = 01.0, // change this with more testing
+    public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
