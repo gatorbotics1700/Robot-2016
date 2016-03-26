@@ -31,7 +31,9 @@ public class StartShootWheelFarCommand extends Command{
 	@Override
 	protected void execute() {
 		//intake.moveBallToWaitingPosition();
-		shooter.shootFar();
+//		shooter.shootFar();
+		shooter.extendHood();
+		System.out.println(shooter.readEncoder());
 	}
 
 	@Override
@@ -42,8 +44,6 @@ public class StartShootWheelFarCommand extends Command{
 
 	@Override
 	protected void end() {
-		shooter.setSpeedToZero();
-		shooter.retractHood();
 	}
 
 	@Override

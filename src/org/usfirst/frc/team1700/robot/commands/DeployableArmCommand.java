@@ -36,7 +36,6 @@ public class DeployableArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        arm.PIDSituation(desiredPosition);
         
     	if (desiredPosition == DESIRED_POSITION_RETRACTED){
     		RobotMap.atIntakePosition = false;
@@ -52,7 +51,8 @@ public class DeployableArmCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;
+        double error = arm.PIDSituation(desiredPosition);
+        return false;
     }
 
     // Called once after isFinished returns true

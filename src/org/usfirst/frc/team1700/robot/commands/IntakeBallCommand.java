@@ -32,9 +32,9 @@ public class IntakeBallCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
         if (intake.beamBreakBackBroken()) {
-        	System.out.println("back broken");
+//        	System.out.println("back broken");
         	if (intake.beamBreakFrontBroken()) {
-        		System.out.println("front broken");
+//        		System.out.println("front broken");
         		intake.stopMotors();   
         	} else {        		
         		intake.backDrive();            
@@ -44,7 +44,7 @@ public class IntakeBallCommand extends Command {
         	if (intake.beamBreakBackBroken()) {
         		intake.slowIntake();
         	} else {
-        	intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
+        		intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
         	}
         }
 

@@ -71,8 +71,8 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void driveArcade (double throttle, double turnRate) {
 		double leftOutput, rightOutput;
-		leftOutput = throttle - turnRate;
-		rightOutput = throttle + turnRate;
+		leftOutput = throttle + turnRate;
+		rightOutput = throttle - turnRate;
 		
 		driveTank (leftOutput, rightOutput);
 		//System.out.println("The left drive enc is:" + left.getEncReading());
@@ -96,11 +96,11 @@ public class DriveSubsystem extends Subsystem {
 //	}
 	
 	public void ShiftHigh() { // shift into high gear
-		solenoid.set(DoubleSolenoid.Value.kReverse);
+		solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void ShiftLow() { // shift into low gear, call the shiftlow fxn from the half drive subsystem for ease of use
-		solenoid.set(DoubleSolenoid.Value.kForward);
+		solenoid.set(DoubleSolenoid.Value.kReverse);
 
 	}
 	

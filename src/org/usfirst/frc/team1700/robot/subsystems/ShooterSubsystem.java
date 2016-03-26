@@ -38,16 +38,19 @@ public class ShooterSubsystem extends Subsystem {
 	}		
 		
 	
+	
 	public void shootClose() {
 
 		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
-		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
+		setWheelSpeed(-RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
 	}
 	
 	public void shootFar() {
 		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
-		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_FAR);
+		setWheelSpeed(-RobotMap.SHOOTER_MOTOR_SPEED_FAR);
 	}
+	
+
 	
 	public void backdrive() {
 		setWheelSpeed(RobotMap.SHOOTER_MOTOR_SPEED_BACKDRIVE);
@@ -60,7 +63,7 @@ public class ShooterSubsystem extends Subsystem {
 	
 	public boolean readyToShootClose() {
 		if (Math.abs(shooterTalonOne.getEncVelocity() - RobotMap.SHOOTER_MOTOR_SPEED_CLOSE) < deadband) {
-			if (shooterSolenoid.get()==DoubleSolenoid.Value.kReverse) {
+			if (shooterSolenoid.get()==DoubleSolenoid.Value.kForward) {
 				return true;
 			} else {
 				return false;
@@ -85,6 +88,10 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public void retractHood() {
+		shooterSolenoid.set(DoubleSolenoid.Value.kForward); // kReverse
+	}
+	
+	public void extendHood () {
 		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
@@ -95,6 +102,11 @@ public class ShooterSubsystem extends Subsystem {
 			return false;
 		}
 	
+	}
+	
+
+	public int readEncoder() {
+		return shooterTalonOne.getEncVelocity();
 	}
 
 	@Override

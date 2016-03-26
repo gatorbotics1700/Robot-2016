@@ -21,7 +21,9 @@ public class ManualOverrideArm extends Command{
 
 	@Override
 	protected void execute() {
-		arm.manual();
+//		arm.manual();
+		
+		arm.readEncoder();
 	}
 
 	@Override

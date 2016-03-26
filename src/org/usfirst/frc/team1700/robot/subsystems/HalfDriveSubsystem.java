@@ -24,9 +24,9 @@ public class HalfDriveSubsystem {
 	
 	// Sets motor speed for three motors on gear box for given side of robot. 
 	public void setSpeed(double speed){
-		CanTalon1.set(speed);
-		CanTalon2.set(speed);
-		CanTalon3.set(speed);
+		CanTalon1.set(-speed);
+		CanTalon2.set(-speed);
+		CanTalon3.set(-speed);
 	}
 	
 	public int getEncReading(){

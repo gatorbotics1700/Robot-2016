@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	arm.calibrate();
+//    	arm.calibrate();
     }
 
     /**

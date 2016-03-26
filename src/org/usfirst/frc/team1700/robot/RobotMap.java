@@ -10,8 +10,8 @@ public class RobotMap {
 	// recheck w/ new joystick bc maybe everything is wrong??
 	public static final int DRIVE_JOYSTICK_PORT = 0,
 							// axes
-						    TURN_RATE = 0, 
-						    THROTTLE = 5, // 5
+						    TURN_RATE = 4,  // 0
+						    THROTTLE = 1, // 5
 						    TANK_LEFT = 1,
 						    TANK_RIGHT = 5,
 						    SHIFT_HIGH_BUTTON = 6,
@@ -34,7 +34,8 @@ public class RobotMap {
 							OVERRIDE_BEAMBREAK_BUTTON = 8, 
 							MANUAL_ARM_BUTTON = 9,						
 							MANUAL_ARM_MOVE_BUTTON = 3,
-							GRAVITY_BUTTON = 11;
+							GRAVITY_BUTTON =   11,
+							HOOD_DOWN_BUTTON = 10;
 
 	// pneumatics
 	public static final int DRIVE_SOLENOID_ONE_PORT = 6,
@@ -62,7 +63,7 @@ public class RobotMap {
 	public static final int BEAM_BREAK_FRONT_PORT = 0, 
 							BEAM_BREAK_BACK_PORT = 1,
 							FRONT_LIMIT_SWITCH = 2,
-							BACK_LIMIT_SWITCH = 3, 
+							BACK_LIMIT_SWITCH = 8,  
 							ULTRASONIC_SENSOR = 4,
 							BEAM_BREAK_PORT_NEW = 5;
 	
@@ -74,25 +75,27 @@ public class RobotMap {
 							   CIRCUM_PNEUMATIC_WHEEL = 20.05;
 	
 	//shooter speeds
-	public static final double SHOOTER_MOTOR_SPEED_CLOSE = .85,
-								SHOOTER_MOTOR_SPEED_FAR = .85,
+	public static final double SHOOTER_MOTOR_SPEED_CLOSE = .9,
+								SHOOTER_MOTOR_SPEED_FAR = 1,
 								SHOOTER_MOTOR_SPEED_BACKDRIVE = -.5;
 				
 
 	
 	// autonomous
-    public static final double AUTO_FORWARD_DISTANCE = 100.0, // change this with more testing
+    public static final double AUTO_FORWARD_DISTANCE = 300.0,
+    						   AUTO_BACKWARDS_DISTANCE = -225.0, //check
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
-    						   AUTO_SPEED = 0.3, // change after testing, is this too fast? idk man
+    						   AUTO_SPEED = 0.5, // change after testing, is this too fast? idk man
     						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?   
 	
     //deployable arm
-    public static final double RETRACTED_TO_STRAIGHT_UP = 3500,
-    							STRAIGHT_UP_TO_INTAKE = 5000,
-    							STRAIGHT_UP_TO_GROUND = 5000,
-    							STRAIGHT_UP_TO_DEFENSE = 5000,
-    							VERTICAL_OFFSET = 4200;
+    public static final double RETRACTED_TO_STRAIGHT_UP = 1600, // probably change this bc it highkey blocks the shot
+    							STRAIGHT_UP_TO_INTAKE = 4900,
+    							STRAIGHT_UP_TO_GROUND = 4900,
+    							STRAIGHT_UP_TO_DEFENSE = 4900,
+    							VERTICAL_OFFSET = 2350,
+    							ARM_ERROR_TOLERANCE = 200;
     //deployable arm speeds
     public static final double MANUAL_ARM_SPEED = 0.34;
     

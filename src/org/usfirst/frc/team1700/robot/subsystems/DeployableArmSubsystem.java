@@ -78,7 +78,7 @@ public class DeployableArmSubsystem extends Subsystem {
 	}
 	
 	
-	public void PIDSituation(int desiredPositionEnum) {
+	public double PIDSituation(int desiredPositionEnum) {
 		double position;
 		if (desiredPositionEnum == 1){
 			double DEFENSE_ARM_POSITION;
@@ -92,23 +92,28 @@ public class DeployableArmSubsystem extends Subsystem {
 		else{	
 			position = armTalon.getEncPosition();
 		}
-		integralQueue.add(position-armTalon.getEncPosition());
+		
+			double error = position - armTalon.getEncPosition();
+		integralQueue.add(error);
 		currentIntegral += (position-armTalon.getEncPosition() - integralQueue.remove()); 
-		p = -.46*(((position - armTalon.getEncPosition())/(GROUND_ARM_POSITION-RETRACTED_ARM_POSITION))); // used to be .55
+		p = -.43*((error)/(GROUND_ARM_POSITION-RETRACTED_ARM_POSITION)); // used to be .55
 		i =  -.0002* currentIntegral; // used to be .001
 		if (Math.abs(i) > .1 ) {
 			i = Integer.signum((int)( i*10)) * .1;
 		}
-		d = .8*((double) armTalon.getEncVelocity()/6000.0);
+		d = 1.2*((double) armTalon.getEncVelocity()/6000.0);
 		f =.25*(Math.sin(((armTalon.getEncPosition()-VERTICAL_OFFSET)/48*(2*Math.PI/360)))); // 48 ticks per degree
-		System.out.println(armTalon.getEncVelocity() + "\t" + armTalon.getEncPosition() + "\t" + position + "\t" + p + "\t" + d + "\t" + f);
+//		System.out.println(armTalon.getEncVelocity() + "\t" + armTalon.getEncPosition() + "\t" + position + "\t" + p + "\t" + d + "\t" + f);
+//		this.readEncoder();
 		this.setSpeed(p+i+d+f);
+		return error;
 	}
 	
 	public void gravity() {
 		f = .25*(Math.sin((((armTalon.getEncPosition()-VERTICAL_OFFSET))/48*(2*Math.PI/360)))); // 48 ticks per degree
 		this.setSpeed(f);
-		System.out.println(STRAIGHT_UP_POSITION + "\t" + "f =" + f + "\t" + " in gravity loop");
+		this.getEncValue();
+		//System.out.println(STRAIGHT_UP_POSITION + "\t" + "f =" + f + "\t" + " in gravity loop");
 	}
 
 
@@ -117,6 +122,7 @@ public class DeployableArmSubsystem extends Subsystem {
 	public void moveAnalog(double speed) {
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		this.setSpeed(speed);
+		this.readEncoder();
 	}
 	public int readEncoder() {
 		return(armTalon.getEncPosition());
@@ -139,12 +145,16 @@ public class DeployableArmSubsystem extends Subsystem {
 	}
 
 	
+	public void getEncValue() {
+		System.out.println(armTalon.getEncPosition());
+	}
 
-
+	
 	@Override
 	protected void initDefaultCommand() {
 	 		//add something here when we figure out what we want
 		auto();
+//		manual();
 	}
 	
 	public void manual() {

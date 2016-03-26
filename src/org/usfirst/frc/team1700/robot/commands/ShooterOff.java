@@ -28,6 +28,7 @@ public class ShooterOff extends Command {
 	@Override
 	protected void execute() {
 		shooter.setSpeedToZero();
+		shooter.retractHood();
 		// TODO Auto-generated method stub
 		
 	}
