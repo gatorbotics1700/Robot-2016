@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
  * A distance is passed in from the autonomous command (can be a positive or negative distance)
  * The robot drives forward until the encoder reading is greater than the auto distance passed in
  */
-public class AutonomousDriveForwardCommand extends Command {
+public class AutonomousDriveBackCommand extends Command {
 	DriveSubsystem drive;
+	DeployableArmSubsystem arm;
 	double autoDistance;
 	
-	public AutonomousDriveForwardCommand (double autoDistance) {
+	public AutonomousDriveBackCommand (double autoDistance) {
 		requires(Subsystems.drive);
 	    drive = Subsystems.drive;
 		this.autoDistance = autoDistance;
@@ -23,7 +24,7 @@ public class AutonomousDriveForwardCommand extends Command {
 	
 	
 	protected void initialize() {
-		drive.zeroEncoders();
+		System.out.println("in the back auto");
 		drive.ShiftLow();
 		// TODO Auto-generated method stub
 		
@@ -31,16 +32,17 @@ public class AutonomousDriveForwardCommand extends Command {
 
 	@Override
 	protected void execute() {
+		System.out.println("in the execute");
 		drive.ShiftLow();
-			drive.driveTank(-RobotMap.AUTO_SPEED, -RobotMap.AUTO_SPEED);
-			
+		drive.driveTank(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
+
 
 		
 	} 
 
 	@Override
 	protected boolean isFinished() {
-		if (Math.abs(drive.getRightDistance()) < autoDistance || Math.abs(drive.getLeftDistance()) < autoDistance) {
+		if (Math.abs(drive.getRightDistance()) > Math.abs(autoDistance) || Math.abs(drive.getLeftDistance()) > Math.abs(autoDistance)) {
 			return false;
 		} else {
 			return true;
@@ -50,7 +52,6 @@ public class AutonomousDriveForwardCommand extends Command {
 
 	@Override
 	protected void end() {
-		System.out.println("ending the forward");
 		drive.driveTank(0,0);
 		
 	}

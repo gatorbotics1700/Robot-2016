@@ -78,12 +78,11 @@ public class RobotMap {
 	public static final double SHOOTER_MOTOR_SPEED_CLOSE = .9,
 								SHOOTER_MOTOR_SPEED_FAR = 1,
 								SHOOTER_MOTOR_SPEED_BACKDRIVE = -.5;
-				
 
 	
 	// autonomous
     public static final double AUTO_FORWARD_DISTANCE = 300.0,
-    						   AUTO_BACKWARDS_DISTANCE = -225.0, //check
+    						   AUTO_BACKWARDS_DISTANCE = 60, //check
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.5, // change after testing, is this too fast? idk man

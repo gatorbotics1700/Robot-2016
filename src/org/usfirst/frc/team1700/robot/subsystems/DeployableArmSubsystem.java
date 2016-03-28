@@ -121,7 +121,7 @@ public class DeployableArmSubsystem extends Subsystem {
 
 	public void moveAnalog(double speed) {
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		this.setSpeed(speed);
+		this.setSpeed(speed*speed*speed);
 		this.readEncoder();
 	}
 	public int readEncoder() {
