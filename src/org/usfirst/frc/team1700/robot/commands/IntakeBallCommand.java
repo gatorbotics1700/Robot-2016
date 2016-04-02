@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
+import org.usfirst.frc.team1700.robot.RobotMap;
 
 /**
  *
@@ -35,16 +36,20 @@ public class IntakeBallCommand extends Command {
 //        	System.out.println("back broken");
         	if (intake.beamBreakFrontBroken()) {
 //        		System.out.println("front broken");
-        		intake.stopMotors();   
+        		intake.stopMotors();  
+        		RobotMap.ballHeld = true;
         	} else {        		
-        		intake.backDrive();            
+        		intake.backDrive();   
+        		RobotMap.ballHeld = false;
         	}        
    
         } else {
         	if (intake.beamBreakBackBroken()) {
         		intake.slowIntake();
+        		RobotMap.ballHeld = false;
         	} else {
-        		intake.intake();   // maybe change this if we want different speeds for the full input and for the bopping around   
+        		intake.intake(); 
+        		RobotMap.ballHeld = false; 
         	}
         }
 

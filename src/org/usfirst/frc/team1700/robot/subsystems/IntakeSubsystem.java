@@ -88,7 +88,11 @@ public class IntakeSubsystem extends Subsystem {
 	public void backDrive() {
 		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
 		if (RobotMap.atIntakePosition) {
-			armIntakeVictor.set(INTAKE_ROLLER_SPEED);
+			if (RobotMap.ballHeld) {
+			armIntakeVictor.set(-1);
+			} else {
+				armIntakeVictor.set(INTAKE_ROLLER_SPEED);
+			}		
 		} else {
 			armIntakeVictor.set(0);
 		}
