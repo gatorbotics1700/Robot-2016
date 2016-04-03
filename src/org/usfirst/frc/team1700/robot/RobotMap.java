@@ -10,10 +10,11 @@ public class RobotMap {
 	// recheck w/ new joystick bc maybe everything is wrong??
 	public static final int DRIVE_JOYSTICK_PORT = 0,
 							// axes
-						    TURN_RATE = 4,  // 0
-						    THROTTLE = 1, // 5
-						    TANK_LEFT = 1,
-						    TANK_RIGHT = 5,
+						    TURN_RATE = 6,  // 0
+						    THROTTLE = 5, // 5
+						    BACKWARDS = 2,
+//						    TANK_LEFT = 1,
+//						    TANK_RIGHT = 5,
 						    SHIFT_HIGH_BUTTON = 6,
 						    SHIFT_LOW_BUTTON = 5,
 						    LOW_GOAL_BUTTON = 2,
@@ -100,6 +101,9 @@ public class RobotMap {
     
     // is arm at intake position?
     public static boolean atIntakePosition = false;
+    
+    
+    public static boolean ballHeld = false;
     							
 			
 }
