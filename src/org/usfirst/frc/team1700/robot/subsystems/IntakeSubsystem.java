@@ -100,11 +100,9 @@ public class IntakeSubsystem extends Subsystem {
 	// Sets speeds for back drive to shoot in low goal.
 	public void backDrive() {
 		IntakeVictor.set(INTAKE_BACKDRIVE_SPEED);
-		if (RobotMap.ballHeld) {
-		armIntakeVictor.set(-1);
-		} else {
+		if (RobotMap.atIntakePosition) {
 			armIntakeVictor.set(INTAKE_ROLLER_SPEED);
-		}		
+		}	
 	}
 	
 	public void manualBackDrive() {
