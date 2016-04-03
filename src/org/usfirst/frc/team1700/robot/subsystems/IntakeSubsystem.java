@@ -86,7 +86,15 @@ public class IntakeSubsystem extends Subsystem {
 	// Sets the motor speed to 0.
 	public void stopMotors() {
 		IntakeVictor.set(0);
-		armIntakeVictor.set(0);
+		if (RobotMap.atIntakePosition) {
+			if (RobotMap.ballHeld) {
+			armIntakeVictor.set(1);
+			} else {
+				armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+			}
+		} else {
+			armIntakeVictor.set(0);
+		}
 	}
 	
 	// Sets speeds for back drive to shoot in low goal.
