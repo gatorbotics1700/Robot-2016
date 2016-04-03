@@ -75,16 +75,10 @@ public class IntakeSubsystem extends Subsystem {
 	public void slowIntake() {
 		IntakeVictor.set(SLOW_INTAKE_ROLLER_SPEED);
 	}
-	public void moveBallToWaitingPosition() {
-		if (!beamBreakFrontBroken()) {
-			backDrive();
-		} else {
-			stopMotors();
-		}
-	}
-
+	
+	
 	// Sets the motor speed to 0.
-	public void stopMotors() {
+	public void holdOneBall() {
 		IntakeVictor.set(0);
 		if (RobotMap.atIntakePosition) {
 			if (RobotMap.ballHeld) {

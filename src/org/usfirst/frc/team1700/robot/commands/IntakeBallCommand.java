@@ -33,16 +33,13 @@ public class IntakeBallCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
         if (intake.beamBreakBackBroken()) {
-//        	System.out.println("back broken");
         	if (intake.beamBreakFrontBroken()) {
-//        		System.out.println("front broken");
-        		intake.stopMotors();  
+        		intake.holdOneBall();  
         		RobotMap.ballHeld = true;
         	} else {        		
         		intake.backDrive();   
         		RobotMap.ballHeld = false;
         	}        
-   
         } else {
         	if (intake.beamBreakBackBroken()) {
         		intake.slowIntake();
@@ -54,13 +51,10 @@ public class IntakeBallCommand extends Command {
         }
 
     }
-	
-
-    
 
     // Called once after isFinished returns true
     protected void end() {
-    	intake.stopMotors();
+    	intake.holdOneBall();
     }
 
     // Called when another command which requires one or more of the same
