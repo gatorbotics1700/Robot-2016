@@ -38,7 +38,7 @@ public class ManualIntake extends Command {
     	} else if (desiredAction == BACKDRIVE) {
     		intake.manualBackDrive();
     	} else {
-    		intake.stopMotors();
+    		intake.holdOneBall();
     	}   
     }
 
@@ -49,12 +49,12 @@ public class ManualIntake extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	intake.stopMotors();
+    	intake.holdOneBall();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	intake.stopMotors();
+    	intake.holdOneBall();
     }
 }
