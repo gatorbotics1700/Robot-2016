@@ -10,8 +10,8 @@ public class RobotMap {
 	// recheck w/ new joystick bc maybe everything is wrong??
 	public static final int DRIVE_JOYSTICK_PORT = 0,
 							// axes
-						    TURN_RATE = 6,  // 0
-						    THROTTLE = 5, // 5
+						    TURN_RATE = 0,  // 0
+						    THROTTLE = 3, // 5
 						    BACKWARDS = 2,
 //						    TANK_LEFT = 1,
 //						    TANK_RIGHT = 5,
