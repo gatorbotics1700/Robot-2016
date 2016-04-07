@@ -50,7 +50,7 @@ public class IntakeSubsystem extends Subsystem {
 			if (RobotMap.ballHeld) {
 			armIntakeVictor.set(1);
 			} else {
-				armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+				armIntakeVictor.set(-.7);
 			}		
 		} else {
 			armIntakeVictor.set(0);
