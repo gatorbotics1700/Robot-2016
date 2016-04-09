@@ -27,12 +27,20 @@ public class Autonomous extends CommandGroup {
         	addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_DEFENSE));
         	addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE));
         	addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_RETRACTED));
-    	} else if (autoMode == 4) {
+    	} else if (autoMode == 4) { // you're welcome Chris
     		addSequential (new AutonomousDriveForwardCommand(RobotMap.CHEVAL_FRISE_ONE));
     		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_DEFENSE));
     		addSequential (new AutonomousDriveForwardCommand(RobotMap.CHEVAL_FRISE_TWO));
     		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_RETRACTED));
     		addSequential (new AutonomousDriveForwardCommand(RobotMap.CHEVAL_FRISE_THREE));    
+    	} else if (autoMode == 5) { //you're welcome Natalie
+    		addSequential (new AutonomousDriveForwardCommand(RobotMap.SHOOT));
+    		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_DEFENSE));
+    		addSequential (new AutonomousShootHighGoalCommand());
+    		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_RETRACTED));
+    		addSequential (new AutonomousDriveBackCommand(RobotMap.AUTO_BACKWARDS_DISTANCE));
+    	} else { // don't move bro
+    		new AutonomousDriveForwardCommand(0);
     	}
     }
 }

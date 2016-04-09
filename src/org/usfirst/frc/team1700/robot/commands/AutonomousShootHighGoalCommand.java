@@ -47,6 +47,7 @@ public class AutonomousShootHighGoalCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Subsystems.shooter.setSpeedToZero();
+    	shooter.retractHood();
     }
 
     // Called when another command which requires one or more of the same

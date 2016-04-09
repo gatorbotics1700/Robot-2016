@@ -91,7 +91,8 @@ public class RobotMap {
     						   LOW_BAR_TURN_ANGLE = 60,
     						   CHEVAL_FRISE_ONE = 45,
     						   CHEVAL_FRISE_TWO = 65,
-    						   CHEVAL_FRISE_THREE = 265; // figure out this angle with #trig, do we trust dan's head math?   
+    						   CHEVAL_FRISE_THREE = 265,
+    						   SHOOT = 430.0; // figure out this angle with #trig, do we trust dan's head math?   
 	
     //deployable arm
     public static final double RETRACTED_TO_STRAIGHT_UP = 1600, // probably change this bc it highkey blocks the shot
