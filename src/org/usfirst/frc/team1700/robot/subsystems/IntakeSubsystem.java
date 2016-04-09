@@ -17,7 +17,7 @@ public class IntakeSubsystem extends Subsystem {
 		private DigitalInput beamBreakFront;
 		private DigitalInput beamBreakBack;
 //		private boolean isUsingBeamBreak;
-		private static final double INTAKE_ROLLER_SPEED = .35;
+		private static final double INTAKE_ROLLER_SPEED = .4;
 		private static final double INTAKE_BACKDRIVE_SPEED = -.25;//change this number to actual roller speed after testing
 		private static final double SLOW_INTAKE_ROLLER_SPEED = .25;
 		
@@ -50,7 +50,7 @@ public class IntakeSubsystem extends Subsystem {
 			if (RobotMap.ballHeld) {
 			armIntakeVictor.set(1);
 			} else {
-				armIntakeVictor.set(-.7);
+				armIntakeVictor.set(-1);
 			}		
 		} else {
 			armIntakeVictor.set(0);
@@ -85,6 +85,7 @@ public class IntakeSubsystem extends Subsystem {
 				armIntakeVictor.set(1);
 			} else {
 				armIntakeVictor.set(-INTAKE_ROLLER_SPEED);
+//				armIntakeVictor.set(0);
 			}
 		} else {
 			armIntakeVictor.set(0);

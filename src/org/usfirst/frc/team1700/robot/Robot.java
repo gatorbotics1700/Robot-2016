@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	private static Subsystems subsystems; // collection of all subsystems	 
+	private static Subsystems subsystems; // collection of all subsystems	
 	public static OI oi;
 	private DriveSubsystem drive;
 	private DeployableArmSubsystem arm;

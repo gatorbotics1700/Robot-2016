@@ -11,8 +11,8 @@ public class RobotMap {
 	public static final int DRIVE_JOYSTICK_PORT = 0,
 							// axes
 						    TURN_RATE = 0,  // 0
-						    THROTTLE = 3, // 5
-						    BACKWARDS = 2,
+						    THROTTLE = 2, // 5
+						    BACKWARDS = 3,
 //						    TANK_LEFT = 1,
 //						    TANK_RIGHT = 5,
 						    SHIFT_HIGH_BUTTON = 6,
@@ -27,6 +27,7 @@ public class RobotMap {
 							
 	// operating buttons
 	public static final int OPERATOR_JOYSTICK_PORT = 1,
+							AUTONOMOUS_AXIS = 2,
 							SHOOT_BUTTON = 1,
 							START_SHOOT_FAR_BUTTON = 5, //hood up
 							START_SHOOT_CLOSE_BUTTON = 4, //hood down
@@ -82,12 +83,15 @@ public class RobotMap {
 
 	
 	// autonomous
-    public static final double AUTO_FORWARD_DISTANCE = 300.0,
-    						   AUTO_BACKWARDS_DISTANCE = 60, //check
+    public static final double AUTO_FORWARD_DISTANCE = 300.0, // 300.0
+    						   AUTO_BACKWARDS_DISTANCE = 60, //check // 60
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
-    						   AUTO_SPEED = 0.5, // change after testing, is this too fast? idk man
-    						   LOW_BAR_TURN_ANGLE = 60; // figure out this angle with #trig, do we trust dan's head math?   
+    						   AUTO_SPEED = 0.5 , // change after testing, is this too fast? idk man // .5 p
+    						   LOW_BAR_TURN_ANGLE = 60,
+    						   CHEVAL_FRISE_ONE = 45,
+    						   CHEVAL_FRISE_TWO = 65,
+    						   CHEVAL_FRISE_THREE = 265; // figure out this angle with #trig, do we trust dan's head math?   
 	
     //deployable arm
     public static final double RETRACTED_TO_STRAIGHT_UP = 1600, // probably change this bc it highkey blocks the shot

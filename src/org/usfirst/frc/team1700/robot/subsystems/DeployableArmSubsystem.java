@@ -105,7 +105,7 @@ public class DeployableArmSubsystem extends Subsystem {
 		f =.25*(Math.sin(((armTalon.getEncPosition()-VERTICAL_OFFSET)/48*(2*Math.PI/360)))); // 48 ticks per degree
 //		System.out.println(armTalon.getEncVelocity() + "\t" + armTalon.getEncPosition() + "\t" + position + "\t" + p + "\t" + d + "\t" + f);
 //		this.readEncoder();
-		this.setSpeed(p+i+d+f);
+		this.setSpeed(p+i+d+f, position);
 		return error;
 	}
 	
@@ -128,8 +128,27 @@ public class DeployableArmSubsystem extends Subsystem {
 		return(armTalon.getEncPosition());
 	}
 	
+	private void checkLimitSwitch(double position) {
+		
+	}
+	
 	private void setSpeed (double speed) {
+//		if (fjsklfja;kj && checkLImistSwitch(position))
+		
 		if (!backLimitSwitch.get() && (speed > 0)) { // add front switch soon
+			armTalon.set(0);
+			this.calibrate();
+		} else  if (!frontLimitSwitch.get() && speed < 0 ){
+			armTalon.set(0);
+		} else {
+			armTalon.set(speed);
+		}
+
+	}
+	
+	private void setSpeed (double speed, double position) {
+		
+		if (!backLimitSwitch.get() && (speed > 0) && position == RETRACTED_ARM_POSITION) { // add front switch soon
 			armTalon.set(0);
 			this.calibrate();
 		} else  if (!frontLimitSwitch.get() && speed < 0 ){
@@ -149,6 +168,9 @@ public class DeployableArmSubsystem extends Subsystem {
 		System.out.println(armTalon.getEncPosition());
 	}
 
+	public int getEncPos() {
+		return armTalon.getEncPosition();
+	}
 	
 	@Override
 	protected void initDefaultCommand() {

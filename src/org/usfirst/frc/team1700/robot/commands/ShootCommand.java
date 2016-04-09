@@ -15,16 +15,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShootCommand extends Command {
 
 	private IntakeSubsystem intake;
-	private ShooterSubsystem shooter;
 	private OI oi;
 	 
     public ShootCommand() {
     	super();
  		this.oi = Robot.oi;
  		requires(Subsystems.intake);
- 		requires(Subsystems.shooter);
         intake = Subsystems.intake;
-        shooter = Subsystems.shooter;
     }
 
     // Called just before this Command runs the first time
@@ -43,9 +40,7 @@ public class ShootCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	intake.holdOneBall();
-    	shooter.retractHood();
-    	
+    	intake.holdOneBall();    	
     }
 
     // Called when another command which requires one or more of the same

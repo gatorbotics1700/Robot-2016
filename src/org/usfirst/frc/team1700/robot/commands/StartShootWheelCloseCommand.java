@@ -30,9 +30,10 @@ public class StartShootWheelCloseCommand extends Command{
 
 	@Override
 	protected void execute() {
-		//intake.moveBallToWaitingPosition();
+		//intake.moveBallToWaitingPosition(); 
+		System.out.println(shooter.readEncoder());
 		shooter.shootClose();
-		shooter.readEncoder();
+
 	}
 
 	@Override

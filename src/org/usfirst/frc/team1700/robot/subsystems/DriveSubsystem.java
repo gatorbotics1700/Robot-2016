@@ -96,11 +96,11 @@ public class DriveSubsystem extends Subsystem {
 //	}
 	
 	public void ShiftHigh() { // shift into high gear
-		solenoid.set(DoubleSolenoid.Value.kForward);
+		solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void ShiftLow() { // shift into low gear, call the shiftlow fxn from the half drive subsystem for ease of use
-		solenoid.set(DoubleSolenoid.Value.kReverse);
+		solenoid.set(DoubleSolenoid.Value.kForward);
 
 	}
 	

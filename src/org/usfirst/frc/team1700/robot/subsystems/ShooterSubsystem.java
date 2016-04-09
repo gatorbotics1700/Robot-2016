@@ -41,12 +41,12 @@ public class ShooterSubsystem extends Subsystem {
 	
 	public void shootClose() {
 
-		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
 		setWheelSpeed(-RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
 	}
 	
 	public void shootFar() {
-		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 		setWheelSpeed(-RobotMap.SHOOTER_MOTOR_SPEED_FAR);
 	}
 	
@@ -88,11 +88,11 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public void retractHood() {
-		shooterSolenoid.set(DoubleSolenoid.Value.kForward); // kReverse
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse); // kReverse
 	}
 	
 	public void extendHood () {
-		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public boolean readyToShoot(){
@@ -113,8 +113,7 @@ public class ShooterSubsystem extends Subsystem {
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 		setDefaultCommand(new ShooterOff());
-
-		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		retractHood();
 	}
 	
 }
