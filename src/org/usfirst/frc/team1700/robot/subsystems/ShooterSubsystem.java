@@ -43,6 +43,7 @@ public class ShooterSubsystem extends Subsystem {
 
 		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
 		setWheelSpeed(-RobotMap.SHOOTER_MOTOR_SPEED_CLOSE);
+		System.out.println(shooterTalonOne.getEncVelocity());
 	}
 	
 	public void shootFar() {

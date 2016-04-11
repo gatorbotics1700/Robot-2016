@@ -35,6 +35,9 @@ public class IntakeSubsystem extends Subsystem {
 	 * it holds the ball in position. 
 	 */
 	
+	public void stopIntake() {
+		IntakeVictor.set(0);
+	}
 	public boolean beamBreakFrontBroken() {
 		//System.out.println("Front: " + !beamBreakFront.get());
 		return !beamBreakFront.get();

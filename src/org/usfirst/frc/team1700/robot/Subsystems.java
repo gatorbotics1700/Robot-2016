@@ -7,4 +7,5 @@ public class Subsystems {
 	public static ShooterSubsystem shooter = new ShooterSubsystem();
 	public static IntakeSubsystem intake = new IntakeSubsystem();
 	public static DeployableArmSubsystem deployableArm = new DeployableArmSubsystem();
+	public static Robot robot;
 }

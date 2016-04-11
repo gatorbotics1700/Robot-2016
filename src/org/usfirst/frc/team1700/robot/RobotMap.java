@@ -92,7 +92,7 @@ public class RobotMap {
     						   CHEVAL_FRISE_ONE = 45,
     						   CHEVAL_FRISE_TWO = 65,
     						   CHEVAL_FRISE_THREE = 265,
-    						   SHOOT = 430.0; // figure out this angle with #trig, do we trust dan's head math?   
+    						   SHOOT = 60.0; // 435  
 	
     //deployable arm
     public static final double RETRACTED_TO_STRAIGHT_UP = 1600, // probably change this bc it highkey blocks the shot
@@ -109,6 +109,8 @@ public class RobotMap {
     
     
     public static boolean ballHeld = false;
+    
+    public static boolean upToSpeed = false;
     							
 			
 }

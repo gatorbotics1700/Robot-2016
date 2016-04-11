@@ -3,6 +3,7 @@ package org.usfirst.frc.team1700.robot;
 import java.lang.Math;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI;
 
 import org.usfirst.frc.team1700.robot.commands.Autonomous;
 import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
@@ -37,7 +38,7 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     private AHRS navX;
     private BuiltInAccelerometer RRA;
-    double X_initial, Y_initial, theta_initial, dispX_field, dispY_field, theta, loopTime,
+    public double X_initial, Y_initial, theta_initial, dispX_field, dispY_field, theta, loopTime,
     accX_robot_navX_meas, accX_robot_RRA_meas, accY_robot_navX_meas, accY_robot_RRA_meas,
     alpha_navX_meas, motorCmdLeft, motorCmdRight, RRA_weight, navX_acc_weight, accX_robot_prev,
     velX_robot_prev, accX_robot, velX_robot, dispX_robot, accY_robot_prev, velY_robot_prev, accY_robot,
@@ -50,6 +51,9 @@ public class Robot extends IterativeRobot {
     public Robot () {
 		drive = Subsystems.drive;
 		arm = Subsystems.deployableArm;
+		Subsystems.robot = this;
+		navX = new AHRS(SPI.Port.kMXP); 
+		RRA = new BuiltInAccelerometer();
 		//what do I assign RRA and navX to?
     }
     
@@ -239,11 +243,12 @@ public class Robot extends IterativeRobot {
 		velY_robot = velY_robot_prev + (accY_robot_prev+accY_robot)/2*loopTime;
 		dispY_robot = dispY_robot + (velY_robot_prev+velY_robot)/2*loopTime;
 		
-		alpha = alpha_navX_meas;
 		alpha_prev = alpha;
 		omega_prev = omega;
 		omega = omega_prev +(alpha_navX_meas + alpha_prev)/2*loopTime;
 		theta = theta + (alpha_navX_meas + alpha_prev)/2*loopTime;
+		alpha = alpha_navX_meas;
+
 		
 		//Outputs: Robot and field positional derivatives (displacements, velocities, accelerations)
 		

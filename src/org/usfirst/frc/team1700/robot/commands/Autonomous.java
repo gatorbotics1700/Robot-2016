@@ -11,12 +11,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Autonomous extends CommandGroup {
 	private OI oi;
-	int autoMode = 2;
+	int autoMode = 6;
 	
 	
     public Autonomous() {
 		this.oi = Robot.oi;
-//    	
 	
     	if (autoMode == 1) { // this is for the moat
         	addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE));
@@ -39,6 +38,8 @@ public class Autonomous extends CommandGroup {
     		addSequential (new AutonomousShootHighGoalCommand());
     		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_RETRACTED));
     		addSequential (new AutonomousDriveBackCommand(RobotMap.AUTO_BACKWARDS_DISTANCE));
+    	} else if (autoMode == 6) {
+    		addSequential (new AutonomousTurnToAngle(.2, 30));
     	} else { // don't move bro
     		new AutonomousDriveForwardCommand(0);
     	}
