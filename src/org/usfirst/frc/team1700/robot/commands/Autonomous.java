@@ -39,7 +39,13 @@ public class Autonomous extends CommandGroup {
     		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_RETRACTED));
     		addSequential (new AutonomousDriveBackCommand(RobotMap.AUTO_BACKWARDS_DISTANCE));
     	} else if (autoMode == 6) {
-    		addSequential (new AutonomousTurnToAngle(.2, 30));
+    		addSequential (new AutonomousTurnToAngle(30));
+    	} else if (autoMode == 7) { //low bar + shooting :)
+    		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_DEFENSE));
+        	addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_SHOOTING_LOW_BAR_DISTANCE));
+        	addSequential(new AutonomousTurnToAngle(RobotMap.AUTO_SHOOTING_LOW_BAR_ANGLE));
+        	addSequential(new VisionTrackingTurnToAngleCommand());
+        	addSequential(new AutonomousShootHighGoalCommand());
     	} else { // don't move bro
     		new AutonomousDriveForwardCommand(0);
     	}
