@@ -18,7 +18,7 @@ public class RobotMap {
 						    SHIFT_HIGH_BUTTON = 6,
 						    SHIFT_LOW_BUTTON = 5,
 						    LOW_GOAL_BUTTON = 2,
-						    STRAIGHT_UP_ARM_BUTTON = 3,
+						    AUTO_ALIGN_BUTTON = 3,
 						    DEFENSE_BUTTON = 4,
 						    RETRACTED_BUTTON = 1,
 						    AUTO_ARM_BUTTON = 8,
