@@ -75,7 +75,7 @@ public class RobotMap {
 							   TICKS_PER_REV = 2764,
 							   CIRCUM_TREAD_WHEEL = 19.05,
 							   CIRCUM_PNEUMATIC_WHEEL = 20.05,
-							   TURNING_ANGULAR_VELOCITY_DEADBAND = .01,
+							   TURNING_ANGULAR_VELOCITY_DEADBAND = .01,  
 							   TURNING_ANGLE_DEADBAND = 2;
 	
 	//shooter speeds
@@ -116,6 +116,8 @@ public class RobotMap {
     public static boolean ballHeld = false;
     
     public static boolean upToSpeed = false;
+    
+    public static boolean linedUp = false;
     							
 			
 }

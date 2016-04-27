@@ -13,7 +13,7 @@ public class Autonomous extends CommandGroup {
 	private OI oi;
 	int autoMode = 6;
 	int startingPos = 1; 
-	
+
     public Autonomous() {
 		this.oi = Robot.oi;
 	
@@ -39,20 +39,16 @@ public class Autonomous extends CommandGroup {
     		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_RETRACTED));
     		addSequential (new AutonomousDriveBackCommand(RobotMap.AUTO_BACKWARDS_DISTANCE));
     	} else if (autoMode == 6) {
-<<<<<<< HEAD
-    		addSequential (new AutonomousTurnToAngle(.2, 30));
+    		addSequential (new AutonomousTurnToAngle(30));
     	} else if (autoMode == 7) { //vision tracking autonomous command
     		addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE/3, false)); //the value should be the distance from starting position to front of defense... is probably not correct
     		addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE*2/3, true));
-=======
-    		addSequential (new AutonomousTurnToAngle(30));
-    	} else if (autoMode == 7) { //low bar + shooting :)
+    	} else if (autoMode == 8) { //low bar + shooting :)
     		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_DEFENSE));
-        	addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_SHOOTING_LOW_BAR_DISTANCE));
+        	addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_SHOOTING_LOW_BAR_DISTANCE, true));
         	addSequential(new AutonomousTurnToAngle(RobotMap.AUTO_SHOOTING_LOW_BAR_ANGLE));
         	addSequential(new VisionTrackingTurnToAngleCommand());
         	addSequential(new AutonomousShootHighGoalCommand());
->>>>>>> 98f440ebc9cf5e7294369a1330ff9e9bc867547d
     	} else { // don't move bro
     		new AutonomousDriveForwardCommand(0, false);
     	}

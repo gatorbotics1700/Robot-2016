@@ -17,11 +17,11 @@ public class OI {
 	Button // drive buttons
 		   lowGoalButton = new JoystickButton(driveJoystick,RobotMap.LOW_GOAL_BUTTON),
 		   retractedArmButton = new JoystickButton(driveJoystick,RobotMap.RETRACTED_BUTTON),
-		   straightUpArmButton = new JoystickButton(driveJoystick,RobotMap.STRAIGHT_UP_ARM_BUTTON),
 		   defenseButton = new JoystickButton(driveJoystick,RobotMap.DEFENSE_BUTTON),
 		   shiftHighButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_HIGH_BUTTON),
 		   shiftLowButton = new JoystickButton(driveJoystick,RobotMap.SHIFT_LOW_BUTTON),
-		   autoArmButton = new JoystickButton(driveJoystick, RobotMap.AUTO_ARM_BUTTON);
+		   autoArmButton = new JoystickButton(driveJoystick, RobotMap.AUTO_ARM_BUTTON),
+		   autoAimButton = new JoystickButton(driveJoystick, RobotMap.AUTO_ALIGN_BUTTON);
 
 		
 	Button // manual operator buttons
@@ -41,11 +41,12 @@ public class OI {
 
 		lowGoalButton.whileHeld(new LowGoal());
 		retractedArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_RETRACTED));
-		straightUpArmButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_STRAIGHT_UP));
 		defenseButton.whenPressed(new DeployableArmCommand(DeployableArmCommand.DESIRED_POSITION_DEFENSE));
 		shiftHighButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_HIGH));
 		shiftLowButton.whenPressed(new DriveShiftingCommand(DriveShiftingCommand.SHIFT_LOW));
 		autoArmButton.whenPressed(new AutoOverrideArm());
+		autoAimButton.whileHeld(new VisionTrackingTurnToAngleCommand(true));
+		
 		
 		startShootFarButton.whileHeld(new StartShootWheelFarCommand());
 		startShootCloseButton.whileHeld(new StartShootWheelCloseCommand());

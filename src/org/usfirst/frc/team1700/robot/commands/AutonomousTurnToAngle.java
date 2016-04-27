@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1700.robot.commands;
 
+import org.usfirst.frc.team1700.robot.RobotMap;
 import org.usfirst.frc.team1700.robot.Subsystems;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 
@@ -9,13 +10,20 @@ public class AutonomousTurnToAngle extends Command {
 	private double speed;
 	private double targetAngle;
 	DriveSubsystem drive;
+	private double turnEffort;
+	private double thetaInitial;
+	private static final double P = 1;
+	private static final double D = 0;
+	private static final double MINIMUM_EFFORT = 0.05;
 
 	
-	public AutonomousTurnToAngle (double speed, double targetAngle) {
+	public AutonomousTurnToAngle (double targetAngle) {
 		requires(Subsystems.drive);
 	    drive = Subsystems.drive;	
 		this.speed = Math.abs(speed);
 		this.targetAngle = targetAngle;
+		turnEffort = 0;
+		thetaInitial = Subsystems.robot.theta;
 	}
 	@Override
 	protected void initialize() {
@@ -24,43 +32,17 @@ public class AutonomousTurnToAngle extends Command {
 
 	@Override
 	protected void execute() {
-	
-		Subsystems.robot.localizationFilter();
-	double delta = targetAngle - Subsystems.robot.theta;
-	while (delta < 0) {
-		delta = delta + 360;
-	}
-	
-	while (delta > 360) {
-		delta = delta - 360;
-	}
-	
-	System.out.println("theta" + Subsystems.robot.theta);
-
-	System.out.println("delta" + delta);
-	if (delta <= 180) {
-		drive.driveTank(speed, -speed);
-	} else {
-		drive.driveTank(-speed, speed);
-	}
+    // p * how far away you are
+    turnEffort = P * (targetAngle + (Subsystems.robot.theta - thetaInitial)) // negative = left
+  				 + D * Subsystems.robot.omega;
+    turnEffort += Math.signum(turnEffort) * MINIMUM_EFFORT;  
+   	drive.driveTank(-turnEffort, turnEffort);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		double delta = targetAngle - Subsystems.robot.theta*180/3.14;
-		while (delta < 0) {
-			delta = delta + 360;
-		}
-		
-		while (delta > 360) {
-			delta = delta - 360;
-		}
-		
-		if (delta < 2 || delta > 358) {
-		return true;
-		} else {
-			return false;
-		}
+		return (Math.abs(targetAngle - Subsystems.robot.theta) < RobotMap.TURNING_ANGLE_DEADBAND 
+   			 && Math.abs(Subsystems.robot.omega) < RobotMap.TURNING_ANGULAR_VELOCITY_DEADBAND);
 	}
 
 	@Override
