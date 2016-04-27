@@ -18,7 +18,7 @@ public class RobotMap {
 						    SHIFT_HIGH_BUTTON = 6,
 						    SHIFT_LOW_BUTTON = 5,
 						    LOW_GOAL_BUTTON = 2,
-						    STRAIGHT_UP_ARM_BUTTON = 3,
+						    AUTO_ALIGN_BUTTON = 3,
 						    DEFENSE_BUTTON = 4,
 						    RETRACTED_BUTTON = 1,
 						    AUTO_ARM_BUTTON = 8,
@@ -74,17 +74,22 @@ public class RobotMap {
 	public static final double RPM = 1800,
 							   TICKS_PER_REV = 2764,
 							   CIRCUM_TREAD_WHEEL = 19.05,
-							   CIRCUM_PNEUMATIC_WHEEL = 20.05;
+							   CIRCUM_PNEUMATIC_WHEEL = 20.05,
+							   TURNING_ANGULAR_VELOCITY_DEADBAND = .01,
+							   TURNING_ANGLE_DEADBAND = 2;
 	
 	//shooter speeds
 	public static final double SHOOTER_MOTOR_SPEED_CLOSE = .9,
-								SHOOTER_MOTOR_SPEED_FAR = 1,
-								SHOOTER_MOTOR_SPEED_BACKDRIVE = -.5;
+							   SHOOTER_MOTOR_SPEED_FAR = 1,
+							   SHOOTER_MOTOR_SPEED_BACKDRIVE = -.5;
 
 	
 	// autonomous
     public static final double AUTO_FORWARD_DISTANCE = 300.0, // 300.0
     						   AUTO_BACKWARDS_DISTANCE = 60, //check // 60
+    						   AUTO_SHOOTING_LOW_BAR_DISTANCE = 90, // CHECK PLS
+    						   AUTO_SHOOTING_LOW_BAR_ANGLE = 45, //GOT TO CHECK THIS ONE
+    						   AUTO_SHOOTING_LOW_BAR_TURN_SPEED = 2, // THIS ALSO MUST be checked
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are
     						   AUTO_SPEED = 0.5 , // change after testing, is this too fast? idk man // .5 p
