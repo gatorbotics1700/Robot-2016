@@ -24,8 +24,9 @@ public class AutonomousTurnToAngle extends Command {
 
 	@Override
 	protected void execute() {
+	
 		Subsystems.robot.localizationFilter();
-	double delta = targetAngle - Subsystems.robot.theta*180/3.14;
+	double delta = targetAngle - Subsystems.robot.theta;
 	while (delta < 0) {
 		delta = delta + 360;
 	}
@@ -34,8 +35,7 @@ public class AutonomousTurnToAngle extends Command {
 		delta = delta - 360;
 	}
 	
-	System.out.println("theta" + Subsystems.robot.theta*180/3.14);
-	System.out.println("thetaRAD" + Subsystems.robot.theta);
+	System.out.println("theta" + Subsystems.robot.theta);
 
 	System.out.println("delta" + delta);
 	if (delta <= 180) {
