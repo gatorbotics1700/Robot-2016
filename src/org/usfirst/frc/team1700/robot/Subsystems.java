@@ -8,5 +8,4 @@ public class Subsystems {
 	public static IntakeSubsystem intake = new IntakeSubsystem();
 	public static DeployableArmSubsystem deployableArm = new DeployableArmSubsystem();
 	public static Robot robot;
-	public static VisionTracking vision = new VisionTracking();
 }

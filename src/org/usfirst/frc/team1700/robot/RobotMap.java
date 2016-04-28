@@ -87,8 +87,8 @@ public class RobotMap {
 	// autonomous
     public static final double AUTO_FORWARD_DISTANCE = 300.0, // 300.0
     						   AUTO_BACKWARDS_DISTANCE = 60, //check // 60
-    						   AUTO_SHOOTING_LOW_BAR_DISTANCE = 90, // CHECK PLS
-    						   AUTO_SHOOTING_LOW_BAR_ANGLE = 45, //GOT TO CHECK THIS ONE
+    						   AUTO_SHOOTING_LOW_BAR_DISTANCE = 94, // CHECK PLS
+    						   AUTO_SHOOTING_LOW_BAR_ANGLE = 55, //GOT TO CHECK THIS ONE
     						   AUTO_SHOOTING_LOW_BAR_TURN_SPEED = 2, // THIS ALSO MUST be checked
     						   AUTO_DISTANCE_FROM_WALL = 20, // 20 in from wall... about 50 cm ish
     						   ULTRASONIC_CONVERSION_FACTOR = 10, // 10 mv per in for the one on sparkFun, check what Chris's ones are

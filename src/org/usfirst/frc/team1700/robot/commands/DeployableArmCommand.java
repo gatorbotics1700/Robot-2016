@@ -43,7 +43,7 @@ public class DeployableArmCommand extends Command {
     	} else {
     		RobotMap.atIntakePosition = false;
     	}
-
+    	System.out.println(arm.getEncPos());
     }
     
     

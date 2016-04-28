@@ -3,6 +3,7 @@ package org.usfirst.frc.team1700.robot.commands;
 import org.usfirst.frc.team1700.robot.OI;
 import org.usfirst.frc.team1700.robot.Robot;
 import org.usfirst.frc.team1700.robot.RobotMap;
+import org.usfirst.frc.team1700.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Autonomous extends CommandGroup {
 	private OI oi;
-	int autoMode = 6;
+	int autoMode = 2;
 	int startingPos = 1; 
 
     public Autonomous() {
@@ -40,14 +41,18 @@ public class Autonomous extends CommandGroup {
     		addSequential (new AutonomousDriveBackCommand(RobotMap.AUTO_BACKWARDS_DISTANCE));
     	} else if (autoMode == 6) {
     		addSequential (new AutonomousTurnToAngle(30));
-    	} else if (autoMode == 7) { //vision tracking autonomous command
-    		addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE/3, false)); //the value should be the distance from starting position to front of defense... is probably not correct
-    		addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE*2/3, true));
+//    	} else if (autoMode == 7) { //vision tracking autonomous command
+//    		addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE/3, false)); //the value should be the distance from starting position to front of defense... is probably not correct
+//    		addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_FORWARD_DISTANCE*2/3, true));
+//    		addSequential(new AutonomousTurnToAngle(Subsystems.robot.theta));
+//    		if (defense == 2){
+//    			addSequential(new AutonomousTurnToAngle(RobotMap.AUTO_HIGH_GOAL_POSITION_TWO))
+//    		}
     	} else if (autoMode == 8) { //low bar + shooting :)
     		addSequential (new AutonomousArm(AutonomousArm.DESIRED_POSITION_DEFENSE));
         	addSequential(new AutonomousDriveForwardCommand(RobotMap.AUTO_SHOOTING_LOW_BAR_DISTANCE, true));
         	addSequential(new AutonomousTurnToAngle(RobotMap.AUTO_SHOOTING_LOW_BAR_ANGLE));
-        	addSequential(new VisionTrackingTurnToAngleCommand());
+        	addSequential(new VisionTrackingTurnToAngleCommand(false));
         	addSequential(new AutonomousShootHighGoalCommand());
     	} else { // don't move bro
     		new AutonomousDriveForwardCommand(0, false);

@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 
 /**
@@ -37,23 +36,22 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     private AHRS navX;
-    private BuiltInAccelerometer RRA;
-    public double X_initial, Y_initial, theta_initial, dispX_field, dispY_field, theta, loopTime,
-    accX_robot_navX_meas, accX_robot_RRA_meas, accY_robot_navX_meas, accY_robot_RRA_meas,
-    alpha_navX_meas, motorCmdLeft, motorCmdRight, RRA_weight, navX_acc_weight, accX_robot_prev,
-    velX_robot_prev, accX_robot, velX_robot, dispX_robot, accY_robot_prev, velY_robot_prev, accY_robot,
-    velY_robot, dispY_robot, alpha_prev, omega_prev, alpha, omega, velX_field, accX_field,
-    velY_field, accY_field, wheelRPM_robot_left_enc_meas, wheelRPM_robot_right_enc_meas, 
-    dispY_robot_left_enc_meas_prev, dispY_robot_right_enc_meas_prev, dispY_robot_left_enc_meas, 
-    dispY_robot_right_enc_meas, slip_ratio_left, slip_ratio_right, wheel_diameter;
+//    public double X_initial, Y_initial, theta_initial, dispX_field, dispY_field, theta, loopTime,
+//    accX_robot_navX_meas, accX_robot_RRA_meas, accY_robot_navX_meas, accY_robot_RRA_meas,
+//    alpha_navX_meas, motorCmdLeft, motorCmdRight, RRA_weight, navX_acc_weight, accX_robot_prev,
+//    velX_robot_prev, accX_robot, velX_robot, dispX_robot, accY_robot_prev, velY_robot_prev, accY_robot,
+//    velY_robot, dispY_robot, alpha_prev, omega_prev, alpha, omega, velX_field, accX_field,
+//    velY_field, accY_field, wheelRPM_robot_left_enc_meas, wheelRPM_robot_right_enc_meas, 
+//    dispY_robot_left_enc_meas_prev, dispY_robot_right_enc_meas_prev, dispY_robot_left_enc_meas, 
+//    dispY_robot_right_enc_meas, slip_ratio_left, slip_ratio_right, wheel_diameter;
     
+    public double theta, omega;
 
     public Robot () {
 		drive = Subsystems.drive;
 		arm = Subsystems.deployableArm;
 		Subsystems.robot = this;
 		navX = new AHRS(SPI.Port.kMXP); 
-		RRA = new BuiltInAccelerometer();
 		//what do I assign RRA and navX to?
     }
     

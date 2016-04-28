@@ -7,7 +7,6 @@ import org.usfirst.frc.team1700.robot.subsystems.DeployableArmSubsystem;
 import org.usfirst.frc.team1700.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team1700.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team1700.robot.subsystems.ShooterSubsystem;
-import org.usfirst.frc.team1700.robot.subsystems.VisionTracking;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -18,7 +17,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class VisionTrackingTurnToAngleCommand extends Command {
 	
 	private DriveSubsystem drive;
-	private VisionTracking vision; 
 	private ShooterSubsystem shooter;
 	private IntakeSubsystem intake;
 	private NetworkTable table;
@@ -36,7 +34,6 @@ public class VisionTrackingTurnToAngleCommand extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Subsystems.drive);
-    	requires(Subsystems.vision);
     	requires(Subsystems.intake);
     	requires(Subsystems.shooter);
     	this.drive = Subsystems.drive;
